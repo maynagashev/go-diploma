@@ -21,6 +21,7 @@ autotests-darwin-amd64: build
 		 -accrual-port=$(shell ./bin/randomport-darwin-amd64) \
 		 -accrual-database-uri="$(DB_URI)" | tee gophermarttest.log
 
+# Локальное тестирование Linux
 build-linux:
 	GOOS=linux GOARCH=amd64 go build -o bin/gophermart-linux-amd64 cmd/gophermart/main.go
 	GOOS=linux GOARCH=amd64 go build -o bin/randomport-linux-amd64 cmd/randomport/main.go
@@ -39,3 +40,11 @@ autotests-linux-amd64: build-linux
 
 perm:
 	chmod -R +x bin
+
+# TODO: Миграции
+migrate:
+	go run cmd/migrate/main.go
+
+# Запуск сервиса
+run:
+	go run cmd/gophermart/main.go

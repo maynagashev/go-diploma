@@ -1,8 +1,12 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
 func main() {
+	port := "8080"
 
 	// обработчик запросов
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -11,6 +15,9 @@ func main() {
 		w.Write([]byte("Hello, Gopher!"))
 	})
 
-	// старт сервера на порту 8080 без маршрутов и ответом 200 OK
-	http.ListenAndServe(":8080", nil)
+	// старт сервера с выводом информации
+	log.Printf("Starting server on :%s", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		log.Fatal("Server error:", err)
+	}
 }
