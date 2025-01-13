@@ -1,0 +1,89 @@
+# Технологический стек
+
+## Основные компоненты
+
+### Web Framework
+
+- **[Echo](https://github.com/labstack/echo)** - быстрый и минималистичный веб-фреймворк
+  - Высокая производительность
+  - Простой и понятный API
+  - Встроенная поддержка middleware
+  - Хорошая документация
+
+### База данных и ORM
+
+- **[PostgreSQL](https://www.postgresql.org/)** - основная база данных
+- **[sqlx](https://github.com/jmoiron/sqlx)** - расширение стандартного database/sql
+  - Поддержка сканирования в структуры
+  - Типобезопасные запросы
+  - Простота использования
+
+### Конфигурация
+
+- **[godotenv](https://github.com/joho/godotenv)** - работа с .env файлами
+- **[pflag](https://github.com/spf13/pflag)** - обработка аргументов командной строки
+
+### Аутентификация и безопасность
+
+- **[jwt-go](https://github.com/golang-jwt/jwt)** - работа с JWT токенами
+- **[bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt)** - хеширование паролей
+
+### Валидация
+
+- **[validator](https://github.com/go-playground/validator)** - валидация входящих данных
+  - Встроенная поддержка в Echo
+  - Расширяемые правила валидации
+
+### Логирование
+
+- **[zerolog](https://github.com/rs/zerolog)** - быстрый JSON logger
+  - Структурированное логирование
+  - Поддержка уровней логирования
+  - Высокая производительность
+
+### Миграции БД
+
+- **[goose](https://github.com/pressly/goose)** - управление миграциями
+  - Поддержка PostgreSQL
+  - Версионирование миграций
+  - CLI инструмент
+
+### Тестирование
+
+- **[testify](https://github.com/stretchr/testify)** - фреймворк для тестирования
+- **[gomock](https://github.com/golang/mock)** - генерация моков
+- **[httptest](https://pkg.go.dev/net/http/httptest)** - тестирование HTTP handlers
+
+### Линтеры и форматтеры
+
+- **[golangci-lint](https://github.com/golangci/golangci-lint)** - набор линтеров
+- **[goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)** - форматирование импортов
+- **[gofmt](https://pkg.go.dev/cmd/gofmt)** - стандартный форматтер Go
+
+### Документация API
+
+- **[swag](https://github.com/swaggo/swag)** - генерация Swagger/OpenAPI
+- **[echo-swagger](https://github.com/swaggo/echo-swagger)** - интеграция Swagger с Echo
+
+## Структура документации
+
+```bash
+docs/
+├── README.md              # Оглавление документации
+├── stack.md              # Технологический стек (текущий файл)
+├── architecture.md       # Архитектура приложения
+├── api.md               # Описание API
+├── deployment.md        # Инструкции по развертыванию
+└── development.md       # Руководство для разработчиков
+```
+
+## Соглашения по оформлению документации
+
+1. Документация пишется на русском языке
+2. Используется Markdown формат
+3. Технические термины на английском оставляются без перевода
+4. Каждый документ должен начинаться с заголовка первого уровня
+5. Структура документа должна быть логически организована с помощью заголовков
+6. Код оформляется в блоках кода с указанием языка
+7. Важные моменты выделяются **жирным** шрифтом
+8. Ссылки на внешние ресурсы оформляются в виде [текст ссылки](URL) 
