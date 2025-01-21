@@ -48,3 +48,7 @@ migrate:
 # Запуск сервиса
 run:
 	go run cmd/gophermart/main.go
+
+lint :
+	@echo "Running linter..."
+	golangci-lint run
