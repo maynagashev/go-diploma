@@ -1,54 +1,117 @@
 package main
 
 import (
+	"context"
+	"flag"
 	"log/slog"
-	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
+
+	"github.com/joho/godotenv"
+
+	"gophermart/internal/app"
 )
 
-const (
-	defaultPort       = "8080"
-	defaultTimeout    = 30 * time.Second
-	readHeaderTimeout = 2 * time.Second
+var (
+	runAddress          string
+	databaseURI         string
+	accrualSystemAddr   string
+	migrationsDirectory string
+	jwtSecret           string
+	jwtExpirationPeriod time.Duration
 )
+
+func init() {
+	// Загрузка .env файла, если он существует
+	_ = godotenv.Load()
+
+	// Флаги командной строки
+	flag.StringVar(&runAddress, "a", os.Getenv("RUN_ADDRESS"), "Адрес и порт для запуска сервера")
+	flag.StringVar(&databaseURI, "d", os.Getenv("DATABASE_URI"), "URI базы данных")
+	flag.StringVar(&accrualSystemAddr, "r", os.Getenv("ACCRUAL_SYSTEM_ADDRESS"), "Адрес системы расчета начислений")
+	flag.StringVar(&migrationsDirectory, "m", "migrations", "Директория с миграциями")
+	flag.StringVar(&jwtSecret, "jwt-secret", os.Getenv("JWT_SECRET"), "Секретный ключ для подписи JWT токенов")
+	flag.DurationVar(
+		&jwtExpirationPeriod,
+		"jwt-exp",
+		getDurationEnv("JWT_EXPIRATION_PERIOD", 24*time.Hour),
+		"Период действия JWT токена",
+	)
+}
+
+// getDurationEnv получает значение длительности из переменной окружения
+func getDurationEnv(key string, defaultValue time.Duration) time.Duration {
+	if value := os.Getenv(key); value != "" {
+		if duration, err := time.ParseDuration(value); err == nil {
+			return duration
+		}
+	}
+	return defaultValue
+}
 
 func main() {
-	initLogger()
-	port := defaultPort
+	flag.Parse()
 
-	// Создаем новый мультиплексор для маршрутизации
-	mux := http.NewServeMux()
-
-	// Обработчик запросов
-	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
-		// отправка ответа
-		w.WriteHeader(http.StatusOK)
-		if _, err := w.Write([]byte("Hello, Gopher!")); err != nil {
-			slog.Error("Failed to write response", "error", err)
-		}
-	})
-
-	// Создаем HTTP сервер с таймаутами
-	server := &http.Server{
-		Addr:              ":" + port,
-		Handler:           mux,
-		ReadTimeout:       defaultTimeout,
-		WriteTimeout:      defaultTimeout,
-		IdleTimeout:       defaultTimeout,
-		ReadHeaderTimeout: readHeaderTimeout,
+	// Установка значений по умолчанию
+	if runAddress == "" {
+		runAddress = ":8080"
+	}
+	if databaseURI == "" {
+		slog.Error("требуется указать URI базы данных")
+		os.Exit(1)
+	}
+	if accrualSystemAddr == "" {
+		slog.Error("требуется указать адрес системы расчета начислений")
+		os.Exit(1)
+	}
+	if jwtSecret == "" {
+		slog.Error("требуется указать секретный ключ для JWT")
+		os.Exit(1)
 	}
 
-	// Старт сервера с выводом информации
-	slog.Info("Starting server", "port", port)
-	if err := server.ListenAndServe(); err != nil {
-		slog.Error("Server error", "error", err)
+	// Создание контекста, который слушает сигналы прерывания от ОС
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	// Инициализация приложения
+	application, err := app.New(ctx, app.Config{
+		DatabaseURI:          databaseURI,
+		MigrationsDir:        migrationsDirectory,
+		RunAddress:           runAddress,
+		AccrualSystemAddress: accrualSystemAddr,
+		JWTSecret:            jwtSecret,
+		JWTExpirationPeriod:  jwtExpirationPeriod,
+	})
+	if err != nil {
+		slog.Error("не удалось инициализировать приложение", "error", err)
+		os.Exit(1)
+	}
+
+	// Запуск приложения
+	go func() {
+		if err := application.Start(runAddress); err != nil {
+			slog.Error("не удалось запустить сервер", "error", err)
+			os.Exit(1)
+		}
+	}()
+
+	// Ожидание сигнала прерывания
+	<-ctx.Done()
+
+	// Корректное завершение работы
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	if err := application.Shutdown(shutdownCtx); err != nil {
+		slog.Error("не удалось корректно завершить работу сервера", "error", err)
 		os.Exit(1)
 	}
 }
 
 func initLogger() {
-	// Создаем переменную для уровня логирования и устанавливаем ее в Info
+	// Создаем переменную для уровня логирования и устанавливаем ее в Debug
 	logLevel := new(slog.LevelVar)
 	logLevel.Set(slog.LevelDebug)
 

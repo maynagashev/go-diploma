@@ -2,9 +2,109 @@
 
 Накопительная система лояльности «Гофермарт». Индивидуальный дипломный проект курса «Go-разработчик»
 
-В качестве фреймворка для обработки запросов выбран [echo](https://github.com/labstack/echo).
+## Быстрый старт
 
-## Запуск линтеров и форматтеров
+### 1. Подготовка окружения
+
+```bash
+# Клонирование репозитория
+git clone https://github.com/your-username/gophermart.git
+cd gophermart
+
+# Создание .env файла из примера
+cp .env.example .env
+
+# Редактирование .env файла под свои настройки
+nano .env
+```
+
+### 2. Запуск базы данных
+
+```bash
+# Запуск PostgreSQL через Docker
+docker compose up -d pgsql
+
+# Проверка статуса
+docker compose ps
+```
+
+### 3. Сборка и запуск
+
+```bash
+# Сборка проекта
+go build -o bin/gophermart cmd/gophermart/main.go
+
+# Применение миграций
+go run cmd/gophermart/main.go -m migrations
+
+# Запуск сервера
+./bin/gophermart
+```
+
+Или через флаги командной строки:
+```bash
+./bin/gophermart \
+  -a=":8080" \
+  -d="postgres://gophermart:secret@localhost:5432/gophermart?sslmode=disable" \
+  -r="http://localhost:8081"
+```
+
+### 4. Проверка работоспособности
+
+```bash
+# Регистрация пользователя
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"login":"user1","password":"pass123"}' \
+  http://localhost:8080/api/user/register
+```
+
+## Конфигурация
+
+### Переменные окружения
+
+#### Сервер
+- `RUN_ADDRESS` - адрес и порт сервера (по умолчанию `:8080`)
+- `DATABASE_URI` - строка подключения к БД
+- `ACCRUAL_SYSTEM_ADDRESS` - адрес системы расчета начислений
+
+#### База данных
+- `DB_DATABASE` - имя базы данных
+- `DB_USERNAME` - имя пользователя БД
+- `DB_PASSWORD` - пароль пользователя БД
+- `FORWARD_DB_PORT` - порт для подключения к БД (по умолчанию `5432`)
+
+### Флаги командной строки
+
+- `-a` - адрес и порт сервера
+- `-d` - строка подключения к БД
+- `-r` - адрес системы расчета начислений
+- `-m` - путь к директории с миграциями (по умолчанию `migrations`)
+
+## Работа с миграциями
+
+### Создание новой миграции
+
+```bash
+# Создание новой миграции
+goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" create add_users_table sql
+```
+
+### Применение миграций
+
+```bash
+# Применение всех миграций
+goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" up
+
+# Откат последней миграции
+goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" down
+
+# Просмотр статуса миграций
+goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" status
+```
+
+## Разработка
+
+### Запуск линтеров и форматтеров
 
 ```bash
 # Исправление импортов
@@ -16,7 +116,7 @@ gofmt -w .
 # Исправление длины строк
 golines -w -m 120 --shorten-comments .
 
-# Запуск линтера для текущей директории и всех поддиректорий
+# Запуск линтера
 golangci-lint run ./...
 ```
 
@@ -77,13 +177,13 @@ golangci-lint run ./...
 
 Чтобы иметь возможность получать обновления автотестов и других частей шаблона, выполните команду:
 
-```
+```bash
 git remote add -m master template https://github.com/yandex-praktikum/go-musthave-diploma-tpl.git
 ```
 
 Для обновления кода автотестов выполните команду:
 
-```
+```bash
 git fetch template && git checkout template/master .github
 ```
 

@@ -41,10 +41,6 @@ autotests-linux-amd64: build-linux
 perm:
 	chmod -R +x bin
 
-# TODO: Миграции
-migrate:
-	go run cmd/migrate/main.go
-
 # Запуск сервиса
 run:
 	go run cmd/gophermart/main.go
