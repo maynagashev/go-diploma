@@ -2,20 +2,25 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net"
 )
 
 func main() {
-	// Создаем слушающий сокет на любом доступном порту
+	//nolint:gosec // G102: Намеренно слушаем на всех интерфейсах для получения случайного порта
 	listener, err := net.Listen("tcp", ":0")
 	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-		return
+		log.Fatalf("Error: %v", err)
 	}
-	// Закрываем слушающий сокет после завершения работы
 	defer listener.Close()
 
 	// Получаем адрес сокета и извлекаем номер порта
-	port := listener.Addr().(*net.TCPAddr).Port
-	fmt.Println(port)
+	addr, ok := listener.Addr().(*net.TCPAddr)
+	if !ok {
+		// Не используем log.Fatal, чтобы defer выполнился
+		log.Printf("Failed to get TCP address")
+		return
+	}
+	//nolint:forbidigo // Это утилита командной строки, использование fmt.Println допустимо
+	fmt.Println(addr.Port)
 }

@@ -28,7 +28,7 @@ golangci-lint run ./...
 - [x] docker compose для локальной разработки
 - [x] выбор фреймворков и библиотек (echo, sqlx)
   - [x] выбор логгера (slog)
-- [ ] линтеры и форматтеры: `golangci-lint`, `goimports`, `gofmt`
+- [x] линтеры и форматтеры: `golangci-lint`, `goimports`, `gofmt`, `golines`
 
 ### 2. Основные модели данных и миграции
 
@@ -88,3 +88,15 @@ git fetch template && git checkout template/master .github
 ```
 
 Затем добавьте полученные изменения в свой репозиторий.
+
+## Установка утилит
+
+```bash
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/segmentio/golines@latest
+# Установка pre-commit
+sudo apt update
+sudo apt install pipx
+pipx install pre-commit
+```
