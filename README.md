@@ -4,14 +4,31 @@
 
 В качестве фреймворка для обработки запросов выбран [echo](https://github.com/labstack/echo).
 
+## Запуск линтеров и форматтеров
+
+```bash
+# Исправление импортов
+goimports -w .
+
+# Исправление форматирования
+gofmt -w .
+
+# Исправление длины строк
+golines -w -m 120 --shorten-comments .
+
+# Запуск линтера для текущей директории и всех поддиректорий
+golangci-lint run ./...
+```
+
 ## План реализации
 
 ### 1. Структура проекта
 
 - [x] настройка автотестов
 - [x] docker compose для локальной разработки
-- [ ] выбор фреймворков и библиотек
-- [ ] линтеры и форматтеры: `golangci-lint`, `goimports`, `gofmt`
+- [x] выбор фреймворков и библиотек (echo, sqlx)
+  - [x] выбор логгера (slog)
+- [x] линтеры и форматтеры: `golangci-lint`, `goimports`, `gofmt`, `golines`
 
 ### 2. Основные модели данных и миграции
 
@@ -71,3 +88,15 @@ git fetch template && git checkout template/master .github
 ```
 
 Затем добавьте полученные изменения в свой репозиторий.
+
+## Установка утилит
+
+```bash
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/segmentio/golines@latest
+# Установка pre-commit
+sudo apt update
+sudo apt install pipx
+pipx install pre-commit
+```
