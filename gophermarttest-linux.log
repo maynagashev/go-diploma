@@ -3,6 +3,14 @@
 === RUN   TestGophermart/TestEndToEnd/register_accrual_mechanic
 === RUN   TestGophermart/TestEndToEnd/register_order_for_accrual
 === RUN   TestGophermart/TestEndToEnd/register_user
+    gophermart_e2e_test.go:116: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:116
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestEndToEnd/register_user
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/register'
     gophermart_e2e_test.go:122: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:122
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -18,7 +26,7 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        {"login": "ak7v5hAForU","password": "qjAFLVS6RwzE9ysf8FTdHOhpXTv4e"}
+        {"login": "koda1B2MqR7g","password": "RF49EQuk62krleUl9VddiuHeb"}
         
 === RUN   TestGophermart/TestEndToEnd/order_upload
     gophermart_e2e_test.go:146: 
@@ -26,7 +34,7 @@
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	Not equal: 
         	            	expected: 202
-        	            	actual  : 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestEndToEnd/order_upload
         	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:152: Оригинальный запрос:
@@ -37,13 +45,19 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        852822
+        2243830
         
 === RUN   TestGophermart/TestEndToEnd/await_order_processed
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -52,10 +66,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -64,10 +84,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -76,10 +102,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -88,10 +120,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -100,10 +138,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -112,10 +156,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -124,10 +174,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -136,10 +192,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -148,10 +210,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -160,10 +228,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -172,10 +246,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -184,10 +264,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -196,10 +282,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -208,10 +300,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -220,10 +318,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -232,10 +336,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -244,10 +354,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -256,10 +372,16 @@
         Host: localhost:8080
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
+    gophermart_e2e_test.go:181: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_e2e_test.go:184: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:184
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/await_order_processed
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:190: Оригинальный запрос:
@@ -295,10 +417,16 @@
         
     gophermart_e2e_test.go:166: Не удалось дождаться окончания расчета начисления
 === RUN   TestGophermart/TestEndToEnd/check_balance
+    gophermart_e2e_test.go:219: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:219
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	[]int{200, 204} does not contain 404
+        	Test:       	TestGophermart/TestEndToEnd/check_balance
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/balance'
     gophermart_e2e_test.go:222: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:222
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/check_balance
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:231: 
@@ -325,23 +453,53 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/withdraw_balance
+    gophermart_e2e_test.go:260: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:260
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestEndToEnd/withdraw_balance
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/balance/withdraw'
+    gophermart_e2e_test.go:266: Оригинальный запрос:
+        
+        POST /api/user/balance/withdraw HTTP/1.1
+        Host: localhost:8080
+        Accept: application/json
+        Content-Type: application/json
+        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
+        
+        
+        {
+        			"order": "47822861",
+            		"sum": 480.61
+        		}
+        
 === RUN   TestGophermart/TestEndToEnd/recheck_balance
+    gophermart_e2e_test.go:280: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:280
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestEndToEnd/recheck_balance
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/balance'
     gophermart_e2e_test.go:283: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:283
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_e2e_test.go:289: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:289
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 379.0151 and 0 allowed is 0.01, but difference was 379.0151062011719
+        	Error:      	Max difference between 249.37259 and 0 allowed is 0.01, but difference was 249.37258911132812
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Баланс пользователя не соответствует ожидаемому
     gophermart_e2e_test.go:290: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:290
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 350.96487 and 0 allowed is 0.01, but difference was 350.9648742675781
+        	Error:      	Max difference between 480.6074 and 0 allowed is 0.01, but difference was 480.6073913574219
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Списанная сумма не соответствует ожидаемой
     gophermart_e2e_test.go:294: Оригинальный запрос:
@@ -351,13 +509,32 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/check_withdrawals
-    gophermart_e2e_test.go:319: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:319
+    gophermart_e2e_test.go:309: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:309
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Should NOT be empty, but was []
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestEndToEnd/check_withdrawals
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/withdrawals'
+    gophermart_e2e_test.go:315: Оригинальный запрос:
+        
+        GET /api/user/withdrawals HTTP/1.1
+        Host: localhost:8080
+        Accept: application/json
+        Content-Type: application/json
+        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
+        
 === RUN   TestGophermart/TestUserAuth
 === RUN   TestGophermart/TestUserAuth/register_user
+    gophermart_auth_test.go:34: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_auth_test.go:34
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestUserAuth/register_user
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/register'
     gophermart_auth_test.go:40: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_auth_test.go:40
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -375,12 +552,20 @@
         
         
         			{
-        				"login": "zDrx4wSkx",
-        				"password": "Y0wmc2TJRSIvHtR0BF"
+        				"login": "QJfJ",
+        				"password": "jwgcxW06FH2ly04L1D453jR"
         			}
         		
         
 === RUN   TestGophermart/TestUserAuth/login_user
+    gophermart_auth_test.go:66: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_auth_test.go:66
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestUserAuth/login_user
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/login'
     gophermart_auth_test.go:72: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_auth_test.go:72
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -398,8 +583,8 @@
         
         
         			{
-        				"login": "zDrx4wSkx",
-        				"password": "Y0wmc2TJRSIvHtR0BF"
+        				"login": "QJfJ",
+        				"password": "jwgcxW06FH2ly04L1D453jR"
         			}
         		
         
@@ -410,7 +595,7 @@
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	Not equal: 
         	            	expected: 401
-        	            	actual  : 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestUserOrders/unauthorized_order_upload
         	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
     gophermart_orders_test.go:47: Оригинальный запрос:
@@ -421,7 +606,7 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        564368243741146
+        7747165
         
 === RUN   TestGophermart/TestUserOrders/unauthorized_orders_list
     gophermart_orders_test.go:56: 
@@ -429,7 +614,7 @@
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	Not equal: 
         	            	expected: 401
-        	            	actual  : 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestUserOrders/unauthorized_orders_list
         	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_orders_test.go:62: Оригинальный запрос:
@@ -439,6 +624,14 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestUserOrders/register_user
+    gophermart_orders_test.go:76: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:76
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestUserOrders/register_user
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/register'
     gophermart_orders_test.go:82: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:82
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -454,7 +647,7 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        {"login": "wWJsS7pqxd","password": "zS31qNDp2rKXSJEdS"}
+        {"login": "eATv0hAiBxQ","password": "BgEQdyMTRUwxdJrx55"}
         
 === RUN   TestGophermart/TestUserOrders/bad_order_upload
     gophermart_orders_test.go:106: 
@@ -462,7 +655,7 @@
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	Not equal: 
         	            	expected: 422
-        	            	actual  : 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestUserOrders/bad_order_upload
         	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
     gophermart_orders_test.go:112: Оригинальный запрос:
@@ -481,7 +674,7 @@
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	Not equal: 
         	            	expected: 202
-        	            	actual  : 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestUserOrders/order_upload
         	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
     gophermart_orders_test.go:132: Оригинальный запрос:
@@ -492,14 +685,40 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        28862514
+        67344273627
         
 === RUN   TestGophermart/TestUserOrders/duplicate_order_upload_same_user
+    gophermart_orders_test.go:146: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:146
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestUserOrders/duplicate_order_upload_same_user
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
+    gophermart_orders_test.go:152: Оригинальный запрос:
+        
+        POST /api/user/orders HTTP/1.1
+        Host: localhost:8080
+        Content-Type: text/plain
+        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
+        
+        
+        67344273627
+        
 === RUN   TestGophermart/TestUserOrders/orders_list
+    gophermart_orders_test.go:165: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:165
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestUserOrders/orders_list
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
     gophermart_orders_test.go:168: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:168
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"text/plain; charset=utf-8" does not contain "application/json"
+        	Error:      	"text/html; charset=utf-8" does not contain "application/json"
         	Test:       	TestGophermart/TestUserOrders/orders_list
         	Messages:   	Заголовок ответа Content-Type содержит несоответствующее значение
     gophermart_orders_test.go:172: 
@@ -515,6 +734,14 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestUserOrders/duplicate_order_upload_other_user
+    gophermart_orders_test.go:206: 
+        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:206
+        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
+        	Error:      	Not equal: 
+        	            	expected: 200
+        	            	actual  : 404
+        	Test:       	TestGophermart/TestUserOrders/duplicate_order_upload_other_user
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/register'
     gophermart_orders_test.go:212: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:212
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -530,14 +757,14 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        {"login": "W4CtOMv","password": "qJoueWkmbxT0NvER11HbWz02x7o"}
+        {"login": "KeWQpCczzvRI","password": "lbcvLQnkc6MmdKdpDeQIuyB6cDliA"}
         
     gophermart_orders_test.go:236: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:236
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	Not equal: 
         	            	expected: 409
-        	            	actual  : 200
+        	            	actual  : 404
         	Test:       	TestGophermart/TestUserOrders/duplicate_order_upload_other_user
         	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
     gophermart_orders_test.go:242: Оригинальный запрос:
@@ -548,36 +775,41 @@
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
-        28862514
+        67344273627
         
 === NAME  TestGophermart
     gophermart_suite_test.go:105: останавливаем процесс gophermart
+    gophermart_suite_test.go:127: Процесс завершился с не нулевым статусом 1
+    gophermart_suite_test.go:140: Получен STDOUT лог процесса:
+        
+        {"time":"2025-01-22T11:30:12.925896904+07:00","level":"INFO","msg":"Starting server","port":"8080"}
+        {"time":"2025-01-22T11:30:12.926451805+07:00","level":"ERROR","msg":"Server error","error":"listen tcp :8080: bind: address already in use"}
     gophermart_suite_test.go:108: останавливаем процесс accrual
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        {"level":"info","ts":1736088309.577219,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:38085"}
-        {"level":"info","ts":1736088329.822561,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
---- FAIL: TestGophermart (20.26s)
-    --- FAIL: TestGophermart/TestEndToEnd (20.02s)
+        {"level":"info","ts":1737520212.8387744,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:37379"}
+        {"level":"info","ts":1737520233.4630654,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
+--- FAIL: TestGophermart (20.65s)
+    --- FAIL: TestGophermart/TestEndToEnd (20.40s)
         --- PASS: TestGophermart/TestEndToEnd/register_accrual_mechanic (0.00s)
         --- PASS: TestGophermart/TestEndToEnd/register_order_for_accrual (0.00s)
-        --- FAIL: TestGophermart/TestEndToEnd/register_user (0.00s)
-        --- FAIL: TestGophermart/TestEndToEnd/order_upload (0.00s)
+        --- FAIL: TestGophermart/TestEndToEnd/register_user (0.35s)
+        --- FAIL: TestGophermart/TestEndToEnd/order_upload (0.01s)
         --- FAIL: TestGophermart/TestEndToEnd/await_order_processed (20.00s)
-        --- FAIL: TestGophermart/TestEndToEnd/check_balance (0.00s)
-        --- PASS: TestGophermart/TestEndToEnd/withdraw_balance (0.00s)
-        --- FAIL: TestGophermart/TestEndToEnd/recheck_balance (0.00s)
-        --- FAIL: TestGophermart/TestEndToEnd/check_withdrawals (0.00s)
-    --- FAIL: TestGophermart/TestUserAuth (0.00s)
+        --- FAIL: TestGophermart/TestEndToEnd/check_balance (0.01s)
+        --- FAIL: TestGophermart/TestEndToEnd/withdraw_balance (0.00s)
+        --- FAIL: TestGophermart/TestEndToEnd/recheck_balance (0.01s)
+        --- FAIL: TestGophermart/TestEndToEnd/check_withdrawals (0.01s)
+    --- FAIL: TestGophermart/TestUserAuth (0.01s)
         --- FAIL: TestGophermart/TestUserAuth/register_user (0.00s)
         --- FAIL: TestGophermart/TestUserAuth/login_user (0.00s)
-    --- FAIL: TestGophermart/TestUserOrders (0.02s)
+    --- FAIL: TestGophermart/TestUserOrders (0.03s)
         --- FAIL: TestGophermart/TestUserOrders/unauthorized_order_upload (0.00s)
         --- FAIL: TestGophermart/TestUserOrders/unauthorized_orders_list (0.00s)
         --- FAIL: TestGophermart/TestUserOrders/register_user (0.00s)
         --- FAIL: TestGophermart/TestUserOrders/bad_order_upload (0.00s)
         --- FAIL: TestGophermart/TestUserOrders/order_upload (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
+        --- FAIL: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
         --- FAIL: TestGophermart/TestUserOrders/orders_list (0.01s)
-        --- FAIL: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.00s)
+        --- FAIL: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.01s)
 FAIL
