@@ -17,10 +17,11 @@ RUN_ADDRESS=:8080
 DATABASE_URI=postgres://user:pass@localhost:5432/dbname
 ACCRUAL_SYSTEM_ADDRESS=http://localhost:8081
 
-# База данных
-POSTGRES_USER=user
-POSTGRES_PASSWORD=pass
-POSTGRES_DB=dbname
+# Настройки для развертывания сервиса локально в docker-compose
+DB_DATABASE=gophermart
+DB_USERNAME=gophermart
+DB_PASSWORD=password
+FORWARD_DB_PORT=5432 
 ```
 
 ## Локальное развертывание
@@ -49,13 +50,5 @@ make run
 ```
 
 ## Миграции
-
-[Будет добавлено позже]
-
-## Мониторинг
-
-[Будет добавлено позже]
-
-## Резервное копирование
 
 [Будет добавлено позже]

@@ -37,7 +37,7 @@ cp .env.example .env
 
 Используем Conventional Commits:
 
-```
+```bash
 feat: добавлена авторизация
 fix: исправлен баг с валидацией
 docs: обновлена документация API
