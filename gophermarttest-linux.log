@@ -4,273 +4,7 @@
 === RUN   TestGophermart/TestEndToEnd/register_order_for_accrual
 === RUN   TestGophermart/TestEndToEnd/register_user
 === RUN   TestGophermart/TestEndToEnd/order_upload
-    gophermart_e2e_test.go:146: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:146
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Not equal: 
-        	            	expected: 202
-        	            	actual  : 404
-        	Test:       	TestGophermart/TestEndToEnd/order_upload
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:152: Оригинальный запрос:
-        
-        POST /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        Content-Type: text/plain
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-        
-        638635
-        
 === RUN   TestGophermart/TestEndToEnd/await_order_processed
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-    gophermart_e2e_test.go:181: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:181
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	[]int{200, 204} does not contain 404
-        	Test:       	TestGophermart/TestEndToEnd/await_order_processed
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_e2e_test.go:190: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
     gophermart_e2e_test.go:180: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:180
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -294,7 +28,7 @@
         
         GET /api/user/orders HTTP/1.1
         Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc3MzcwNTYsImxvZ2luIjoidzRqYjFWVFhMSkYiLCJ1c2VyX2lkIjozM30.qka-07Y1OKpQIFU8xiTeMtzAKzDyMo3sbTliwPUJRJM
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
     gophermart_e2e_test.go:166: Не удалось дождаться окончания расчета начисления
@@ -326,7 +60,7 @@
         
         GET /api/user/balance HTTP/1.1
         Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc3MzcwNTYsImxvZ2luIjoidzRqYjFWVFhMSkYiLCJ1c2VyX2lkIjozM30.qka-07Y1OKpQIFU8xiTeMtzAKzDyMo3sbTliwPUJRJM
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/withdraw_balance
@@ -343,14 +77,14 @@
         POST /api/user/balance/withdraw HTTP/1.1
         Host: localhost:8080
         Accept: application/json
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc3MzcwNTYsImxvZ2luIjoidzRqYjFWVFhMSkYiLCJ1c2VyX2lkIjozM30.qka-07Y1OKpQIFU8xiTeMtzAKzDyMo3sbTliwPUJRJM
         Content-Type: application/json
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
         {
-        			"order": "5457353",
-            		"sum": 376.20
+        			"order": "3634532026",
+            		"sum": 436.18
         		}
         
 === RUN   TestGophermart/TestEndToEnd/recheck_balance
@@ -365,20 +99,20 @@
     gophermart_e2e_test.go:289: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:289
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 353.77637 and 0 allowed is 0.01, but difference was 353.7763671875
+        	Error:      	Max difference between 293.80453 and 0 allowed is 0.01, but difference was 293.8045349121094
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Баланс пользователя не соответствует ожидаемому
     gophermart_e2e_test.go:290: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:290
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 376.2036 and 0 allowed is 0.01, but difference was 376.20361328125
+        	Error:      	Max difference between 436.17545 and 0 allowed is 0.01, but difference was 436.1754455566406
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Списанная сумма не соответствует ожидаемой
     gophermart_e2e_test.go:294: Оригинальный запрос:
         
         GET /api/user/balance HTTP/1.1
         Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc3MzcwNTYsImxvZ2luIjoidzRqYjFWVFhMSkYiLCJ1c2VyX2lkIjozM30.qka-07Y1OKpQIFU8xiTeMtzAKzDyMo3sbTliwPUJRJM
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/check_withdrawals
@@ -395,7 +129,7 @@
         GET /api/user/withdrawals HTTP/1.1
         Host: localhost:8080
         Accept: application/json
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5MzEsImxvZ2luIjoiazFyUGZQVHZGcCIsInVzZXJfaWQiOjE3fQ.hwy8Wc8TRRkFjckL9KKlovQVt8A0xKY4UomD04iuDTM
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc3MzcwNTYsImxvZ2luIjoidzRqYjFWVFhMSkYiLCJ1c2VyX2lkIjozM30.qka-07Y1OKpQIFU8xiTeMtzAKzDyMo3sbTliwPUJRJM
         Content-Type: application/json
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
@@ -407,113 +141,16 @@
 === RUN   TestGophermart/TestUserOrders/unauthorized_orders_list
 === RUN   TestGophermart/TestUserOrders/register_user
 === RUN   TestGophermart/TestUserOrders/bad_order_upload
-    gophermart_orders_test.go:106: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:106
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Not equal: 
-        	            	expected: 422
-        	            	actual  : 404
-        	Test:       	TestGophermart/TestUserOrders/bad_order_upload
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
-    gophermart_orders_test.go:112: Оригинальный запрос:
-        
-        POST /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5NTIsImxvZ2luIjoiTkxQSEZLcFB0IiwidXNlcl9pZCI6MTl9.1gV9McYtOSZ9wk3hjzl265A_FjGLdsqh37aMJn88MqA
-        Content-Type: text/plain
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-        
-        12345678902
-        
 === RUN   TestGophermart/TestUserOrders/order_upload
-    gophermart_orders_test.go:126: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:126
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Not equal: 
-        	            	expected: 202
-        	            	actual  : 404
-        	Test:       	TestGophermart/TestUserOrders/order_upload
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
-    gophermart_orders_test.go:132: Оригинальный запрос:
-        
-        POST /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5NTIsImxvZ2luIjoiTkxQSEZLcFB0IiwidXNlcl9pZCI6MTl9.1gV9McYtOSZ9wk3hjzl265A_FjGLdsqh37aMJn88MqA
-        Content-Type: text/plain
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-        
-        17114368545
-        
 === RUN   TestGophermart/TestUserOrders/duplicate_order_upload_same_user
-    gophermart_orders_test.go:146: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:146
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Not equal: 
-        	            	expected: 200
-        	            	actual  : 404
-        	Test:       	TestGophermart/TestUserOrders/duplicate_order_upload_same_user
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
-    gophermart_orders_test.go:152: Оригинальный запрос:
-        
-        POST /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5NTIsImxvZ2luIjoiTkxQSEZLcFB0IiwidXNlcl9pZCI6MTl9.1gV9McYtOSZ9wk3hjzl265A_FjGLdsqh37aMJn88MqA
-        Content-Type: text/plain
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-        
-        17114368545
-        
 === RUN   TestGophermart/TestUserOrders/orders_list
-    gophermart_orders_test.go:165: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:165
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Not equal: 
-        	            	expected: 200
-        	            	actual  : 404
-        	Test:       	TestGophermart/TestUserOrders/orders_list
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/orders'
-    gophermart_orders_test.go:172: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:172
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	"[]" should have 1 item(s), but has 0
-        	Test:       	TestGophermart/TestUserOrders/orders_list
-        	Messages:   	Ожидаем отличное от полученного кол-во заказов
-    gophermart_orders_test.go:181: Оригинальный запрос:
-        
-        GET /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5NTIsImxvZ2luIjoiTkxQSEZLcFB0IiwidXNlcl9pZCI6MTl9.1gV9McYtOSZ9wk3hjzl265A_FjGLdsqh37aMJn88MqA
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
 === RUN   TestGophermart/TestUserOrders/duplicate_order_upload_other_user
-    gophermart_orders_test.go:236: 
-        	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_orders_test.go:236
-        	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Not equal: 
-        	            	expected: 409
-        	            	actual  : 404
-        	Test:       	TestGophermart/TestUserOrders/duplicate_order_upload_other_user
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/orders'
-    gophermart_orders_test.go:242: Оригинальный запрос:
-        
-        POST /api/user/orders HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzc2MzM5NTIsImxvZ2luIjoiZ1ROU0RoVHZSQUwiLCJ1c2VyX2lkIjoyMH0.6ClthxlHrk9DWVFEl-j7SabEmIkK2Uv4qv5sqPINeO0
-        Content-Type: text/plain
-        User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
-        
-        
-        17114368545
-        
 === NAME  TestGophermart
     gophermart_suite_test.go:105: останавливаем процесс gophermart
     gophermart_suite_test.go:127: Процесс завершился с не нулевым статусом 1
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        2025/01/22 19:05:31 goose: no migrations to run. current version: 1
+        2025/01/23 23:44:16 goose: no migrations to run. current version: 2
         
            ____    __
           / __/___/ /  ___
@@ -523,33 +160,70 @@
         https://echo.labstack.com
         ____________________________________O/_______
                                             O\
-        2025/01/22 19:05:31 ERROR не удалось запустить сервер error="listen tcp 127.0.0.1:8080: bind: address already in use"
+        ⇨ http server started on 127.0.0.1:8080
+        {"time":"2025-01-23T23:44:16.292011389+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":125228319,"latency_human":"125.228319ms","bytes_in":56,"bytes_out":165}
+        {"time":"2025-01-23T23:44:16.298247753+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":5001928,"latency_human":"5.001928ms","bytes_in":15,"bytes_out":0}
+        {"time":"2025-01-23T23:44:17.302971775+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3169277,"latency_human":"3.169277ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:18.302127525+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2088221,"latency_human":"2.088221ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:19.302363744+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2170279,"latency_human":"2.170279ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:20.302819519+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2320755,"latency_human":"2.320755ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:21.302492291+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2497839,"latency_human":"2.497839ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:22.301585976+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1809984,"latency_human":"1.809984ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:23.303203867+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2369052,"latency_human":"2.369052ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:24.301951163+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1532258,"latency_human":"1.532258ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:25.302116157+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2135928,"latency_human":"2.135928ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:26.300723247+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":973621,"latency_human":"973.621µs","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:27.302199915+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2156035,"latency_human":"2.156035ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:28.303244084+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2563732,"latency_human":"2.563732ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:29.303174959+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2439735,"latency_human":"2.439735ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:30.302304108+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2287490,"latency_human":"2.28749ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:31.302718862+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2177312,"latency_human":"2.177312ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:32.301454791+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1677513,"latency_human":"1.677513ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:33.302991928+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2369868,"latency_human":"2.369868ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:34.302072193+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1873670,"latency_human":"1.87367ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:35.30335121+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2716978,"latency_human":"2.716978ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-01-23T23:44:36.302415916+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":214845,"latency_human":"214.845µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-01-23T23:44:36.304386194+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":106680,"latency_human":"106.68µs","bytes_in":51,"bytes_out":24}
+        {"time":"2025-01-23T23:44:36.305586149+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":91303,"latency_human":"91.303µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-01-23T23:44:36.307181302+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":160184,"latency_human":"160.184µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-01-23T23:44:36.447672224+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":138639682,"latency_human":"138.639682ms","bytes_in":74,"bytes_out":156}
+        {"time":"2025-01-23T23:44:36.582676098+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":132892652,"latency_human":"132.892652ms","bytes_in":74,"bytes_out":156}
+        {"time":"2025-01-23T23:44:36.585176035+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":137200,"latency_human":"137.2µs","bytes_in":12,"bytes_out":71}
+        {"time":"2025-01-23T23:44:36.585801364+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":10741,"latency_human":"10.741µs","bytes_in":0,"bytes_out":71}
+        {"time":"2025-01-23T23:44:36.706675402+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":120090505,"latency_human":"120.090505ms","bytes_in":60,"bytes_out":161}
+        {"time":"2025-01-23T23:44:36.709325308+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":1333205,"latency_human":"1.333205ms","bytes_in":11,"bytes_out":70}
+        {"time":"2025-01-23T23:44:36.71284149+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":2589473,"latency_human":"2.589473ms","bytes_in":6,"bytes_out":0}
+        {"time":"2025-01-23T23:44:36.715053529+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1407542,"latency_human":"1.407542ms","bytes_in":6,"bytes_out":0}
+        {"time":"2025-01-23T23:44:36.716026844+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":478804,"latency_human":"478.804µs","bytes_in":0,"bytes_out":86}
+        {"time":"2025-01-23T23:44:36.834524781+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":117345031,"latency_human":"117.345031ms","bytes_in":72,"bytes_out":168}
+        {"time":"2025-01-23T23:44:36.836376294+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":932525,"latency_human":"932.525µs","bytes_in":6,"bytes_out":109}
+        2025/01/23 23:44:36 ERROR не удалось запустить сервер error="http: Server closed"
     gophermart_suite_test.go:108: останавливаем процесс accrual
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        {"level":"info","ts":1737547531.2784255,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:46171"}
-        {"level":"info","ts":1737547552.5239623,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
---- FAIL: TestGophermart (21.26s)
-    --- FAIL: TestGophermart/TestEndToEnd (20.19s)
+        {"level":"info","ts":1737650655.962978,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:35179"}
+        {"level":"info","ts":1737650676.8407264,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
+--- FAIL: TestGophermart (20.89s)
+    --- FAIL: TestGophermart/TestEndToEnd (20.15s)
         --- PASS: TestGophermart/TestEndToEnd/register_accrual_mechanic (0.00s)
         --- PASS: TestGophermart/TestEndToEnd/register_order_for_accrual (0.00s)
-        --- PASS: TestGophermart/TestEndToEnd/register_user (0.18s)
-        --- FAIL: TestGophermart/TestEndToEnd/order_upload (0.00s)
+        --- PASS: TestGophermart/TestEndToEnd/register_user (0.13s)
+        --- PASS: TestGophermart/TestEndToEnd/order_upload (0.01s)
         --- FAIL: TestGophermart/TestEndToEnd/await_order_processed (20.00s)
         --- FAIL: TestGophermart/TestEndToEnd/check_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/withdraw_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/recheck_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/check_withdrawals (0.00s)
-    --- PASS: TestGophermart/TestUserAuth (0.47s)
-        --- PASS: TestGophermart/TestUserAuth/register_user (0.25s)
-        --- PASS: TestGophermart/TestUserAuth/login_user (0.22s)
-    --- FAIL: TestGophermart/TestUserOrders (0.39s)
+    --- PASS: TestGophermart/TestUserAuth (0.28s)
+        --- PASS: TestGophermart/TestUserAuth/register_user (0.14s)
+        --- PASS: TestGophermart/TestUserAuth/login_user (0.13s)
+    --- PASS: TestGophermart/TestUserOrders (0.25s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/register_user (0.20s)
-        --- FAIL: TestGophermart/TestUserOrders/bad_order_upload (0.00s)
-        --- FAIL: TestGophermart/TestUserOrders/order_upload (0.00s)
-        --- FAIL: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
-        --- FAIL: TestGophermart/TestUserOrders/orders_list (0.00s)
-        --- FAIL: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.17s)
+        --- PASS: TestGophermart/TestUserOrders/register_user (0.12s)
+        --- PASS: TestGophermart/TestUserOrders/bad_order_upload (0.00s)
+        --- PASS: TestGophermart/TestUserOrders/order_upload (0.00s)
+        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
+        --- PASS: TestGophermart/TestUserOrders/orders_list (0.00s)
+        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.12s)
 FAIL
