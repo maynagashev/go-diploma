@@ -11,24 +11,19 @@ import (
 	"gophermart/internal/domain"
 )
 
-var (
-	ErrUserExists   = errors.New("пользователь уже существует")
-	ErrInvalidLogin = errors.New("неверный логин или пароль")
-)
-
 // UserService реализует интерфейс domain.UserService
 type UserService struct {
-	repo              domain.UserRepository
-	jwtSecret         string
-	jwtExpirationTime time.Duration
+	repo           domain.UserRepository
+	jwtSecret      []byte
+	jwtExpiryHours int
 }
 
 // NewUserService создает новый экземпляр UserService
 func NewUserService(repo domain.UserRepository, jwtSecret string, jwtExpirationTime time.Duration) *UserService {
 	return &UserService{
-		repo:              repo,
-		jwtSecret:         jwtSecret,
-		jwtExpirationTime: jwtExpirationTime,
+		repo:           repo,
+		jwtSecret:      []byte(jwtSecret),
+		jwtExpiryHours: int(jwtExpirationTime.Hours()),
 	}
 }
 
@@ -37,10 +32,10 @@ func (s *UserService) generateToken(userID int, login string) (*domain.AuthToken
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id": userID,
 		"login":   login,
-		"exp":     time.Now().Add(s.jwtExpirationTime).Unix(),
+		"exp":     time.Now().Add(time.Duration(s.jwtExpiryHours) * time.Hour).Unix(),
 	})
 
-	tokenString, err := token.SignedString([]byte(s.jwtSecret))
+	tokenString, err := token.SignedString(s.jwtSecret)
 	if err != nil {
 		return nil, err
 	}

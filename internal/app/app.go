@@ -14,10 +14,11 @@ import (
 
 // App представляет основную структуру приложения
 type App struct {
-	echo        *echo.Echo
-	db          *sqlx.DB
-	userHandler *handlers.UserHandler
-	config      Config
+	echo         *echo.Echo
+	db           *sqlx.DB
+	userHandler  *handlers.UserHandler
+	orderHandler *handlers.OrderHandler
+	config       Config
 }
 
 // New создает новый экземпляр приложения
@@ -35,12 +36,15 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 
 	// Инициализация репозиториев
 	userRepo := repository.NewUserRepo(db)
+	orderRepo := repository.NewOrderRepo(db)
 
 	// Инициализация сервисов
 	userService := service.NewUserService(userRepo, cfg.JWTSecret, cfg.JWTExpirationPeriod)
+	orderService := service.NewOrderService(orderRepo)
 
 	// Инициализация обработчиков
 	userHandler := handlers.NewUserHandler(userService)
+	orderHandler := handlers.NewOrderHandler(orderService)
 
 	// Инициализация Echo
 	e := echo.New()
@@ -51,10 +55,11 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	e.Use(middleware.Recover())
 
 	app := &App{
-		echo:        e,
-		db:          db,
-		userHandler: userHandler,
-		config:      cfg,
+		echo:         e,
+		db:           db,
+		userHandler:  userHandler,
+		orderHandler: orderHandler,
+		config:       cfg,
 	}
 
 	// Настройка маршрутов
@@ -88,7 +93,10 @@ func (a *App) setupRoutes() {
 	user.POST("/register", a.userHandler.Register)
 	user.POST("/login", a.userHandler.Authenticate)
 
-	// Защищенные маршруты будут добавлены позже
+	// Защищенные маршруты
 	protected := user.Group("", JWTMiddleware(a.config.JWTSecret))
-	_ = protected // временно, чтобы избежать ошибки неиспользуемой переменной
+
+	// Маршруты заказов
+	protected.POST("/orders", a.orderHandler.Register)
+	protected.GET("/orders", a.orderHandler.GetOrders)
 }
