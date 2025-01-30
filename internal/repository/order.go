@@ -1,6 +1,9 @@
 package repository
 
 import (
+	"fmt"
+	"log/slog"
+
 	"github.com/jmoiron/sqlx"
 
 	"gophermart/internal/domain"
@@ -74,4 +77,36 @@ func (r *OrderRepo) UpdateAccrual(orderID int, accrualKop int64) error {
 		WHERE id = $3`
 	_, err := r.db.Exec(query, accrualKop, domain.OrderStatusProcessed, orderID)
 	return err
+}
+
+// FindByStatus возвращает заказы с указанными статусами
+func (r *OrderRepo) FindByStatus(statuses []domain.OrderStatus) ([]domain.Order, error) {
+	// Преобразуем OrderStatus в []string для запроса к БД и логирования
+	statusStrings := make([]string, len(statuses))
+	for i, s := range statuses {
+		statusStrings[i] = string(s)
+	}
+
+	slog.Debug("finding orders by statuses",
+		"statuses", statusStrings,
+		"statuses_raw", fmt.Sprintf("%#v", statuses),
+		"query", `SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC`)
+
+	query := `
+		SELECT * FROM orders 
+		WHERE status = ANY($1)
+		ORDER BY uploaded_at ASC`
+
+	var orders []domain.Order
+	err := r.db.Select(&orders, query, statusStrings)
+	if err != nil {
+		slog.Error("error finding orders by status",
+			"error", err,
+			"error_type", fmt.Sprintf("%T", err),
+			"statuses", statusStrings)
+		return nil, err
+	}
+
+	slog.Debug("found orders", "count", len(orders))
+	return orders, nil
 }

@@ -54,6 +54,9 @@ func getDurationEnv(key string, defaultValue time.Duration) time.Duration {
 func main() {
 	flag.Parse()
 
+	// Инициализация логгера
+	initLogger()
+
 	// Установка значений по умолчанию
 	if runAddress == "" {
 		runAddress = ":8080"

@@ -10,15 +10,17 @@ import (
 	"gophermart/internal/handlers"
 	"gophermart/internal/repository"
 	"gophermart/internal/service"
+	"gophermart/internal/worker"
 )
 
 // App представляет основную структуру приложения
 type App struct {
-	echo         *echo.Echo
-	db           *sqlx.DB
-	userHandler  *handlers.UserHandler
-	orderHandler *handlers.OrderHandler
-	config       Config
+	echo          *echo.Echo
+	db            *sqlx.DB
+	userHandler   *handlers.UserHandler
+	orderHandler  *handlers.OrderHandler
+	accrualWorker *worker.AccrualWorker
+	config        Config
 }
 
 // New создает новый экземпляр приложения
@@ -41,6 +43,16 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	// Инициализация сервисов
 	userService := service.NewUserService(userRepo, cfg.JWTSecret, cfg.JWTExpirationPeriod)
 	orderService := service.NewOrderService(orderRepo)
+	accrualService := service.NewAccrualService(cfg.AccrualSystemAddress)
+
+	// Инициализация воркера начислений
+	accrualWorker := worker.NewAccrualWorker(
+		orderRepo,
+		accrualService,
+		5, // количество воркеров
+		0, // используем значения по умолчанию для интервалов
+		0,
+	)
 
 	// Инициализация обработчиков
 	userHandler := handlers.NewUserHandler(userService)
@@ -55,11 +67,12 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	e.Use(middleware.Recover())
 
 	app := &App{
-		echo:         e,
-		db:           db,
-		userHandler:  userHandler,
-		orderHandler: orderHandler,
-		config:       cfg,
+		echo:          e,
+		db:            db,
+		userHandler:   userHandler,
+		orderHandler:  orderHandler,
+		accrualWorker: accrualWorker,
+		config:        cfg,
 	}
 
 	// Настройка маршрутов
@@ -70,6 +83,9 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 
 // Start запускает приложение
 func (a *App) Start(address string) error {
+	// Запускаем воркер начислений в отдельной горутине
+	go a.accrualWorker.Start(context.Background())
+
 	return a.echo.Start(address)
 }
 

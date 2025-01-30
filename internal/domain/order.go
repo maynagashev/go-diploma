@@ -1,6 +1,8 @@
 package domain
 
 import (
+	"database/sql/driver"
+	"fmt"
 	"time"
 )
 
@@ -17,6 +19,25 @@ const (
 	// OrderStatusProcessed данные по заказу проверены и информация о расчете успешно получена
 	OrderStatusProcessed OrderStatus = "PROCESSED"
 )
+
+// Value реализует интерфейс driver.Valuer для OrderStatus
+func (s OrderStatus) Value() (driver.Value, error) {
+	return string(s), nil
+}
+
+// Scan реализует интерфейс sql.Scanner для OrderStatus
+func (s *OrderStatus) Scan(value interface{}) error {
+	if value == nil {
+		*s = ""
+		return nil
+	}
+	strVal, ok := value.(string)
+	if !ok {
+		return fmt.Errorf("unable to scan %T into OrderStatus", value)
+	}
+	*s = OrderStatus(strVal)
+	return nil
+}
 
 // Order представляет заказ в системе
 type Order struct {
@@ -54,6 +75,8 @@ type OrderRepository interface {
 	FindByNumber(number string) (*Order, error)
 	// FindByUserID возвращает все заказы пользователя
 	FindByUserID(userID int) ([]Order, error)
+	// FindByStatus возвращает заказы с указанными статусами
+	FindByStatus(statuses []OrderStatus) ([]Order, error)
 	// UpdateStatus обновляет статус заказа
 	UpdateStatus(orderID int, status OrderStatus) error
 	// UpdateAccrual обновляет сумму начисленных баллов за заказ
