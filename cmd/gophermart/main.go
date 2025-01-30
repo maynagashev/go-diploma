@@ -2,8 +2,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	"flag"
 	"log/slog"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -14,71 +16,55 @@ import (
 	"gophermart/internal/app"
 )
 
+// Глобальные переменные
 var (
-	runAddress          string
-	databaseURI         string
-	accrualSystemAddr   string
-	migrationsDirectory string
-	jwtSecret           string
-	jwtExpirationPeriod time.Duration
+	// Флаг успешной загрузки .env
+	envFileLoaded bool
 )
 
 func init() {
 	// Загрузка .env файла, если он существует
-	_ = godotenv.Load()
-
-	// Флаги командной строки
-	flag.StringVar(&runAddress, "a", os.Getenv("RUN_ADDRESS"), "Адрес и порт для запуска сервера")
-	flag.StringVar(&databaseURI, "d", os.Getenv("DATABASE_URI"), "URI базы данных")
-	flag.StringVar(&accrualSystemAddr, "r", os.Getenv("ACCRUAL_SYSTEM_ADDRESS"), "Адрес системы расчета начислений")
-	flag.StringVar(&migrationsDirectory, "m", "migrations", "Директория с миграциями")
-	flag.StringVar(&jwtSecret, "jwt-secret", os.Getenv("JWT_SECRET"), "Секретный ключ для подписи JWT токенов")
-	flag.DurationVar(
-		&jwtExpirationPeriod,
-		"jwt-exp",
-		getDurationEnv("JWT_EXPIRATION_PERIOD", 24*time.Hour),
-		"Период действия JWT токена",
-	)
-}
-
-// getDurationEnv получает значение длительности из переменной окружения
-func getDurationEnv(key string, defaultValue time.Duration) time.Duration {
-	if value := os.Getenv(key); value != "" {
-		if duration, err := time.ParseDuration(value); err == nil {
-			return duration
-		}
+	if err := godotenv.Load(); err == nil {
+		envFileLoaded = true
 	}
-	return defaultValue
+
+	// Инициализация флагов
+	initFlags()
 }
 
 func main() {
+	// Парсим флаги
 	flag.Parse()
 
 	// Инициализация логгера
 	initLogger()
 
-	// Установка значений по умолчанию
-	if runAddress == "" {
-		runAddress = ":8080"
-	}
-	if databaseURI == "" {
-		slog.Error("требуется указать URI базы данных")
-		os.Exit(1)
-	}
-	if accrualSystemAddr == "" {
-		slog.Error("требуется указать адрес системы расчета начислений")
-		os.Exit(1)
-	}
-	if jwtSecret == "" {
-		slog.Error("требуется указать секретный ключ для JWT")
-		os.Exit(1)
-	}
+	// Логируем все переменные окружения и их источники
+	slog.Debug("configuration sources",
+		"env_file_loaded", envFileLoaded,
+		"RUN_ADDRESS", getVarSource("RUN_ADDRESS", runAddress),
+		"DATABASE_URI", getVarSource("DATABASE_URI", databaseURI),
+		"ACCRUAL_SYSTEM_ADDRESS", getVarSource("ACCRUAL_SYSTEM_ADDRESS", accrualSystemAddr),
+		"JWT_SECRET", maskSecret(getVarSource("JWT_SECRET", jwtSecret)),
+		"JWT_EXPIRATION_PERIOD", getVarSource("JWT_EXPIRATION_PERIOD", jwtExpirationPeriod.String()),
+	)
 
-	// Создание контекста, который слушает сигналы прерывания от ОС
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stop()
+	// Создаем контекст с отменой
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
 
-	// Инициализация приложения
+	// Создаем канал для получения сигналов операционной системы
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, syscall.SIGTERM, syscall.SIGINT, syscall.SIGQUIT)
+
+	// Запускаем горутину для обработки сигналов
+	go func() {
+		sig := <-sigChan
+		slog.Info("received signal", "signal", sig)
+		cancel() // Отменяем контекст при получении сигнала
+	}()
+
+	// Запускаем приложение
 	application, err := app.New(ctx, app.Config{
 		DatabaseURI:          databaseURI,
 		MigrationsDir:        migrationsDirectory,
@@ -88,41 +74,36 @@ func main() {
 		JWTExpirationPeriod:  jwtExpirationPeriod,
 	})
 	if err != nil {
-		slog.Error("не удалось инициализировать приложение", "error", err)
+		slog.Error("failed to initialize application", "error", err)
 		os.Exit(1)
 	}
 
-	// Запуск приложения
+	// Запускаем сервер в отдельной горутине
+	serverErr := make(chan error, 1)
 	go func() {
-		if err := application.Start(runAddress); err != nil {
-			slog.Error("не удалось запустить сервер", "error", err)
-			os.Exit(1)
+		if err := application.Start(runAddress); err != nil && !errors.Is(err, http.ErrServerClosed) {
+			slog.Error("failed to start application", "error", err)
+			serverErr <- err
 		}
 	}()
 
-	// Ожидание сигнала прерывания
-	<-ctx.Done()
+	// Ожидаем либо ошибки сервера, либо сигнала завершения
+	select {
+	case err := <-serverErr:
+		slog.Error("server error", "error", err)
+		os.Exit(1)
+	case <-ctx.Done():
+		slog.Info("shutting down server...")
+	}
 
-	// Корректное завершение работы
-	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	// Graceful shutdown
+	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer shutdownCancel()
 
 	if err := application.Shutdown(shutdownCtx); err != nil {
-		slog.Error("не удалось корректно завершить работу сервера", "error", err)
+		slog.Error("failed to stop application", "error", err)
 		os.Exit(1)
 	}
-}
 
-func initLogger() {
-	// Создаем переменную для уровня логирования и устанавливаем ее в Debug
-	logLevel := new(slog.LevelVar)
-	logLevel.Set(slog.LevelDebug)
-
-	// Создаем новый обработчик с настроенным уровнем логирования
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level: logLevel,
-	}))
-
-	// Устанавливаем созданный логгер как логгер по умолчанию
-	slog.SetDefault(logger)
+	slog.Info("server stopped")
 }
