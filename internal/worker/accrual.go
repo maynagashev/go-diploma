@@ -11,10 +11,15 @@ import (
 	"gophermart/internal/service"
 )
 
+// contextKey используется для ключей контекста
+type contextKey string
+
 const (
 	defaultWorkerCount  = 5
 	defaultPollInterval = 1 * time.Second
 	defaultRetryTimeout = 1 * time.Minute
+
+	workerIDKey = contextKey("worker_id")
 )
 
 // AccrualWorker обработчик заказов для получения информации о начислениях
@@ -75,6 +80,9 @@ func (w *AccrualWorker) worker(ctx context.Context, id int) {
 	logger := slog.With("worker_id", id)
 	logger.Info("воркер начал работу")
 
+	// Добавляем worker_id в контекст
+	ctx = context.WithValue(ctx, workerIDKey, id)
+
 	ticker := time.NewTicker(w.pollInterval)
 	defer ticker.Stop()
 
@@ -98,7 +106,10 @@ func (w *AccrualWorker) worker(ctx context.Context, id int) {
 
 // processOrders обрабатывает заказы, ожидающие обновления статуса
 func (w *AccrualWorker) processOrders(ctx context.Context) error {
-	logger := slog.With("func", "processOrders")
+	logger := slog.With(
+		"func", "processOrders",
+		"worker_id", ctx.Value(workerIDKey),
+	)
 	logger.Debug("starting to process orders")
 
 	// Получаем заказы для обработки (NEW или PROCESSING)
