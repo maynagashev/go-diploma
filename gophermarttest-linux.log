@@ -19,7 +19,7 @@
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
         	Error:      	[]int{200, 204} does not contain 404
         	Test:       	TestGophermart/TestEndToEnd/check_balance
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/balance'
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8082/api/user/balance'
     gophermart_e2e_test.go:231: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:231
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
@@ -40,8 +40,8 @@
     gophermart_e2e_test.go:235: Оригинальный запрос:
         
         GET /api/user/balance HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMDkwMDAsImxvZ2luIjoiSjZYME5hSmgiLCJ1c2VyX2lkIjozN30.H9pHDuPYBJylm1nzqe2kXZPAd714voIxSWuc6r23qKo
+        Host: localhost:8082
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/withdraw_balance
@@ -52,20 +52,20 @@
         	            	expected: 200
         	            	actual  : 404
         	Test:       	TestGophermart/TestEndToEnd/withdraw_balance
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8080/api/user/balance/withdraw'
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'POST http://localhost:8082/api/user/balance/withdraw'
     gophermart_e2e_test.go:266: Оригинальный запрос:
         
         POST /api/user/balance/withdraw HTTP/1.1
-        Host: localhost:8080
+        Host: localhost:8082
         Accept: application/json
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMDkwMDAsImxvZ2luIjoiSjZYME5hSmgiLCJ1c2VyX2lkIjozN30.H9pHDuPYBJylm1nzqe2kXZPAd714voIxSWuc6r23qKo
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
         Content-Type: application/json
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
         {
-        			"order": "3262268",
-            		"sum": 170.68
+        			"order": "2154177",
+            		"sum": 127.68
         		}
         
 === RUN   TestGophermart/TestEndToEnd/recheck_balance
@@ -76,24 +76,24 @@
         	            	expected: 200
         	            	actual  : 404
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/balance'
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8082/api/user/balance'
     gophermart_e2e_test.go:289: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:289
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 559.2959 and 0 allowed is 0.01, but difference was 559.2958984375
+        	Error:      	Max difference between 602.2992 and 0 allowed is 0.01, but difference was 602.2991943359375
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Баланс пользователя не соответствует ожидаемому
     gophermart_e2e_test.go:290: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:290
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 170.68405 and 0 allowed is 0.01, but difference was 170.68405151367188
+        	Error:      	Max difference between 127.680756 and 0 allowed is 0.01, but difference was 127.68075561523438
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Списанная сумма не соответствует ожидаемой
     gophermart_e2e_test.go:294: Оригинальный запрос:
         
         GET /api/user/balance HTTP/1.1
-        Host: localhost:8080
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMDkwMDAsImxvZ2luIjoiSjZYME5hSmgiLCJ1c2VyX2lkIjozN30.H9pHDuPYBJylm1nzqe2kXZPAd714voIxSWuc6r23qKo
+        Host: localhost:8082
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/check_withdrawals
@@ -104,13 +104,13 @@
         	            	expected: 200
         	            	actual  : 404
         	Test:       	TestGophermart/TestEndToEnd/check_withdrawals
-        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8080/api/user/withdrawals'
+        	Messages:   	Несоответствие статус кода ответа ожидаемому в хендлере 'GET http://localhost:8082/api/user/withdrawals'
     gophermart_e2e_test.go:315: Оригинальный запрос:
         
         GET /api/user/withdrawals HTTP/1.1
-        Host: localhost:8080
+        Host: localhost:8082
         Accept: application/json
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMDkwMDAsImxvZ2luIjoiSjZYME5hSmgiLCJ1c2VyX2lkIjozN30.H9pHDuPYBJylm1nzqe2kXZPAd714voIxSWuc6r23qKo
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
         Content-Type: application/json
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
@@ -128,10 +128,9 @@
 === RUN   TestGophermart/TestUserOrders/duplicate_order_upload_other_user
 === NAME  TestGophermart
     gophermart_suite_test.go:105: останавливаем процесс gophermart
-    gophermart_suite_test.go:127: Процесс завершился с не нулевым статусом 1
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        {"time":"2025-01-30T14:36:40.273086596+07:00","level":"INFO","msg":"goose: no migrations to run. current version: 2"}
+        time=2025-01-30T16:11:16.192+07:00 level=INFO msg="goose: no migrations to run. current version: 2"
         
            ____    __
           / __/___/ /  ___
@@ -141,223 +140,59 @@
         https://echo.labstack.com
         ____________________________________O/_______
                                             O\
-        {"time":"2025-01-30T14:36:40.273677012+07:00","level":"INFO","msg":"воркер начал работу","worker_id":4}
-        {"time":"2025-01-30T14:36:40.273727791+07:00","level":"INFO","msg":"воркер начал работу","worker_id":2}
-        {"time":"2025-01-30T14:36:40.273744399+07:00","level":"INFO","msg":"воркер начал работу","worker_id":3}
-        {"time":"2025-01-30T14:36:40.273754307+07:00","level":"INFO","msg":"воркер начал работу","worker_id":1}
-        {"time":"2025-01-30T14:36:40.273835432+07:00","level":"INFO","msg":"воркер начал работу","worker_id":0}
-        ⇨ http server started on 127.0.0.1:8080
-        {"time":"2025-01-30T14:36:40.554663302+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":212834301,"latency_human":"212.834301ms","bytes_in":58,"bytes_out":161}
-        {"time":"2025-01-30T14:36:40.564012514+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":7945337,"latency_human":"7.945337ms","bytes_in":13,"bytes_out":0}
-        {"time":"2025-01-30T14:36:41.274221023+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":0}
-        {"time":"2025-01-30T14:36:41.274244425+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":0,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:41.274271758+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":1}
-        {"time":"2025-01-30T14:36:41.274297483+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:41.274275949+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":3}
-        {"time":"2025-01-30T14:36:41.27429516+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":1,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:41.274317717+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":3,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:41.274329755+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:41.274339672+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:41.274412471+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":4}
-        {"time":"2025-01-30T14:36:41.274373586+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":2}
-        {"time":"2025-01-30T14:36:41.274438034+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":2,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:41.274456255+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:41.274448745+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":4,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:41.274493807+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:41.281269927+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:41.281307026+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":0,"count":6}
-        {"time":"2025-01-30T14:36:41.281316648+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.282348189+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:41.282370945+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.282758826+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:41.282784864+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.283269874+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:41.28328888+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.283722106+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:41.283741865+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.284032696+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:41.284058666+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":6,"order_number":"8028377240679","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.284253998+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:41.284271694+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":2,"count":6}
-        {"time":"2025-01-30T14:36:41.284277038+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.284515477+07:00","level":"DEBUG","msg":"received accrual info","func":"processOrders","worker_id":0,"order_number":"8028377240679","status":"PROCESSED","accrual":729.98}
-        {"time":"2025-01-30T14:36:41.28468782+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:41.284701249+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.285087069+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:41.285102861+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.285362628+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:41.285379129+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.285714503+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:41.285732025+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.285830361+07:00","level":"DEBUG","msg":"updating order accrual","func":"processOrders","worker_id":0,"order_number":"8028377240679","accrual_rub":729.98,"accrual_kop":72998}
-        {"time":"2025-01-30T14:36:41.286022115+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:41.286034422+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":6,"order_number":"8028377240679","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.286311075+07:00","level":"DEBUG","msg":"received accrual info","func":"processOrders","worker_id":2,"order_number":"8028377240679","status":"PROCESSED","accrual":729.98}
-        {"time":"2025-01-30T14:36:41.286372708+07:00","level":"DEBUG","msg":"found orders","count":5}
-        {"time":"2025-01-30T14:36:41.286379978+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":3,"count":5}
-        {"time":"2025-01-30T14:36:41.286384251+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.286619064+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:41.286634298+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.286894599+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:41.286902547+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.287152273+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:41.287172683+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.287529179+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:41.287551104+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.287728324+07:00","level":"DEBUG","msg":"updating order accrual","func":"processOrders","worker_id":2,"order_number":"8028377240679","accrual_rub":729.98,"accrual_kop":72998}
-        {"time":"2025-01-30T14:36:41.287892717+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:41.288303829+07:00","level":"DEBUG","msg":"found orders","count":5}
-        {"time":"2025-01-30T14:36:41.28831873+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":4,"count":5}
-        {"time":"2025-01-30T14:36:41.288326597+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.288341937+07:00","level":"DEBUG","msg":"found orders","count":5}
-        {"time":"2025-01-30T14:36:41.288359716+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":1,"count":5}
-        {"time":"2025-01-30T14:36:41.288367246+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.288580486+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:41.288596346+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.288638691+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:41.288656534+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.288851744+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:41.288871013+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.288908673+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:41.288921359+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.289179997+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:41.289188466+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:41.289196373+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.289207002+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.28942503+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:41.28943723+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.28949279+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:41.289516906+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:41.289650068+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:41.289698284+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:41.567402944+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1800376,"latency_human":"1.800376ms","bytes_in":0,"bytes_out":99}
-        {"time":"2025-01-30T14:36:41.568352097+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":59475,"latency_human":"59.475µs","bytes_in":0,"bytes_out":24}
-        {"time":"2025-01-30T14:36:41.569328929+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":52935,"latency_human":"52.935µs","bytes_in":48,"bytes_out":24}
-        {"time":"2025-01-30T14:36:41.570150611+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":41837,"latency_human":"41.837µs","bytes_in":0,"bytes_out":24}
-        {"time":"2025-01-30T14:36:41.571567103+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":52934,"latency_human":"52.934µs","bytes_in":0,"bytes_out":24}
-        {"time":"2025-01-30T14:36:41.753742207+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":180905167,"latency_human":"180.905167ms","bytes_in":84,"bytes_out":158}
-        {"time":"2025-01-30T14:36:41.918741361+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":163830113,"latency_human":"163.830113ms","bytes_in":84,"bytes_out":158}
-        {"time":"2025-01-30T14:36:41.920631331+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":106521,"latency_human":"106.521µs","bytes_in":6,"bytes_out":71}
-        {"time":"2025-01-30T14:36:41.921582847+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":22635,"latency_human":"22.635µs","bytes_in":0,"bytes_out":71}
-        {"time":"2025-01-30T14:36:42.125622106+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":203016741,"latency_human":"203.016741ms","bytes_in":68,"bytes_out":164}
-        {"time":"2025-01-30T14:36:42.127197402+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":922853,"latency_human":"922.853µs","bytes_in":11,"bytes_out":70}
-        {"time":"2025-01-30T14:36:42.129611696+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":1897968,"latency_human":"1.897968ms","bytes_in":9,"bytes_out":0}
-        {"time":"2025-01-30T14:36:42.130904905+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":722755,"latency_human":"722.755µs","bytes_in":9,"bytes_out":0}
-        {"time":"2025-01-30T14:36:42.132303084+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":796473,"latency_human":"796.473µs","bytes_in":0,"bytes_out":89}
-        {"time":"2025-01-30T14:36:42.28718363+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":0}
-        {"time":"2025-01-30T14:36:42.287225374+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":0,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:42.287266974+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:42.288366474+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":3}
-        {"time":"2025-01-30T14:36:42.288393894+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":3,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:42.28842657+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:42.28862287+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:42.288661076+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":0,"count":6}
-        {"time":"2025-01-30T14:36:42.288669339+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.289280803+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:42.289313428+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":2}
-        {"time":"2025-01-30T14:36:42.289307027+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.289331923+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":2,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:42.289361108+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:42.289856724+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:42.289875563+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":3,"count":6}
-        {"time":"2025-01-30T14:36:42.289883549+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.290002964+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":4}
-        {"time":"2025-01-30T14:36:42.290012215+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":4,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:42.290029818+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:42.290172955+07:00","level":"DEBUG","msg":"starting to process orders","func":"processOrders","worker_id":1}
-        {"time":"2025-01-30T14:36:42.290181739+07:00","level":"DEBUG","msg":"querying orders","func":"processOrders","worker_id":1,"statuses":["NEW","PROCESSING"]}
-        {"time":"2025-01-30T14:36:42.290191617+07:00","level":"DEBUG","msg":"finding orders by statuses","statuses":["NEW","PROCESSING"],"statuses_raw":"[]domain.OrderStatus{\"NEW\", \"PROCESSING\"}","query":"SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC"}
-        {"time":"2025-01-30T14:36:42.290207008+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:42.290217395+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:42.290233592+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":2,"count":6}
-        {"time":"2025-01-30T14:36:42.290243661+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.290250123+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.290559806+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:42.290583929+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.29068178+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:42.290716404+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.290832596+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:42.290903688+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.290981497+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:42.291017856+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":4,"count":6}
-        {"time":"2025-01-30T14:36:42.291008078+07:00","level":"DEBUG","msg":"found orders","count":6}
-        {"time":"2025-01-30T14:36:42.29164137+07:00","level":"DEBUG","msg":"found orders to process","func":"processOrders","worker_id":1,"count":6}
-        {"time":"2025-01-30T14:36:42.291665989+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.291718397+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:42.291748997+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.291543237+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:42.291847054+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.291878414+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":1,"order_number":"12345678903","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.292559806+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:42.292586125+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.292789259+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:42.292796528+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:42.292840509+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.292866435+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":0,"order_id":7,"order_number":"680667425","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.292988918+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:42.293535761+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.293581114+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"12345678903"}
-        {"time":"2025-01-30T14:36:42.293615156+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:42.293615736+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":2,"order_number":"766041871852","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.293679039+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.293971845+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":0,"order_number":"680667425"}
-        {"time":"2025-01-30T14:36:42.294006884+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:42.294031654+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294102001+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:42.294120057+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294232551+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"766041871852"}
-        {"time":"2025-01-30T14:36:42.294259413+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":3,"order_number":"3343333245","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294263166+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:42.294292529+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294316826+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:42.294333016+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":3,"order_id":7,"order_number":"680667425","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.29443565+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:42.294457192+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294546464+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:42.294572263+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":2,"order_id":7,"order_number":"680667425","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.29460832+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"3343333245"}
-        {"time":"2025-01-30T14:36:42.294616527+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":3,"order_number":"680667425"}
-        {"time":"2025-01-30T14:36:42.294638134+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":4,"order_number":"741740342313066","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294787526+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:42.294793771+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":2,"order_number":"680667425"}
-        {"time":"2025-01-30T14:36:42.29480523+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.294916552+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"741740342313066"}
-        {"time":"2025-01-30T14:36:42.294928308+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":5,"order_number":"750844","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.295089642+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:42.295112127+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":1,"order_id":7,"order_number":"680667425","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.295208785+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"750844"}
-        {"time":"2025-01-30T14:36:42.295220816+07:00","level":"DEBUG","msg":"processing order","func":"processOrders","worker_id":4,"order_id":7,"order_number":"680667425","current_status":"NEW"}
-        {"time":"2025-01-30T14:36:42.295472327+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":1,"order_number":"680667425"}
-        {"time":"2025-01-30T14:36:42.295499782+07:00","level":"DEBUG","msg":"order not found in accrual system","func":"processOrders","worker_id":4,"order_number":"680667425"}
-        {"time":"2025-01-30T14:36:42.320461085+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":187032797,"latency_human":"187.032797ms","bytes_in":68,"bytes_out":162}
-        {"time":"2025-01-30T14:36:42.322342317+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8080","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":1130221,"latency_human":"1.130221ms","bytes_in":9,"bytes_out":109}
-        {"time":"2025-01-30T14:36:42.323689164+07:00","level":"ERROR","msg":"не удалось запустить сервер","error":"http: Server closed"}
+        ⇨ http server started on 127.0.0.1:8082
+        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=4
+        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=1
+        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=0
+        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=2
+        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=3
+        {"time":"2025-01-30T16:11:16.42653493+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":159512655,"latency_human":"159.512655ms","bytes_in":57,"bytes_out":166}
+        {"time":"2025-01-30T16:11:16.432152916+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":4413846,"latency_human":"4.413846ms","bytes_in":8,"bytes_out":0}
+        {"time":"2025-01-30T16:11:17.436314835+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2173044,"latency_human":"2.173044ms","bytes_in":0,"bytes_out":93}
+        {"time":"2025-01-30T16:11:17.437464618+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":59887,"latency_human":"59.887µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-01-30T16:11:17.438635178+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":78614,"latency_human":"78.614µs","bytes_in":48,"bytes_out":24}
+        {"time":"2025-01-30T16:11:17.439393887+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":77851,"latency_human":"77.851µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-01-30T16:11:17.440461923+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":63989,"latency_human":"63.989µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-01-30T16:11:17.580885948+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":139120452,"latency_human":"139.120452ms","bytes_in":87,"bytes_out":161}
+        {"time":"2025-01-30T16:11:17.719498948+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":137053701,"latency_human":"137.053701ms","bytes_in":87,"bytes_out":161}
+        {"time":"2025-01-30T16:11:17.721362913+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":47571,"latency_human":"47.571µs","bytes_in":13,"bytes_out":71}
+        {"time":"2025-01-30T16:11:17.721941832+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":12043,"latency_human":"12.043µs","bytes_in":0,"bytes_out":71}
+        {"time":"2025-01-30T16:11:17.86103593+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":137791771,"latency_human":"137.791771ms","bytes_in":66,"bytes_out":160}
+        {"time":"2025-01-30T16:11:17.864112129+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":2245842,"latency_human":"2.245842ms","bytes_in":11,"bytes_out":70}
+        {"time":"2025-01-30T16:11:17.868616426+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":3902246,"latency_human":"3.902246ms","bytes_in":14,"bytes_out":0}
+        {"time":"2025-01-30T16:11:17.870636512+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1224547,"latency_human":"1.224547ms","bytes_in":14,"bytes_out":0}
+        {"time":"2025-01-30T16:11:17.871855429+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":781156,"latency_human":"781.156µs","bytes_in":0,"bytes_out":94}
+        {"time":"2025-01-30T16:11:18.053057822+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":180018460,"latency_human":"180.01846ms","bytes_in":59,"bytes_out":165}
+        {"time":"2025-01-30T16:11:18.054944281+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":1143521,"latency_human":"1.143521ms","bytes_in":14,"bytes_out":109}
+        time=2025-01-30T16:11:18.055+07:00 level=INFO msg="received signal" signal=interrupt
+        time=2025-01-30T16:11:18.055+07:00 level=INFO msg="shutting down server..."
+        time=2025-01-30T16:11:18.056+07:00 level=INFO msg="server stopped"
     gophermart_suite_test.go:108: останавливаем процесс accrual
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        {"level":"info","ts":1738222600.1331403,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:32851"}
-        {"level":"info","ts":1738222602.329744,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
---- FAIL: TestGophermart (2.21s)
-    --- FAIL: TestGophermart/TestEndToEnd (1.24s)
-        --- PASS: TestGophermart/TestEndToEnd/register_accrual_mechanic (0.01s)
+        {"level":"info","ts":1738228276.0802987,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:46777"}
+        {"level":"info","ts":1738228278.0601022,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
+--- FAIL: TestGophermart (2.02s)
+    --- FAIL: TestGophermart/TestEndToEnd (1.18s)
+        --- PASS: TestGophermart/TestEndToEnd/register_accrual_mechanic (0.00s)
         --- PASS: TestGophermart/TestEndToEnd/register_order_for_accrual (0.00s)
-        --- PASS: TestGophermart/TestEndToEnd/register_user (0.21s)
+        --- PASS: TestGophermart/TestEndToEnd/register_user (0.16s)
         --- PASS: TestGophermart/TestEndToEnd/order_upload (0.01s)
         --- FAIL: TestGophermart/TestEndToEnd/await_order_processed (1.00s)
         --- FAIL: TestGophermart/TestEndToEnd/check_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/withdraw_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/recheck_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/check_withdrawals (0.00s)
-    --- PASS: TestGophermart/TestUserAuth (0.35s)
-        --- PASS: TestGophermart/TestUserAuth/register_user (0.18s)
-        --- PASS: TestGophermart/TestUserAuth/login_user (0.17s)
-    --- PASS: TestGophermart/TestUserOrders (0.40s)
+    --- PASS: TestGophermart/TestUserAuth (0.28s)
+        --- PASS: TestGophermart/TestUserAuth/register_user (0.14s)
+        --- PASS: TestGophermart/TestUserAuth/login_user (0.14s)
+    --- PASS: TestGophermart/TestUserOrders (0.34s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/register_user (0.20s)
+        --- PASS: TestGophermart/TestUserOrders/register_user (0.14s)
         --- PASS: TestGophermart/TestUserOrders/bad_order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
         --- PASS: TestGophermart/TestUserOrders/orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.19s)
+        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.18s)
 FAIL

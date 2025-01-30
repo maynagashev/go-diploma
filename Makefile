@@ -1,20 +1,21 @@
 SHELL=/bin/bash
 PROJECT=gophermart
+PORT=8082
 DB_HOST=localhost
 DB_PORT=5432
 DB_URI=postgres://$(PROJECT):password@$(DB_HOST):$(DB_PORT)/$(PROJECT)?sslmode=disable
 
 build:
-	GOOS=darwin GOARCH=amd64 go build -o bin/gophermart-darwin-amd64 cmd/gophermart/main.go
+	GOOS=darwin GOARCH=amd64 go build -o bin/gophermart-darwin-amd64 cmd/gophermart/*.go
 	GOOS=darwin GOARCH=amd64 go build -o bin/randomport-darwin-amd64 cmd/randomport/main.go
 
 # Локальное тестирование MacOS (Intel)
-autotests-darwin-amd64: build
+test-macos: build
 	./cmd/gophermarttest/gophermarttest-darwin-amd64 \
 		 -test.v -test.run=^TestGophermart$$ \
 		 -gophermart-binary-path=bin/gophermart-darwin-amd64 \
 		 -gophermart-host=localhost \
-		 -gophermart-port=8080 \
+		 -gophermart-port=$(PORT) \
 		 -gophermart-database-uri="$(DB_URI)" \
 		 -accrual-binary-path=cmd/accrual/accrual_darwin_amd64 \
 		 -accrual-host=localhost \
@@ -23,15 +24,15 @@ autotests-darwin-amd64: build
 
 # Локальное тестирование Linux
 build-linux:
-	GOOS=linux GOARCH=amd64 go build -o bin/gophermart-linux-amd64 cmd/gophermart/main.go
+	GOOS=linux GOARCH=amd64 go build -o bin/gophermart-linux-amd64 cmd/gophermart/*.go
 	GOOS=linux GOARCH=amd64 go build -o bin/randomport-linux-amd64 cmd/randomport/main.go
 
-autotests-linux-amd64: build-linux
+test: build-linux
 	./cmd/gophermarttest/gophermarttest-linux-amd64 \
 		 -test.v -test.run=^TestGophermart$$ \
 		 -gophermart-binary-path=bin/gophermart-linux-amd64 \
 		 -gophermart-host=localhost \
-		 -gophermart-port=8080 \
+		 -gophermart-port=$(PORT) \
 		 -gophermart-database-uri="$(DB_URI)" \
 		 -accrual-binary-path=cmd/accrual/accrual_linux_amd64 \
 		 -accrual-host=localhost \
@@ -43,7 +44,17 @@ perm:
 
 # Запуск сервиса
 run:
-	go run cmd/gophermart/main.go
+	go run cmd/gophermart/main.go cmd/gophermart/flags.go cmd/gophermart/logging.go
+
+# Запуск сервиса с локальными переменными окружения
+run-env:
+	RUN_ADDRESS=":$(PORT)" \
+	DATABASE_URI="$(DB_URI)" \
+	ACCRUAL_SYSTEM_ADDRESS="http://localhost:8081" \
+	JWT_SECRET="your-256-bit-secret" \
+	JWT_EXPIRATION_PERIOD="24h" \
+	DEBUG=true \
+	exec go run cmd/gophermart/*.go || true
 
 lint :
 	@echo "Running linter..."
