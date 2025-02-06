@@ -45,17 +45,22 @@ type Order struct {
 	Number     string      `json:"number"     db:"number"`
 	UserID     int         `json:"-"          db:"user_id"`
 	Status     OrderStatus `json:"status"     db:"status"`
-	Accrual    *int64      `json:"-"          db:"accrual,omitempty"` // сумма начисленных баллов в копейках
-	AccrualRub *float64    `json:"accrual,omitempty" db:"-"`          // сумма начисленных баллов в рублях для JSON
+	Accrual    *int64      `json:"-" db:"accrual,omitempty"` // сумма начисленных баллов в копейках
+	AccrualRub *float64    `json:"accrual,omitempty" db:"-"` // сумма начисленных баллов в рублях для JSON
 	UploadedAt time.Time   `json:"uploaded_at" db:"uploaded_at"`
 }
 
 // SetAccrual устанавливает сумму начисления в копейках и автоматически обновляет сумму в рублях
 func (o *Order) SetAccrual(kop int64) {
 	o.Accrual = &kop
-	if kop > 0 {
-		rub := float64(kop) / 100.0
-		o.AccrualRub = &rub
+	o.CalculateAccrualRub()
+}
+
+// CalculateAccrualRub вычисляет сумму в рублях на основе суммы в копейках
+func (o *Order) CalculateAccrualRub() {
+	if o.Accrual != nil {
+		accrualRub := float64(*o.Accrual) / 100
+		o.AccrualRub = &accrualRub
 	}
 }
 

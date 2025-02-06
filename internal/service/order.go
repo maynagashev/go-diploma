@@ -62,7 +62,17 @@ func (s *OrderService) Register(userID int, number string) error {
 
 // GetOrders возвращает список заказов пользователя
 func (s *OrderService) GetOrders(userID int) ([]domain.Order, error) {
-	return s.repo.FindByUserID(userID)
+	orders, err := s.repo.FindByUserID(userID)
+	if err != nil {
+		return nil, err
+	}
+
+	// Вычисляем сумму в рублях для каждого заказа
+	for i := range orders {
+		orders[i].CalculateAccrualRub()
+	}
+
+	return orders, nil
 }
 
 // isValidLuhn проверяет номер заказа по алгоритму Луна
