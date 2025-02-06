@@ -3,6 +3,7 @@ package service
 import (
 	"database/sql"
 	"errors"
+	"log/slog"
 
 	"gophermart/internal/domain"
 )
@@ -47,7 +48,16 @@ func (s *OrderService) Register(userID int, number string) error {
 		Status: domain.OrderStatusNew,
 	}
 
-	return s.repo.Create(order)
+	err = s.repo.Create(order)
+
+	slog.Info("created new order",
+		"id", order.ID,
+		"uploaded_at", order.UploadedAt,
+		"user_id", userID,
+		"order_number", number,
+		"status", domain.OrderStatusNew)
+
+	return err
 }
 
 // GetOrders возвращает список заказов пользователя

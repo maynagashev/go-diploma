@@ -2,6 +2,8 @@ package app
 
 import (
 	"context"
+	"log/slog"
+	"time"
 
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo/v4"
@@ -38,7 +40,7 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 
 	// Инициализация репозиториев
 	userRepo := repository.NewUserRepo(db)
-	orderRepo := repository.NewOrderRepo(db)
+	orderRepo := repository.NewOrderRepo(db, slog.Default())
 
 	// Инициализация сервисов
 	userService := service.NewUserService(userRepo, cfg.JWTSecret, cfg.JWTExpirationPeriod)
@@ -47,10 +49,11 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 
 	// Инициализация воркера начислений
 	accrualWorker := worker.NewAccrualWorker(
+		slog.Default(),
 		orderRepo,
 		accrualService,
-		5, // количество воркеров
-		0, // используем значения по умолчанию для интервалов
+		2, // количество воркеров
+		10*time.Second,
 		0,
 	)
 

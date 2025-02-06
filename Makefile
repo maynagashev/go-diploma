@@ -56,6 +56,12 @@ run-env:
 	DEBUG=true \
 	exec go run cmd/gophermart/*.go || true
 
+# Запуск accrual сервера (blackbox)
+run-accrual:
+	RUN_ADDRESS=":8081" \
+	DATABASE_URI="$(DB_URI)" \
+	./cmd/accrual/accrual_linux_amd64
+
 lint :
 	@echo "Running linter..."
 	golangci-lint run

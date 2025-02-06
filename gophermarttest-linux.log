@@ -41,7 +41,7 @@
         
         GET /api/user/balance HTTP/1.1
         Host: localhost:8082
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MzYyNzMsImxvZ2luIjoiV1BjSVRpdUozME5YcCIsInVzZXJfaWQiOjU3fQ.QQwvHMHw-47iY80Mir2juatc7NCxPyPGsysQcata48o
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/withdraw_balance
@@ -58,14 +58,14 @@
         POST /api/user/balance/withdraw HTTP/1.1
         Host: localhost:8082
         Accept: application/json
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MzYyNzMsImxvZ2luIjoiV1BjSVRpdUozME5YcCIsInVzZXJfaWQiOjU3fQ.QQwvHMHw-47iY80Mir2juatc7NCxPyPGsysQcata48o
         Content-Type: application/json
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
         
         {
-        			"order": "2154177",
-            		"sum": 127.68
+        			"order": "341370",
+            		"sum": 291.30
         		}
         
 === RUN   TestGophermart/TestEndToEnd/recheck_balance
@@ -80,20 +80,20 @@
     gophermart_e2e_test.go:289: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:289
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 602.2992 and 0 allowed is 0.01, but difference was 602.2991943359375
+        	Error:      	Max difference between 438.6828 and 0 allowed is 0.01, but difference was 438.68280029296875
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Баланс пользователя не соответствует ожидаемому
     gophermart_e2e_test.go:290: 
         	Error Trace:	/home/dev/src/maynagashev/gophermart/gophermart_e2e_test.go:290
         	            				/home/dev/src/maynagashev/gophermart/suite.go:91
-        	Error:      	Max difference between 127.680756 and 0 allowed is 0.01, but difference was 127.68075561523438
+        	Error:      	Max difference between 291.29718 and 0 allowed is 0.01, but difference was 291.29718017578125
         	Test:       	TestGophermart/TestEndToEnd/recheck_balance
         	Messages:   	Списанная сумма не соответствует ожидаемой
     gophermart_e2e_test.go:294: Оригинальный запрос:
         
         GET /api/user/balance HTTP/1.1
         Host: localhost:8082
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MzYyNzMsImxvZ2luIjoiV1BjSVRpdUozME5YcCIsInVzZXJfaWQiOjU3fQ.QQwvHMHw-47iY80Mir2juatc7NCxPyPGsysQcata48o
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
 === RUN   TestGophermart/TestEndToEnd/check_withdrawals
@@ -110,7 +110,7 @@
         GET /api/user/withdrawals HTTP/1.1
         Host: localhost:8082
         Accept: application/json
-        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgzMTQ2NzYsImxvZ2luIjoiQ3h4Q0o2TmFjNFV1IiwidXNlcl9pZCI6NDl9.Jy1oxqQlK_5kYkbolif4Gs2N_JneriIGLuN7p3zVPKQ
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MzYyNzMsImxvZ2luIjoiV1BjSVRpdUozME5YcCIsInVzZXJfaWQiOjU3fQ.QQwvHMHw-47iY80Mir2juatc7NCxPyPGsysQcata48o
         Content-Type: application/json
         User-Agent: go-resty/2.7.0 (https://github.com/go-resty/resty)
         
@@ -130,7 +130,7 @@
     gophermart_suite_test.go:105: останавливаем процесс gophermart
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        time=2025-01-30T16:11:16.192+07:00 level=INFO msg="goose: no migrations to run. current version: 2"
+        time=2025-02-03T09:31:13.531+07:00 level=INFO msg="goose: no migrations to run. current version: 2"
         
            ____    __
           / __/___/ /  ___
@@ -140,59 +140,59 @@
         https://echo.labstack.com
         ____________________________________O/_______
                                             O\
+        time=2025-02-03T09:31:13.531+07:00 level=INFO msg="воркер начал работу" worker_id=1
+        time=2025-02-03T09:31:13.531+07:00 level=INFO msg="воркер начал работу" worker_id=2
+        time=2025-02-03T09:31:13.531+07:00 level=INFO msg="воркер начал работу" worker_id=4
         ⇨ http server started on 127.0.0.1:8082
-        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=4
-        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=1
-        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=0
-        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=2
-        time=2025-01-30T16:11:16.193+07:00 level=INFO msg="воркер начал работу" worker_id=3
-        {"time":"2025-01-30T16:11:16.42653493+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":159512655,"latency_human":"159.512655ms","bytes_in":57,"bytes_out":166}
-        {"time":"2025-01-30T16:11:16.432152916+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":4413846,"latency_human":"4.413846ms","bytes_in":8,"bytes_out":0}
-        {"time":"2025-01-30T16:11:17.436314835+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2173044,"latency_human":"2.173044ms","bytes_in":0,"bytes_out":93}
-        {"time":"2025-01-30T16:11:17.437464618+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":59887,"latency_human":"59.887µs","bytes_in":0,"bytes_out":24}
-        {"time":"2025-01-30T16:11:17.438635178+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":78614,"latency_human":"78.614µs","bytes_in":48,"bytes_out":24}
-        {"time":"2025-01-30T16:11:17.439393887+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":77851,"latency_human":"77.851µs","bytes_in":0,"bytes_out":24}
-        {"time":"2025-01-30T16:11:17.440461923+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":63989,"latency_human":"63.989µs","bytes_in":0,"bytes_out":24}
-        {"time":"2025-01-30T16:11:17.580885948+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":139120452,"latency_human":"139.120452ms","bytes_in":87,"bytes_out":161}
-        {"time":"2025-01-30T16:11:17.719498948+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":137053701,"latency_human":"137.053701ms","bytes_in":87,"bytes_out":161}
-        {"time":"2025-01-30T16:11:17.721362913+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":47571,"latency_human":"47.571µs","bytes_in":13,"bytes_out":71}
-        {"time":"2025-01-30T16:11:17.721941832+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":12043,"latency_human":"12.043µs","bytes_in":0,"bytes_out":71}
-        {"time":"2025-01-30T16:11:17.86103593+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":137791771,"latency_human":"137.791771ms","bytes_in":66,"bytes_out":160}
-        {"time":"2025-01-30T16:11:17.864112129+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":2245842,"latency_human":"2.245842ms","bytes_in":11,"bytes_out":70}
-        {"time":"2025-01-30T16:11:17.868616426+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":3902246,"latency_human":"3.902246ms","bytes_in":14,"bytes_out":0}
-        {"time":"2025-01-30T16:11:17.870636512+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1224547,"latency_human":"1.224547ms","bytes_in":14,"bytes_out":0}
-        {"time":"2025-01-30T16:11:17.871855429+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":781156,"latency_human":"781.156µs","bytes_in":0,"bytes_out":94}
-        {"time":"2025-01-30T16:11:18.053057822+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":180018460,"latency_human":"180.01846ms","bytes_in":59,"bytes_out":165}
-        {"time":"2025-01-30T16:11:18.054944281+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":1143521,"latency_human":"1.143521ms","bytes_in":14,"bytes_out":109}
-        time=2025-01-30T16:11:18.055+07:00 level=INFO msg="received signal" signal=interrupt
-        time=2025-01-30T16:11:18.055+07:00 level=INFO msg="shutting down server..."
-        time=2025-01-30T16:11:18.056+07:00 level=INFO msg="server stopped"
+        time=2025-02-03T09:31:13.531+07:00 level=INFO msg="воркер начал работу" worker_id=0
+        time=2025-02-03T09:31:13.531+07:00 level=INFO msg="воркер начал работу" worker_id=3
+        {"time":"2025-02-03T09:31:13.730202121+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":143308616,"latency_human":"143.308616ms","bytes_in":63,"bytes_out":168}
+        {"time":"2025-02-03T09:31:13.74011647+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":9040502,"latency_human":"9.040502ms","bytes_in":9,"bytes_out":0}
+        {"time":"2025-02-03T09:31:14.746348929+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":4505543,"latency_human":"4.505543ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-02-03T09:31:14.747991936+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":106554,"latency_human":"106.554µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-02-03T09:31:14.749233188+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":135333,"latency_human":"135.333µs","bytes_in":47,"bytes_out":24}
+        {"time":"2025-02-03T09:31:14.750182458+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":41740,"latency_human":"41.74µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-02-03T09:31:14.751221405+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":404,"error":"code=404, message=Not Found","latency":42653,"latency_human":"42.653µs","bytes_in":0,"bytes_out":24}
+        {"time":"2025-02-03T09:31:14.885295133+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":132566613,"latency_human":"132.566613ms","bytes_in":87,"bytes_out":161}
+        {"time":"2025-02-03T09:31:15.005179263+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":118373086,"latency_human":"118.373086ms","bytes_in":87,"bytes_out":161}
+        {"time":"2025-02-03T09:31:15.006866847+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":43544,"latency_human":"43.544µs","bytes_in":12,"bytes_out":71}
+        {"time":"2025-02-03T09:31:15.00756501+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":26968,"latency_human":"26.968µs","bytes_in":0,"bytes_out":71}
+        {"time":"2025-02-03T09:31:15.13145795+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":123162032,"latency_human":"123.162032ms","bytes_in":67,"bytes_out":165}
+        {"time":"2025-02-03T09:31:15.134698478+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":2143536,"latency_human":"2.143536ms","bytes_in":11,"bytes_out":70}
+        {"time":"2025-02-03T09:31:15.13904327+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":3724410,"latency_human":"3.72441ms","bytes_in":12,"bytes_out":0}
+        {"time":"2025-02-03T09:31:15.140727118+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1129055,"latency_human":"1.129055ms","bytes_in":12,"bytes_out":0}
+        {"time":"2025-02-03T09:31:15.142543579+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":964028,"latency_human":"964.028µs","bytes_in":0,"bytes_out":92}
+        {"time":"2025-02-03T09:31:15.271736275+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":128042909,"latency_human":"128.042909ms","bytes_in":53,"bytes_out":162}
+        {"time":"2025-02-03T09:31:15.273725398+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":1099997,"latency_human":"1.099997ms","bytes_in":12,"bytes_out":109}
+        time=2025-02-03T09:31:15.274+07:00 level=INFO msg="received signal" signal=interrupt
+        time=2025-02-03T09:31:15.275+07:00 level=INFO msg="shutting down server..."
+        time=2025-02-03T09:31:15.275+07:00 level=INFO msg="server stopped"
     gophermart_suite_test.go:108: останавливаем процесс accrual
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        {"level":"info","ts":1738228276.0802987,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:46777"}
-        {"level":"info","ts":1738228278.0601022,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
---- FAIL: TestGophermart (2.02s)
-    --- FAIL: TestGophermart/TestEndToEnd (1.18s)
+        {"level":"info","ts":1738549873.3896255,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:39569"}
+        {"level":"info","ts":1738549875.278339,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
+--- FAIL: TestGophermart (1.91s)
+    --- FAIL: TestGophermart/TestEndToEnd (1.17s)
         --- PASS: TestGophermart/TestEndToEnd/register_accrual_mechanic (0.00s)
         --- PASS: TestGophermart/TestEndToEnd/register_order_for_accrual (0.00s)
-        --- PASS: TestGophermart/TestEndToEnd/register_user (0.16s)
+        --- PASS: TestGophermart/TestEndToEnd/register_user (0.14s)
         --- PASS: TestGophermart/TestEndToEnd/order_upload (0.01s)
-        --- FAIL: TestGophermart/TestEndToEnd/await_order_processed (1.00s)
+        --- FAIL: TestGophermart/TestEndToEnd/await_order_processed (1.01s)
         --- FAIL: TestGophermart/TestEndToEnd/check_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/withdraw_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/recheck_balance (0.00s)
         --- FAIL: TestGophermart/TestEndToEnd/check_withdrawals (0.00s)
-    --- PASS: TestGophermart/TestUserAuth (0.28s)
-        --- PASS: TestGophermart/TestUserAuth/register_user (0.14s)
-        --- PASS: TestGophermart/TestUserAuth/login_user (0.14s)
-    --- PASS: TestGophermart/TestUserOrders (0.34s)
+    --- PASS: TestGophermart/TestUserAuth (0.25s)
+        --- PASS: TestGophermart/TestUserAuth/register_user (0.13s)
+        --- PASS: TestGophermart/TestUserAuth/login_user (0.12s)
+    --- PASS: TestGophermart/TestUserOrders (0.27s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/register_user (0.14s)
+        --- PASS: TestGophermart/TestUserOrders/register_user (0.12s)
         --- PASS: TestGophermart/TestUserOrders/bad_order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
         --- PASS: TestGophermart/TestUserOrders/orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.18s)
+        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.13s)
 FAIL
