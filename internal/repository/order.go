@@ -11,12 +11,19 @@ import (
 
 // OrderRepo реализует интерфейс domain.OrderRepository
 type OrderRepo struct {
-	db *sqlx.DB
+	db     *sqlx.DB
+	logger *slog.Logger
 }
 
 // NewOrderRepo создает новый экземпляр OrderRepo
-func NewOrderRepo(db *sqlx.DB) *OrderRepo {
-	return &OrderRepo{db: db}
+func NewOrderRepo(db *sqlx.DB, logger *slog.Logger) *OrderRepo {
+	return &OrderRepo{
+		db: db,
+		logger: logger.With(
+			"package", "repository",
+			"component", "OrderRepo",
+		),
+	}
 }
 
 // Create создает новый заказ
@@ -71,6 +78,11 @@ func (r *OrderRepo) UpdateStatus(orderID int, status domain.OrderStatus) error {
 
 // UpdateAccrual обновляет сумму начисленных баллов за заказ
 func (r *OrderRepo) UpdateAccrual(orderID int, accrualKop int64) error {
+	logger := r.logger.With("method", "UpdateAccrual")
+	logger.Info("обновление статуса на PROCESSED",
+		"id заказа", orderID,
+		"начисление (коп)", accrualKop)
+
 	query := `
 		UPDATE orders 
 		SET accrual = $1, status = $2 
@@ -81,16 +93,13 @@ func (r *OrderRepo) UpdateAccrual(orderID int, accrualKop int64) error {
 
 // FindByStatus возвращает заказы с указанными статусами
 func (r *OrderRepo) FindByStatus(statuses []domain.OrderStatus) ([]domain.Order, error) {
+	logger := r.logger.With("method", "FindByStatus")
+
 	// Преобразуем OrderStatus в []string для запроса к БД и логирования
 	statusStrings := make([]string, len(statuses))
 	for i, s := range statuses {
 		statusStrings[i] = string(s)
 	}
-
-	slog.Debug("finding orders by statuses",
-		"statuses", statusStrings,
-		"statuses_raw", fmt.Sprintf("%#v", statuses),
-		"query", `SELECT * FROM orders WHERE status = ANY($1) ORDER BY uploaded_at ASC`)
 
 	query := `
 		SELECT * FROM orders 
@@ -100,13 +109,13 @@ func (r *OrderRepo) FindByStatus(statuses []domain.OrderStatus) ([]domain.Order,
 	var orders []domain.Order
 	err := r.db.Select(&orders, query, statusStrings)
 	if err != nil {
-		slog.Error("error finding orders by status",
+		logger.Error("ошибка при поиске заказов",
 			"error", err,
-			"error_type", fmt.Sprintf("%T", err),
-			"statuses", statusStrings)
+			"тип ошибки", fmt.Sprintf("%T", err),
+		)
 		return nil, err
 	}
 
-	slog.Debug("found orders", "count", len(orders))
+	logger.Debug("поиск заказов по статусам", "статусы", statusStrings, "количество", len(orders))
 	return orders, nil
 }

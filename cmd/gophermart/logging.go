@@ -15,7 +15,10 @@ func initLogger() {
 	}
 
 	h := slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: programLevel})
-	slog.SetDefault(slog.New(h))
+	logger := slog.New(h).With(
+		"environment", os.Getenv("ENV"),
+	)
+	slog.SetDefault(logger)
 }
 
 // getVarSource возвращает значение переменной и её источник
