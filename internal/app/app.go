@@ -17,12 +17,13 @@ import (
 
 // App представляет основную структуру приложения
 type App struct {
-	echo          *echo.Echo
-	db            *sqlx.DB
-	userHandler   *handlers.UserHandler
-	orderHandler  *handlers.OrderHandler
-	accrualWorker *worker.AccrualWorker
-	config        Config
+	echo           *echo.Echo
+	db             *sqlx.DB
+	userHandler    *handlers.UserHandler
+	orderHandler   *handlers.OrderHandler
+	balanceHandler *handlers.BalanceHandler
+	accrualWorker  *worker.AccrualWorker
+	config         Config
 }
 
 // New создает новый экземпляр приложения
@@ -41,10 +42,12 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	// Инициализация репозиториев
 	userRepo := repository.NewUserRepo(db)
 	orderRepo := repository.NewOrderRepo(db, slog.Default())
+	balanceRepo := repository.NewBalanceRepo(db, slog.Default())
 
 	// Инициализация сервисов
 	userService := service.NewUserService(userRepo, cfg.JWTSecret, cfg.JWTExpirationPeriod)
 	orderService := service.NewOrderService(orderRepo)
+	balanceService := service.NewBalanceService(balanceRepo, slog.Default())
 	accrualService := service.NewAccrualService(cfg.AccrualSystemAddress)
 
 	// Инициализация воркера начислений
@@ -60,6 +63,7 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	// Инициализация обработчиков
 	userHandler := handlers.NewUserHandler(userService)
 	orderHandler := handlers.NewOrderHandler(orderService)
+	balanceHandler := handlers.NewBalanceHandler(balanceService)
 
 	// Инициализация Echo
 	e := echo.New()
@@ -70,12 +74,13 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	e.Use(middleware.Recover())
 
 	app := &App{
-		echo:          e,
-		db:            db,
-		userHandler:   userHandler,
-		orderHandler:  orderHandler,
-		accrualWorker: accrualWorker,
-		config:        cfg,
+		echo:           e,
+		db:             db,
+		userHandler:    userHandler,
+		orderHandler:   orderHandler,
+		balanceHandler: balanceHandler,
+		accrualWorker:  accrualWorker,
+		config:         cfg,
 	}
 
 	// Настройка маршрутов
@@ -118,4 +123,9 @@ func (a *App) setupRoutes() {
 	// Маршруты заказов
 	protected.POST("/orders", a.orderHandler.Register)
 	protected.GET("/orders", a.orderHandler.GetOrders)
+
+	// Маршруты баланса
+	protected.GET("/balance", a.balanceHandler.GetBalance)
+	protected.POST("/balance/withdraw", a.balanceHandler.Withdraw)
+	protected.GET("/withdrawals", a.balanceHandler.GetWithdrawals)
 }
