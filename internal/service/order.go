@@ -6,6 +6,7 @@ import (
 	"log/slog"
 
 	"gophermart/internal/domain"
+	"gophermart/internal/utils"
 )
 
 // OrderService реализует интерфейс domain.OrderService
@@ -37,7 +38,7 @@ func (s *OrderService) Register(userID int, number string) error {
 	}
 
 	// Проверяем номер заказа по алгоритму Луна
-	if !isValidLuhn(number) {
+	if !utils.ValidateLuhn(number) {
 		return ErrInvalidOrderNumber
 	}
 
@@ -62,32 +63,15 @@ func (s *OrderService) Register(userID int, number string) error {
 
 // GetOrders возвращает список заказов пользователя
 func (s *OrderService) GetOrders(userID int) ([]domain.Order, error) {
-	return s.repo.FindByUserID(userID)
-}
-
-// isValidLuhn проверяет номер заказа по алгоритму Луна
-func isValidLuhn(number string) bool {
-	// Преобразуем строку в слайс цифр
-	digits := make([]int, len(number))
-	for i, r := range number {
-		if r < '0' || r > '9' {
-			return false
-		}
-		digits[i] = int(r - '0')
+	orders, err := s.repo.FindByUserID(userID)
+	if err != nil {
+		return nil, err
 	}
 
-	// Алгоритм Луна
-	sum := 0
-	parity := len(digits) % 2
-	for i, digit := range digits {
-		if i%2 == parity {
-			digit *= 2
-			if digit > 9 {
-				digit -= 9
-			}
-		}
-		sum += digit
+	// Вычисляем сумму в рублях для каждого заказа
+	for i := range orders {
+		orders[i].CalculateAccrualRub()
 	}
 
-	return sum%10 == 0
+	return orders, nil
 }
