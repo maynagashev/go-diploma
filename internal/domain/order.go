@@ -21,7 +21,8 @@ const (
 )
 
 const (
-	kopeksPerRuble = 100 // Количество копеек в рубле.
+	// KopPerRuble количество копеек в рубле.
+	KopPerRuble = 100
 )
 
 // Value реализует интерфейс driver.Valuer для OrderStatus.
@@ -63,7 +64,7 @@ func (o *Order) SetAccrual(kop int64) {
 // CalculateAccrualRub вычисляет сумму в рублях на основе суммы в копейках.
 func (o *Order) CalculateAccrualRub() {
 	if o.Accrual != nil {
-		accrualRub := float64(*o.Accrual) / kopeksPerRuble
+		accrualRub := float64(*o.Accrual) / KopPerRuble
 		o.AccrualRub = &accrualRub
 	}
 }
@@ -73,7 +74,7 @@ func (o *Order) GetAccrualRub() float64 {
 	if o.Accrual == nil {
 		return 0
 	}
-	return float64(*o.Accrual) / kopeksPerRuble
+	return float64(*o.Accrual) / KopPerRuble
 }
 
 // OrderRepository определяет интерфейс для доступа к данным заказов.

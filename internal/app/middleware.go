@@ -46,8 +46,19 @@ func JWTMiddleware(secret string) echo.MiddlewareFunc {
 				return echo.NewHTTPError(http.StatusUnauthorized, "Неверный формат данных токена")
 			}
 
-			c.Set("user_id", int(claims["user_id"].(float64)))
-			c.Set("login", claims["login"].(string))
+			// Безопасное получение user_id
+			userIDFloat, ok := claims["user_id"].(float64)
+			if !ok {
+				return echo.NewHTTPError(http.StatusUnauthorized, "Отсутствует или неверный формат user_id")
+			}
+			c.Set("user_id", int(userIDFloat))
+
+			// Безопасное получение login
+			login, ok := claims["login"].(string)
+			if !ok {
+				return echo.NewHTTPError(http.StatusUnauthorized, "Отсутствует или неверный формат login")
+			}
+			c.Set("login", login)
 
 			return next(c)
 		}

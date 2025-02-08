@@ -1,28 +1,21 @@
-internal/app/middleware.go:49:25: Error return value is not checked (errcheck)
-			c.Set("user_id", int(claims["user_id"].(float64)))
-			                     ^
-internal/app/middleware.go:50:19: Error return value is not checked (errcheck)
-			c.Set("login", claims["login"].(string))
-			               ^
+internal/app/middleware.go:12:1: cognitive complexity 26 of func `JWTMiddleware` is high (> 20) (gocognit)
+func JWTMiddleware(secret string) echo.MiddlewareFunc {
+^
 cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobals)
 	envFileLoaded bool
 	^
 cmd/gophermart/main.go:80:3: exitAfterDefer: os.Exit will exit, and `defer cancel()` will not run (gocritic)
 		os.Exit(1)
 		^
-internal/worker/accrual.go:187:43: Magic number: 100, in <argument> detected (mnd)
-			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
-			                                       ^
 internal/service/accrual.go:57:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
 		return nil, nil
 		^
 cmd/gophermart/flags.go:54:27: `getEnvOrDefault` - `defaultValue` always receives `""` (unparam)
 func getEnvOrDefault(key, defaultValue string) string {
                           ^
-7 issues:
-* errcheck: 2
+5 issues:
 * gochecknoglobals: 1
+* gocognit: 1
 * gocritic: 1
-* mnd: 1
 * nilnil: 1
 * unparam: 1

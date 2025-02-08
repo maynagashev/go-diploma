@@ -8,10 +8,6 @@ import (
 	"gophermart/internal/domain"
 )
 
-const (
-	kopeksPerRuble = 100 // Количество копеек в рубле
-)
-
 // BalanceRepo реализует интерфейс domain.BalanceRepository.
 type BalanceRepo struct {
 	db     *sqlx.DB
@@ -86,7 +82,7 @@ func (r *BalanceRepo) GetWithdrawals(userID int) ([]domain.Withdrawal, error) {
 
 	// Конвертируем копейки в рубли
 	for i := range withdrawals {
-		withdrawals[i].Sum = float64(withdrawals[i].AmountKop) / kopeksPerRuble
+		withdrawals[i].Sum = float64(withdrawals[i].AmountKop) / domain.KopPerRuble
 	}
 
 	return withdrawals, nil

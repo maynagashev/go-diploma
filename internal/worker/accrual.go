@@ -184,7 +184,7 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 
 		// Если есть начисление, обновляем сумму
 		if accrual.Status == domain.OrderStatusProcessed && accrual.Accrual != nil {
-			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
+			accrualKop := int64(*accrual.Accrual * domain.KopPerRuble) // конвертируем рубли в копейки
 			logger.Debug("обновление суммы начисления",
 				"номер заказа", order.Number,
 				"начисление (руб)", *accrual.Accrual,
