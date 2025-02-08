@@ -5,20 +5,24 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// CustomValidator пользовательский валидатор для фреймворка Echo
+const (
+	statusBadRequest = 400
+)
+
+// CustomValidator пользовательский валидатор для фреймворка Echo.
 type CustomValidator struct {
 	validator *validator.Validate
 }
 
-// NewValidator создает новый экземпляр валидатора
+// NewValidator создает новый экземпляр валидатора.
 func NewValidator() *CustomValidator {
 	return &CustomValidator{validator: validator.New()}
 }
 
-// Validate проверяет переданную структуру
+// Validate проверяет переданную структуру.
 func (cv *CustomValidator) Validate(i interface{}) error {
 	if err := cv.validator.Struct(i); err != nil {
-		return echo.NewHTTPError(400, err.Error())
+		return echo.NewHTTPError(statusBadRequest, err.Error())
 	}
 	return nil
 }

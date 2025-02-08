@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// JWTMiddleware создает middleware для проверки JWT токена
+// JWTMiddleware создает middleware для проверки JWT токена.
 func JWTMiddleware(secret string) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {

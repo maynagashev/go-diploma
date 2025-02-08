@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// initLogger инициализирует логгер
+// initLogger инициализирует логгер.
 func initLogger() {
 	// Настраиваем уровень логирования
 	var programLevel = new(slog.LevelVar)
@@ -21,7 +21,7 @@ func initLogger() {
 	slog.SetDefault(logger)
 }
 
-// getVarSource возвращает значение переменной и её источник
+// getVarSource возвращает значение переменной и её источник.
 func getVarSource(name string, value string) string {
 	// Проверяем наличие переменной в окружении
 	if envValue := os.Getenv(name); envValue != "" {
@@ -37,7 +37,7 @@ func getVarSource(name string, value string) string {
 	return "not set"
 }
 
-// maskSecret маскирует секретные значения для логов
+// maskSecret маскирует секретные значения для логов.
 func maskSecret(s string) string {
 	if len(s) <= 4 {
 		return "***"

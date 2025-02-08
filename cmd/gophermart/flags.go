@@ -6,8 +6,12 @@ import (
 	"time"
 )
 
+const (
+	defaultJWTExpirationHours = 24
+)
+
 var (
-	// Флаги командной строки
+	// Флаги командной строки.
 	runAddress          string        // Адрес и порт для запуска сервера
 	databaseURI         string        // URI базы данных
 	accrualSystemAddr   string        // Адрес системы расчета начислений
@@ -25,12 +29,12 @@ func initFlags() {
 	flag.DurationVar(
 		&jwtExpirationPeriod,
 		"jwt-exp",
-		getDurationEnv("JWT_EXPIRATION_PERIOD", 24*time.Hour),
+		getDurationEnv("JWT_EXPIRATION_PERIOD", defaultJWTExpirationHours*time.Hour),
 		"Период действия JWT токена",
 	)
 }
 
-// getDurationEnv получает значение длительности из переменной окружения
+// getDurationEnv получает значение длительности из переменной окружения.
 func getDurationEnv(key string, defaultValue time.Duration) time.Duration {
 	if value := os.Getenv(key); value != "" {
 		if duration, err := time.ParseDuration(value); err == nil {

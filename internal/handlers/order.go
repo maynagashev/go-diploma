@@ -39,7 +39,11 @@ func NewOrderHandler(orderService domain.OrderService) *OrderHandler {
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/orders [post]
 func (h *OrderHandler) Register(c echo.Context) error {
-	userID := c.Get("user_id").(int)
+	userIDRaw := c.Get("user_id")
+	userID, ok := userIDRaw.(int)
+	if !ok {
+		return echo.NewHTTPError(http.StatusInternalServerError, "invalid user_id in context")
+	}
 
 	// Проверяем Content-Type
 	if !strings.HasPrefix(c.Request().Header.Get("Content-Type"), "text/plain") {
@@ -87,7 +91,11 @@ func (h *OrderHandler) Register(c echo.Context) error {
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/orders [get]
 func (h *OrderHandler) GetOrders(c echo.Context) error {
-	userID := c.Get("user_id").(int)
+	userIDRaw := c.Get("user_id")
+	userID, ok := userIDRaw.(int)
+	if !ok {
+		return echo.NewHTTPError(http.StatusInternalServerError, "invalid user_id in context")
+	}
 
 	orders, err := h.orderService.GetOrders(userID)
 	if err != nil {

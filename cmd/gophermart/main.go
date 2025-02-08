@@ -16,9 +16,9 @@ import (
 	"gophermart/internal/app"
 )
 
-// Глобальные переменные
+// Глобальные переменные.
 var (
-	// Флаг успешной загрузки .env
+	// Флаг успешной загрузки .env.
 	envFileLoaded bool
 )
 

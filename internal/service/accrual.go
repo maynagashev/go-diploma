@@ -10,20 +10,20 @@ import (
 	"gophermart/internal/domain"
 )
 
-// AccrualResponse представляет ответ от системы начислений
+// AccrualResponse представляет ответ от системы начислений.
 type AccrualResponse struct {
 	Order   string             `json:"order"`
 	Status  domain.OrderStatus `json:"status"`
 	Accrual *float64           `json:"accrual,omitempty"`
 }
 
-// AccrualService сервис для взаимодействия с системой начислений
+// AccrualService сервис для взаимодействия с системой начислений.
 type AccrualService struct {
 	client  *http.Client
 	baseURL string
 }
 
-// NewAccrualService создает новый экземпляр AccrualService
+// NewAccrualService создает новый экземпляр AccrualService.
 func NewAccrualService(baseURL string) *AccrualService {
 	return &AccrualService{
 		client: &http.Client{
@@ -33,7 +33,7 @@ func NewAccrualService(baseURL string) *AccrualService {
 	}
 }
 
-// GetOrderAccrual получает информацию о начислении баллов за заказ
+// GetOrderAccrual получает информацию о начислении баллов за заказ.
 func (s *AccrualService) GetOrderAccrual(ctx context.Context, orderNumber string) (*AccrualResponse, error) {
 	url := fmt.Sprintf("%s/api/orders/%s", s.baseURL, orderNumber)
 
@@ -72,7 +72,7 @@ func (s *AccrualService) GetOrderAccrual(ctx context.Context, orderNumber string
 	}
 }
 
-// RateLimitError ошибка превышения лимита запросов
+// RateLimitError ошибка превышения лимита запросов.
 type RateLimitError struct {
 	RetryAfter time.Duration
 }

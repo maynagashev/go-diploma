@@ -11,14 +11,14 @@ import (
 	"gophermart/internal/domain"
 )
 
-// UserService реализует интерфейс domain.UserService
+// UserService реализует интерфейс domain.UserService.
 type UserService struct {
 	repo           domain.UserRepository
 	jwtSecret      []byte
 	jwtExpiryHours int
 }
 
-// NewUserService создает новый экземпляр UserService
+// NewUserService создает новый экземпляр UserService.
 func NewUserService(repo domain.UserRepository, jwtSecret string, jwtExpirationTime time.Duration) *UserService {
 	return &UserService{
 		repo:           repo,
@@ -27,7 +27,7 @@ func NewUserService(repo domain.UserRepository, jwtSecret string, jwtExpirationT
 	}
 }
 
-// generateToken создает новый JWT токен для пользователя
+// generateToken создает новый JWT токен для пользователя.
 func (s *UserService) generateToken(userID int, login string) (*domain.AuthToken, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id": userID,
@@ -43,7 +43,7 @@ func (s *UserService) generateToken(userID int, login string) (*domain.AuthToken
 	return &domain.AuthToken{Token: tokenString}, nil
 }
 
-// Register создает нового пользователя с указанными учетными данными
+// Register создает нового пользователя с указанными учетными данными.
 func (s *UserService) Register(login, password string) (*domain.AuthToken, error) {
 	// Проверяем, существует ли пользователь
 	existingUser, err := s.repo.FindByLogin(login)
@@ -74,7 +74,7 @@ func (s *UserService) Register(login, password string) (*domain.AuthToken, error
 	return s.generateToken(user.ID, user.Login)
 }
 
-// Authenticate проверяет учетные данные пользователя и возвращает токен, если данные верны
+// Authenticate проверяет учетные данные пользователя и возвращает токен, если данные верны.
 func (s *UserService) Authenticate(login, password string) (*domain.AuthToken, error) {
 	user, err := s.repo.FindByLogin(login)
 	if err != nil {
