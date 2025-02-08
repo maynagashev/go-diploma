@@ -26,7 +26,7 @@ func initLogger() {
 }
 
 // getVarSource возвращает значение переменной и её источник.
-func getVarSource(name string, value string) string {
+func getVarSource(name string, value string, envFileLoaded bool) string {
 	// Проверяем наличие переменной в окружении
 	if envValue := os.Getenv(name); envValue != "" {
 		if envFileLoaded {

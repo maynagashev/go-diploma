@@ -17,11 +17,6 @@ import (
 )
 
 // Глобальные переменные.
-var (
-	// Флаг успешной загрузки .env.
-	envFileLoaded bool
-)
-
 const (
 	shutdownTimeout = 10 * time.Second // Таймаут для graceful shutdown
 )
@@ -36,6 +31,7 @@ func main() {
 	}()
 
 	// Загрузка .env файла, если он существует (имеет низший приоритет)
+	envFileLoaded := false
 	if err := godotenv.Load(); err == nil {
 		envFileLoaded = true
 		slog.Debug("loaded .env file")
@@ -51,11 +47,11 @@ func main() {
 	// Логируем все переменные окружения и их источники
 	slog.Debug("configuration sources",
 		"env_file_loaded", envFileLoaded,
-		"RUN_ADDRESS", getVarSource("RUN_ADDRESS", cfg.RunAddress),
-		"DATABASE_URI", getVarSource("DATABASE_URI", cfg.DatabaseURI),
-		"ACCRUAL_SYSTEM_ADDRESS", getVarSource("ACCRUAL_SYSTEM_ADDRESS", cfg.AccrualSystemAddress),
-		"JWT_SECRET", maskSecret(getVarSource("JWT_SECRET", cfg.JWTSecret)),
-		"JWT_EXPIRATION_PERIOD", getVarSource("JWT_EXPIRATION_PERIOD", cfg.JWTExpirationPeriod.String()),
+		"RUN_ADDRESS", getVarSource("RUN_ADDRESS", cfg.RunAddress, envFileLoaded),
+		"DATABASE_URI", getVarSource("DATABASE_URI", cfg.DatabaseURI, envFileLoaded),
+		"ACCRUAL_SYSTEM_ADDRESS", getVarSource("ACCRUAL_SYSTEM_ADDRESS", cfg.AccrualSystemAddress, envFileLoaded),
+		"JWT_SECRET", maskSecret(getVarSource("JWT_SECRET", cfg.JWTSecret, envFileLoaded)),
+		"JWT_EXPIRATION_PERIOD", getVarSource("JWT_EXPIRATION_PERIOD", cfg.JWTExpirationPeriod.String(), envFileLoaded),
 	)
 
 	// Создаем контекст с отменой

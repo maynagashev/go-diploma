@@ -1,9 +1,5 @@
 internal/app/middleware.go:12:1: cognitive complexity 26 of func `JWTMiddleware` is high (> 20) (gocognit)
 func JWTMiddleware(secret string) echo.MiddlewareFunc {
 ^
-cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobals)
-	envFileLoaded bool
-	^
-2 issues:
-* gochecknoglobals: 1
+1 issues:
 * gocognit: 1
