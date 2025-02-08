@@ -64,4 +64,4 @@ run-accrual:
 
 lint :
 	@echo "Running linter..."
-	golangci-lint run
+	golangci-lint run | tee lint.log

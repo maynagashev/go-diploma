@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// Config представляет конфигурацию приложения
+// Config представляет конфигурацию приложения.
 type Config struct {
 	DatabaseURI          string        // URI подключения к базе данных
 	MigrationsDir        string        // Директория с миграциями

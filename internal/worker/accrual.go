@@ -7,11 +7,12 @@ import (
 	"sync"
 	"time"
 
+	"errors"
 	"gophermart/internal/domain"
 	"gophermart/internal/service"
 )
 
-// contextKey используется для ключей контекста
+// contextKey используется для ключей контекста.
 type contextKey string
 
 const (
@@ -22,7 +23,7 @@ const (
 	workerIDKey = contextKey("worker_id")
 )
 
-// AccrualWorker обработчик заказов для получения информации о начислениях
+// AccrualWorker обработчик заказов для получения информации о начислениях.
 type AccrualWorker struct {
 	logger         *slog.Logger
 	orderRepo      domain.OrderRepository
@@ -32,7 +33,7 @@ type AccrualWorker struct {
 	retryTimeout   time.Duration
 }
 
-// NewAccrualWorker создает новый экземпляр AccrualWorker
+// NewAccrualWorker создает новый экземпляр AccrualWorker.
 func NewAccrualWorker(
 	logger *slog.Logger,
 	orderRepo domain.OrderRepository,
@@ -64,24 +65,24 @@ func NewAccrualWorker(
 	}
 }
 
-// Start запускает обработку заказов
+// Start запускает обработку заказов.
 func (w *AccrualWorker) Start(ctx context.Context) {
 	var wg sync.WaitGroup
 
 	// Запускаем пул воркеров
-	for i := 0; i < w.workerCount; i++ {
+	for workerID := range w.workerCount {
 		wg.Add(1)
 		go func(workerID int) {
 			defer wg.Done()
 			w.worker(ctx, workerID)
-		}(i)
+		}(workerID)
 	}
 
 	// Ждем завершения всех воркеров
 	wg.Wait()
 }
 
-// worker обрабатывает заказы
+// worker обрабатывает заказы.
 func (w *AccrualWorker) worker(ctx context.Context, id int) {
 	// Создаем отдельный логгер для этого воркера
 	workerLogger := w.logger.With("worker_id", id)
@@ -111,7 +112,7 @@ func (w *AccrualWorker) worker(ctx context.Context, id int) {
 	}
 }
 
-// processOrders обрабатывает заказы, ожидающие обновления статуса
+// processOrders обрабатывает заказы, ожидающие обновления статуса.
 func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) error {
 	logger = logger.With("method", "processOrders")
 	logger.Debug("начало обработки заказов")
@@ -120,12 +121,13 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 	statuses := []domain.OrderStatus{domain.OrderStatusNew, domain.OrderStatusProcessing}
 	logger.Debug("запрос заказов", "статусы", statuses)
 
-	orders, err := w.orderRepo.FindByStatus(statuses)
-	if err != nil {
+	orders, findErr := w.orderRepo.FindByStatus(statuses)
+	if findErr != nil {
 		logger.Error("ошибка при поиске заказов",
-			"error", err,
-			"error_type", fmt.Sprintf("%T", err))
-		return err
+			"error", findErr,
+			"error_type", fmt.Sprintf("%T", findErr),
+		)
+		return findErr
 	}
 
 	logger.Debug("кол-во заказов для обработки воркером", "количество", len(orders))
@@ -143,19 +145,19 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 			"текущий статус", order.Status)
 
 		// Получаем информацию о начислении
-		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
-		if err != nil {
-			// Если превышен лимит запросов, ждем и пропускаем остальные заказы
-			if rateLimitErr, ok := err.(*service.RateLimitError); ok {
-				logger.Warn("превышен лимит запросов",
-					"повтор через", rateLimitErr.RetryAfter,
-					"номер заказа", order.Number)
+		accrual, accrualErr := w.accrualService.GetOrderAccrual(ctx, order.Number)
+		if accrualErr != nil {
+			var rateLimitErr *service.RateLimitError
+			if errors.As(accrualErr, &rateLimitErr) {
+				w.logger.Info("rate limit exceeded, waiting",
+					"order_number", order.Number,
+					"retry_after", rateLimitErr.RetryAfter)
 				time.Sleep(rateLimitErr.RetryAfter)
-				return nil
+				continue
 			}
-			logger.Error("ошибка получения информации о начислении",
-				"номер заказа", order.Number,
-				"error", err)
+			w.logger.Error("failed to get order accrual",
+				"order_number", order.Number,
+				"error", accrualErr)
 			continue
 		}
 
@@ -172,27 +174,27 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 			"начисление", accrual.Accrual)
 
 		// Обновляем статус заказа
-		if err := w.orderRepo.UpdateStatus(order.ID, accrual.Status); err != nil {
+		if updateStatusErr := w.orderRepo.UpdateStatus(order.ID, accrual.Status); updateStatusErr != nil {
 			logger.Error("ошибка обновления статуса заказа",
 				"номер заказа", order.Number,
 				"статус", accrual.Status,
-				"error", err)
+				"error", updateStatusErr)
 			continue
 		}
 
 		// Если есть начисление, обновляем сумму
 		if accrual.Status == domain.OrderStatusProcessed && accrual.Accrual != nil {
-			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
+			accrualKop := int64(*accrual.Accrual * domain.KopPerRuble) // конвертируем рубли в копейки
 			logger.Debug("обновление суммы начисления",
 				"номер заказа", order.Number,
 				"начисление (руб)", *accrual.Accrual,
 				"начисление (коп)", accrualKop)
 
-			if err := w.orderRepo.UpdateAccrual(order.ID, accrualKop); err != nil {
+			if updateAccrualErr := w.orderRepo.UpdateAccrual(order.ID, accrualKop); updateAccrualErr != nil {
 				logger.Error("ошибка обновления суммы начисления",
 					"номер заказа", order.Number,
 					"начисление (коп)", accrualKop,
-					"error", err)
+					"error", updateAccrualErr)
 			}
 		}
 	}

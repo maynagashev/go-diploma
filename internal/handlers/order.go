@@ -13,19 +13,18 @@ import (
 	"gophermart/internal/service"
 )
 
-// OrderHandler обрабатывает HTTP-запросы, связанные с заказами
+// OrderHandler обрабатывает HTTP-запросы, связанные с заказами.
 type OrderHandler struct {
 	orderService domain.OrderService
 }
 
-// NewOrderHandler создает новый экземпляр OrderHandler
+// NewOrderHandler создает новый экземпляр OrderHandler.
 func NewOrderHandler(orderService domain.OrderService) *OrderHandler {
 	return &OrderHandler{orderService: orderService}
 }
 
-// Register обрабатывает загрузку номера заказа
-// @Summary Загрузка номера заказа
-// @Description Загружает номер заказа для расчета начисления баллов лояльности
+// Register обрабатывает загрузку номера заказа.
+// @Summary Загрузка номера заказа.
 // @Tags orders
 // @Accept text/plain
 // @Produce json
@@ -38,8 +37,13 @@ func NewOrderHandler(orderService domain.OrderService) *OrderHandler {
 // @Failure 422 "Неверный формат номера заказа"
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/orders [post]
+// @Description Загружает номер заказа для расчета начисления баллов лояльности.
 func (h *OrderHandler) Register(c echo.Context) error {
-	userID := c.Get("user_id").(int)
+	userIDRaw := c.Get("user_id")
+	userID, ok := userIDRaw.(int)
+	if !ok {
+		return echo.NewHTTPError(http.StatusInternalServerError, "invalid user_id in context")
+	}
 
 	// Проверяем Content-Type
 	if !strings.HasPrefix(c.Request().Header.Get("Content-Type"), "text/plain") {
@@ -76,9 +80,8 @@ func (h *OrderHandler) Register(c echo.Context) error {
 	return c.NoContent(http.StatusAccepted)
 }
 
-// GetOrders возвращает список заказов пользователя
-// @Summary Получение списка заказов
-// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях
+// GetOrders возвращает список заказов пользователя.
+// @Summary Получение списка заказов.
 // @Tags orders
 // @Produce json
 // @Success 200 {array} domain.Order "Список заказов"
@@ -86,8 +89,14 @@ func (h *OrderHandler) Register(c echo.Context) error {
 // @Failure 401 "Пользователь не аутентифицирован"
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/orders [get]
+// @Description Возвращает список загруженных пользователем номеров
+// заказов, статусов их обработки и информации о начислениях.
 func (h *OrderHandler) GetOrders(c echo.Context) error {
-	userID := c.Get("user_id").(int)
+	userIDRaw := c.Get("user_id")
+	userID, ok := userIDRaw.(int)
+	if !ok {
+		return echo.NewHTTPError(http.StatusInternalServerError, "invalid user_id in context")
+	}
 
 	orders, err := h.orderService.GetOrders(userID)
 	if err != nil {

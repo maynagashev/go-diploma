@@ -1,6 +1,10 @@
 package utils
 
-// ValidateLuhn проверяет номер заказа по алгоритму Луна
+const (
+	maxDigit = 9 // Максимальное значение цифры
+)
+
+// ValidateLuhn проверяет номер заказа по алгоритму Луна.
 func ValidateLuhn(number string) bool {
 	sum := 0
 	isSecond := false
@@ -11,8 +15,8 @@ func ValidateLuhn(number string) bool {
 
 		if isSecond {
 			d *= 2
-			if d > 9 {
-				d -= 9
+			if d > maxDigit {
+				d -= maxDigit
 			}
 		}
 

@@ -7,7 +7,7 @@ import (
 	"github.com/pressly/goose/v3"
 )
 
-// MigrateDB применяет миграции базы данных
+// MigrateDB применяет миграции базы данных.
 func MigrateDB(db *sql.DB, migrationsDir string) error {
 	if err := goose.SetDialect("postgres"); err != nil {
 		return fmt.Errorf("не удалось установить диалект базы данных: %w", err)

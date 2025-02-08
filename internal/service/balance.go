@@ -9,17 +9,17 @@ import (
 )
 
 var (
-	// ErrInsufficientFunds ошибка недостаточно средств
+	// ErrInsufficientFunds ошибка недостаточно средств.
 	ErrInsufficientFunds = errors.New("недостаточно средств")
 )
 
-// BalanceService реализует интерфейс domain.BalanceService
+// BalanceService реализует интерфейс domain.BalanceService.
 type BalanceService struct {
 	repo   domain.BalanceRepository
 	logger *slog.Logger
 }
 
-// NewBalanceService создает новый экземпляр BalanceService
+// NewBalanceService создает новый экземпляр BalanceService.
 func NewBalanceService(repo domain.BalanceRepository, logger *slog.Logger) *BalanceService {
 	return &BalanceService{
 		repo: repo,
@@ -30,12 +30,12 @@ func NewBalanceService(repo domain.BalanceRepository, logger *slog.Logger) *Bala
 	}
 }
 
-// GetBalance возвращает текущий баланс пользователя
+// GetBalance возвращает текущий баланс пользователя.
 func (s *BalanceService) GetBalance(userID int) (*domain.Balance, error) {
 	return s.repo.GetBalance(userID)
 }
 
-// Withdraw списывает средства с баланса пользователя
+// Withdraw списывает средства с баланса пользователя.
 func (s *BalanceService) Withdraw(userID int, req *domain.WithdrawalRequest) error {
 	// Проверяем номер заказа по алгоритму Луна
 	if !utils.ValidateLuhn(req.Order) {
@@ -56,14 +56,13 @@ func (s *BalanceService) Withdraw(userID int, req *domain.WithdrawalRequest) err
 	// Создаем запись о списании
 	withdrawal := &domain.Withdrawal{
 		Order:     req.Order,
-		Sum:       req.Sum,
-		AmountKop: int64(req.Sum * 100),
+		AmountKop: int64(req.Sum * domain.KopPerRuble),
 	}
 
 	return s.repo.CreateWithdrawal(userID, withdrawal)
 }
 
-// GetWithdrawals возвращает историю списаний пользователя
+// GetWithdrawals возвращает историю списаний пользователя.
 func (s *BalanceService) GetWithdrawals(userID int) ([]domain.Withdrawal, error) {
 	return s.repo.GetWithdrawals(userID)
 }

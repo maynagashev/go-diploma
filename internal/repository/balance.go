@@ -8,13 +8,13 @@ import (
 	"gophermart/internal/domain"
 )
 
-// BalanceRepo реализует интерфейс domain.BalanceRepository
+// BalanceRepo реализует интерфейс domain.BalanceRepository.
 type BalanceRepo struct {
 	db     *sqlx.DB
 	logger *slog.Logger
 }
 
-// NewBalanceRepo создает новый экземпляр BalanceRepo
+// NewBalanceRepo создает новый экземпляр BalanceRepo.
 func NewBalanceRepo(db *sqlx.DB, logger *slog.Logger) *BalanceRepo {
 	return &BalanceRepo{
 		db: db,
@@ -25,7 +25,7 @@ func NewBalanceRepo(db *sqlx.DB, logger *slog.Logger) *BalanceRepo {
 	}
 }
 
-// GetBalance возвращает текущий баланс пользователя
+// GetBalance возвращает текущий баланс пользователя.
 func (r *BalanceRepo) GetBalance(userID int) (*domain.Balance, error) {
 	var balance domain.Balance
 
@@ -52,7 +52,7 @@ func (r *BalanceRepo) GetBalance(userID int) (*domain.Balance, error) {
 	return &balance, nil
 }
 
-// CreateWithdrawal создает новую запись о списании средств
+// CreateWithdrawal создает новую запись о списании средств.
 func (r *BalanceRepo) CreateWithdrawal(userID int, withdrawal *domain.Withdrawal) error {
 	query := `
 		INSERT INTO withdrawals (user_id, order_number, amount_kop)
@@ -67,7 +67,7 @@ func (r *BalanceRepo) CreateWithdrawal(userID int, withdrawal *domain.Withdrawal
 	).Scan(&withdrawal.ProcessedAt)
 }
 
-// GetWithdrawals возвращает историю списаний пользователя
+// GetWithdrawals возвращает историю списаний пользователя.
 func (r *BalanceRepo) GetWithdrawals(userID int) ([]domain.Withdrawal, error) {
 	var withdrawals []domain.Withdrawal
 	query := `
@@ -80,9 +80,9 @@ func (r *BalanceRepo) GetWithdrawals(userID int) ([]domain.Withdrawal, error) {
 		return nil, err
 	}
 
-	// Конвертируем копейки в рубли для JSON
+	// Конвертируем копейки в рубли
 	for i := range withdrawals {
-		withdrawals[i].Sum = float64(withdrawals[i].AmountKop) / 100.0
+		withdrawals[i].Sum = float64(withdrawals[i].AmountKop) / domain.KopPerRuble
 	}
 
 	return withdrawals, nil

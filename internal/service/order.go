@@ -9,17 +9,17 @@ import (
 	"gophermart/internal/utils"
 )
 
-// OrderService реализует интерфейс domain.OrderService
+// OrderService реализует интерфейс domain.OrderService.
 type OrderService struct {
 	repo domain.OrderRepository
 }
 
-// NewOrderService создает новый экземпляр OrderService
+// NewOrderService создает новый экземпляр OrderService.
 func NewOrderService(repo domain.OrderRepository) *OrderService {
 	return &OrderService{repo: repo}
 }
 
-// Register регистрирует новый заказ для пользователя
+// Register регистрирует новый заказ для пользователя.
 func (s *OrderService) Register(userID int, number string) error {
 	// Проверяем, существует ли заказ
 	existingOrder, err := s.repo.FindByNumber(number)
@@ -61,7 +61,7 @@ func (s *OrderService) Register(userID int, number string) error {
 	return err
 }
 
-// GetOrders возвращает список заказов пользователя
+// GetOrders возвращает список заказов пользователя.
 func (s *OrderService) GetOrders(userID int) ([]domain.Order, error) {
 	orders, err := s.repo.FindByUserID(userID)
 	if err != nil {

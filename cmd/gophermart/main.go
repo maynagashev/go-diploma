@@ -16,24 +16,29 @@ import (
 	"gophermart/internal/app"
 )
 
-// Глобальные переменные
-var (
-	// Флаг успешной загрузки .env
-	envFileLoaded bool
+// Глобальные переменные.
+const (
+	shutdownTimeout = 10 * time.Second // Таймаут для graceful shutdown
 )
 
-func init() {
-	// Загрузка .env файла, если он существует
+func main() {
+	// Код выхода по умолчанию
+	exitCode := 0
+	defer func() {
+		if exitCode != 0 {
+			os.Exit(exitCode)
+		}
+	}()
+
+	// Загрузка .env файла, если он существует (имеет низший приоритет)
+	envFileLoaded := false
 	if err := godotenv.Load(); err == nil {
 		envFileLoaded = true
+		slog.Debug("loaded .env file")
 	}
 
-	// Инициализация флагов
-	initFlags()
-}
-
-func main() {
-	// Парсим флаги
+	// Парсим флаги (имеют высший приоритет)
+	cfg := parseFlags()
 	flag.Parse()
 
 	// Инициализация логгера
@@ -42,11 +47,11 @@ func main() {
 	// Логируем все переменные окружения и их источники
 	slog.Debug("configuration sources",
 		"env_file_loaded", envFileLoaded,
-		"RUN_ADDRESS", getVarSource("RUN_ADDRESS", runAddress),
-		"DATABASE_URI", getVarSource("DATABASE_URI", databaseURI),
-		"ACCRUAL_SYSTEM_ADDRESS", getVarSource("ACCRUAL_SYSTEM_ADDRESS", accrualSystemAddr),
-		"JWT_SECRET", maskSecret(getVarSource("JWT_SECRET", jwtSecret)),
-		"JWT_EXPIRATION_PERIOD", getVarSource("JWT_EXPIRATION_PERIOD", jwtExpirationPeriod.String()),
+		"RUN_ADDRESS", getVarSource("RUN_ADDRESS", cfg.RunAddress, envFileLoaded),
+		"DATABASE_URI", getVarSource("DATABASE_URI", cfg.DatabaseURI, envFileLoaded),
+		"ACCRUAL_SYSTEM_ADDRESS", getVarSource("ACCRUAL_SYSTEM_ADDRESS", cfg.AccrualSystemAddress, envFileLoaded),
+		"JWT_SECRET", maskSecret(getVarSource("JWT_SECRET", cfg.JWTSecret, envFileLoaded)),
+		"JWT_EXPIRATION_PERIOD", getVarSource("JWT_EXPIRATION_PERIOD", cfg.JWTExpirationPeriod.String(), envFileLoaded),
 	)
 
 	// Создаем контекст с отменой
@@ -66,43 +71,47 @@ func main() {
 
 	// Запускаем приложение
 	application, err := app.New(ctx, app.Config{
-		DatabaseURI:          databaseURI,
-		MigrationsDir:        migrationsDirectory,
-		RunAddress:           runAddress,
-		AccrualSystemAddress: accrualSystemAddr,
-		JWTSecret:            jwtSecret,
-		JWTExpirationPeriod:  jwtExpirationPeriod,
+		DatabaseURI:          cfg.DatabaseURI,
+		MigrationsDir:        cfg.MigrationsDirectory,
+		RunAddress:           cfg.RunAddress,
+		AccrualSystemAddress: cfg.AccrualSystemAddress,
+		JWTSecret:            cfg.JWTSecret,
+		JWTExpirationPeriod:  cfg.JWTExpirationPeriod,
 	})
 	if err != nil {
 		slog.Error("failed to initialize application", "error", err)
-		os.Exit(1)
+		exitCode = 1
+		return
 	}
 
 	// Запускаем сервер в отдельной горутине
 	serverErr := make(chan error, 1)
 	go func() {
-		if err := application.Start(runAddress); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			slog.Error("failed to start application", "error", err)
-			serverErr <- err
+		if startErr := application.Start(cfg.RunAddress); startErr != nil &&
+			!errors.Is(startErr, http.ErrServerClosed) {
+			slog.Error("failed to start application", "error", startErr)
+			serverErr <- startErr
 		}
 	}()
 
 	// Ожидаем либо ошибки сервера, либо сигнала завершения
 	select {
-	case err := <-serverErr:
-		slog.Error("server error", "error", err)
-		os.Exit(1)
+	case receivedErr := <-serverErr:
+		slog.Error("server error", "error", receivedErr)
+		exitCode = 1
+		return
 	case <-ctx.Done():
 		slog.Info("shutting down server...")
 	}
 
 	// Graceful shutdown
-	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 10*time.Second)
+	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), shutdownTimeout)
 	defer shutdownCancel()
 
-	if err := application.Shutdown(shutdownCtx); err != nil {
-		slog.Error("failed to stop application", "error", err)
-		os.Exit(1)
+	if shutdownErr := application.Shutdown(shutdownCtx); shutdownErr != nil {
+		slog.Error("failed to stop application", "error", shutdownErr)
+		exitCode = 1
+		return
 	}
 
 	slog.Info("server stopped")

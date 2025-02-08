@@ -6,7 +6,11 @@ import (
 	"os"
 )
 
-// initLogger инициализирует логгер
+const (
+	minSecretLength = 4 // Минимальная длина секрета для маскирования
+)
+
+// initLogger инициализирует логгер.
 func initLogger() {
 	// Настраиваем уровень логирования
 	var programLevel = new(slog.LevelVar)
@@ -21,8 +25,8 @@ func initLogger() {
 	slog.SetDefault(logger)
 }
 
-// getVarSource возвращает значение переменной и её источник
-func getVarSource(name string, value string) string {
+// getVarSource возвращает значение переменной и её источник.
+func getVarSource(name string, value string, envFileLoaded bool) string {
 	// Проверяем наличие переменной в окружении
 	if envValue := os.Getenv(name); envValue != "" {
 		if envFileLoaded {
@@ -37,9 +41,9 @@ func getVarSource(name string, value string) string {
 	return "not set"
 }
 
-// maskSecret маскирует секретные значения для логов
+// maskSecret маскирует секретные значения для логов.
 func maskSecret(s string) string {
-	if len(s) <= 4 {
+	if len(s) <= minSecretLength {
 		return "***"
 	}
 	return s[:2] + "***" + s[len(s)-2:]

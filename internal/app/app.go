@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"time"
 
@@ -15,7 +16,12 @@ import (
 	"gophermart/internal/worker"
 )
 
-// App представляет основную структуру приложения
+const (
+	defaultWorkerCount = 2
+	defaultTimeout     = 10 * time.Second
+)
+
+// App представляет основную структуру приложения.
 type App struct {
 	echo           *echo.Echo
 	db             *sqlx.DB
@@ -26,17 +32,17 @@ type App struct {
 	config         Config
 }
 
-// New создает новый экземпляр приложения
+// New создает новый экземпляр приложения.
 func New(ctx context.Context, cfg Config) (*App, error) {
 	// Инициализация базы данных
-	db, err := NewDB(ctx, cfg.DatabaseURI)
-	if err != nil {
-		return nil, err
+	db, dbErr := NewDB(ctx, cfg.DatabaseURI)
+	if dbErr != nil {
+		return nil, fmt.Errorf("failed to initialize database: %w", dbErr)
 	}
 
-	// Применение миграций
-	if err := MigrateDB(db.DB, cfg.MigrationsDir); err != nil {
-		return nil, err
+	// Применяем миграции
+	if migrateErr := MigrateDB(db.DB, cfg.MigrationsDir); migrateErr != nil {
+		return nil, fmt.Errorf("failed to apply migrations: %w", migrateErr)
 	}
 
 	// Инициализация репозиториев
@@ -50,14 +56,14 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	balanceService := service.NewBalanceService(balanceRepo, slog.Default())
 	accrualService := service.NewAccrualService(cfg.AccrualSystemAddress)
 
-	// Инициализация воркера начислений
+	// Создаем воркер для обработки начислений
 	accrualWorker := worker.NewAccrualWorker(
 		slog.Default(),
 		orderRepo,
 		accrualService,
-		2, // количество воркеров
-		10*time.Second,
-		0,
+		defaultWorkerCount, // количество воркеров
+		defaultTimeout,
+		0, // без задержки между попытками
 	)
 
 	// Инициализация обработчиков
@@ -89,7 +95,7 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 	return app, nil
 }
 
-// Start запускает приложение
+// Start запускает приложение.
 func (a *App) Start(address string) error {
 	// Запускаем воркер начислений в отдельной горутине
 	go a.accrualWorker.Start(context.Background())
@@ -97,7 +103,7 @@ func (a *App) Start(address string) error {
 	return a.echo.Start(address)
 }
 
-// Shutdown выполняет корректное завершение работы приложения
+// Shutdown выполняет корректное завершение работы приложения.
 func (a *App) Shutdown(ctx context.Context) error {
 	if err := a.db.Close(); err != nil {
 		return err
@@ -105,7 +111,7 @@ func (a *App) Shutdown(ctx context.Context) error {
 	return a.echo.Shutdown(ctx)
 }
 
-// setupRoutes настраивает маршруты приложения
+// setupRoutes настраивает маршруты приложения.
 func (a *App) setupRoutes() {
 	// Группа API
 	api := a.echo.Group("/api")

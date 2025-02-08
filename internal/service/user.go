@@ -1,8 +1,7 @@
 package service
 
 import (
-	"database/sql"
-	"errors"
+	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -11,14 +10,14 @@ import (
 	"gophermart/internal/domain"
 )
 
-// UserService реализует интерфейс domain.UserService
+// UserService реализует интерфейс domain.UserService.
 type UserService struct {
 	repo           domain.UserRepository
 	jwtSecret      []byte
 	jwtExpiryHours int
 }
 
-// NewUserService создает новый экземпляр UserService
+// NewUserService создает новый экземпляр UserService.
 func NewUserService(repo domain.UserRepository, jwtSecret string, jwtExpirationTime time.Duration) *UserService {
 	return &UserService{
 		repo:           repo,
@@ -27,7 +26,7 @@ func NewUserService(repo domain.UserRepository, jwtSecret string, jwtExpirationT
 	}
 }
 
-// generateToken создает новый JWT токен для пользователя
+// generateToken создает новый JWT токен для пользователя.
 func (s *UserService) generateToken(userID int, login string) (*domain.AuthToken, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id": userID,
@@ -43,51 +42,58 @@ func (s *UserService) generateToken(userID int, login string) (*domain.AuthToken
 	return &domain.AuthToken{Token: tokenString}, nil
 }
 
-// Register создает нового пользователя с указанными учетными данными
+// Register создает нового пользователя с указанными учетными данными.
 func (s *UserService) Register(login, password string) (*domain.AuthToken, error) {
 	// Проверяем, существует ли пользователь
-	existingUser, err := s.repo.FindByLogin(login)
-	if err != nil && !errors.Is(err, sql.ErrNoRows) {
-		return nil, err
-	}
-	if existingUser != nil {
+	existingUser, findErr := s.repo.FindByLogin(login)
+	if findErr == nil && existingUser != nil {
 		return nil, ErrUserExists
 	}
 
 	// Хешируем пароль
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	if err != nil {
-		return nil, err
+	hashedPassword, hashErr := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if hashErr != nil {
+		return nil, fmt.Errorf("failed to hash password: %w", hashErr)
 	}
 
-	// Создаем пользователя
+	// Создаем нового пользователя
 	user := &domain.User{
 		Login:        login,
 		PasswordHash: string(hashedPassword),
 	}
 
-	if err := s.repo.Create(user); err != nil {
-		return nil, err
+	// Сохраняем пользователя в базу
+	if createErr := s.repo.Create(user); createErr != nil {
+		return nil, fmt.Errorf("failed to create user: %w", createErr)
 	}
 
 	// Генерируем JWT токен
-	return s.generateToken(user.ID, user.Login)
-}
-
-// Authenticate проверяет учетные данные пользователя и возвращает токен, если данные верны
-func (s *UserService) Authenticate(login, password string) (*domain.AuthToken, error) {
-	user, err := s.repo.FindByLogin(login)
-	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return nil, ErrInvalidLogin
-		}
-		return nil, err
+	token, tokenErr := s.generateToken(user.ID, user.Login)
+	if tokenErr != nil {
+		return nil, fmt.Errorf("failed to generate token: %w", tokenErr)
 	}
 
-	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
+	return token, nil
+}
+
+// Authenticate проверяет учетные данные пользователя и возвращает токен, если данные верны.
+func (s *UserService) Authenticate(login, password string) (*domain.AuthToken, error) {
+	// Ищем пользователя по логину
+	user, findErr := s.repo.FindByLogin(login)
+	if findErr != nil {
+		return nil, ErrInvalidLogin
+	}
+
+	// Проверяем пароль
+	if compareErr := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); compareErr != nil {
 		return nil, ErrInvalidLogin
 	}
 
 	// Генерируем JWT токен
-	return s.generateToken(user.ID, user.Login)
+	token, tokenErr := s.generateToken(user.ID, user.Login)
+	if tokenErr != nil {
+		return nil, fmt.Errorf("failed to generate token: %w", tokenErr)
+	}
+
+	return token, nil
 }
