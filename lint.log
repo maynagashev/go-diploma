@@ -1,63 +1,30 @@
-internal/worker/accrual.go:147:12: shadow: declaration of "err" shadows declaration at line 124 (govet)
-		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
-		         ^
-internal/worker/accrual.go:176:6: shadow: declaration of "err" shadows declaration at line 147 (govet)
-		if err := w.orderRepo.UpdateStatus(order.ID, accrual.Status); err != nil {
-		   ^
-internal/worker/accrual.go:192:7: shadow: declaration of "err" shadows declaration at line 147 (govet)
-			if err := w.orderRepo.UpdateAccrual(order.ID, accrualKop); err != nil {
-			   ^
-internal/worker/accrual.go:186:43: Magic number: 100, in <argument> detected (mnd)
+internal/handlers/order.go:92:1: The line is 126 characters long, which exceeds the maximum of 120 characters. (lll)
+// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях.
+^
+internal/worker/accrual.go:187:43: Magic number: 100, in <argument> detected (mnd)
 			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
 			                                       ^
-internal/service/accrual.go:59:6: shadow: declaration of "err" shadows declaration at line 45 (govet)
-		if err := json.NewDecoder(resp.Body).Decode(&accrual); err != nil {
-		   ^
-internal/service/accrual.go:67:13: shadow: declaration of "err" shadows declaration at line 45 (govet)
-			seconds, err := time.ParseDuration(retryAfter + "s")
-			         ^
-internal/service/user.go:69:5: shadow: declaration of "err" shadows declaration at line 49 (govet)
-	if err := s.repo.Create(user); err != nil {
-	   ^
-internal/service/user.go:87:5: shadow: declaration of "err" shadows declaration at line 79 (govet)
-	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
-	   ^
-internal/service/errors.go:17:1: The line is 129 characters long, which exceeds the maximum of 120 characters. (lll)
-	// ErrOrderRegisteredByOther возникает при попытке зарегистрировать заказ, который уже был зарегистрирован другим пользователем.
-^
-internal/service/errors.go:20:1: The line is 139 characters long, which exceeds the maximum of 120 characters. (lll)
-	ErrInvalidOrderNumber = errors.New("неверный формат номера заказа, номер заказа должен состоять из 10 цифр и проходить по алгоритму Луна")
-^
-internal/service/accrual.go:74:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
-		return nil, nil
-		^
 internal/app/middleware.go:49:25: Error return value is not checked (errcheck)
 			c.Set("user_id", int(claims["user_id"].(float64)))
 			                     ^
 internal/app/middleware.go:50:19: Error return value is not checked (errcheck)
 			c.Set("login", claims["login"].(string))
 			               ^
+internal/service/errors.go:17:1: The line is 129 characters long, which exceeds the maximum of 120 characters. (lll)
+	// ErrOrderRegisteredByOther возникает при попытке зарегистрировать заказ, который уже был зарегистрирован другим пользователем.
+^
+internal/service/errors.go:20:1: The line is 139 characters long, which exceeds the maximum of 120 characters. (lll)
+	ErrInvalidOrderNumber = errors.New("неверный формат номера заказа, номер заказа должен состоять из 10 цифр и проходить по алгоритму Луна")
+^
+internal/service/accrual.go:57:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
+		return nil, nil
+		^
 cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobals)
 	envFileLoaded bool
 	^
 cmd/gophermart/main.go:80:3: exitAfterDefer: os.Exit will exit, and `defer cancel()` will not run (gocritic)
 		os.Exit(1)
 		^
-internal/app/database.go:33:5: shadow: declaration of "err" shadows declaration at line 22 (govet)
-	if err := db.PingContext(ctx); err != nil {
-	   ^
-cmd/gophermart/main.go:86:6: shadow: declaration of "err" shadows declaration at line 69 (govet)
-		if err := application.Start(cfg.RunAddress); err != nil && !errors.Is(err, http.ErrServerClosed) {
-		   ^
-cmd/gophermart/main.go:94:7: shadow: declaration of "err" shadows declaration at line 69 (govet)
-	case err := <-serverErr:
-	     ^
-cmd/gophermart/main.go:106:5: shadow: declaration of "err" shadows declaration at line 69 (govet)
-	if err := application.Shutdown(shutdownCtx); err != nil {
-	   ^
-internal/handlers/order.go:92:1: The line is 126 characters long, which exceeds the maximum of 120 characters. (lll)
-// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях.
-^
 cmd/gophermart/flags.go:30:1: The line is 130 characters long, which exceeds the maximum of 120 characters. (lll)
 	flag.StringVar(&cfg.AccrualSystemAddress, "r", getEnvOrDefault("ACCRUAL_SYSTEM_ADDRESS", ""), "Адрес системы расчета начислений")
 ^
@@ -67,11 +34,10 @@ cmd/gophermart/flags.go:32:1: The line is 122 characters long, which exceeds the
 cmd/gophermart/flags.go:44:27: `getEnvOrDefault` - `defaultValue` always receives `""` (unparam)
 func getEnvOrDefault(key, defaultValue string) string {
                           ^
-23 issues:
+12 issues:
 * errcheck: 2
 * gochecknoglobals: 1
 * gocritic: 1
-* govet: 11
 * lll: 5
 * mnd: 1
 * nilnil: 1

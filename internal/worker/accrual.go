@@ -121,12 +121,13 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 	statuses := []domain.OrderStatus{domain.OrderStatusNew, domain.OrderStatusProcessing}
 	logger.Debug("запрос заказов", "статусы", statuses)
 
-	orders, err := w.orderRepo.FindByStatus(statuses)
-	if err != nil {
+	orders, findErr := w.orderRepo.FindByStatus(statuses)
+	if findErr != nil {
 		logger.Error("ошибка при поиске заказов",
-			"error", err,
-			"error_type", fmt.Sprintf("%T", err))
-		return err
+			"error", findErr,
+			"error_type", fmt.Sprintf("%T", findErr),
+		)
+		return findErr
 	}
 
 	logger.Debug("кол-во заказов для обработки воркером", "количество", len(orders))
@@ -144,10 +145,10 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 			"текущий статус", order.Status)
 
 		// Получаем информацию о начислении
-		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
-		if err != nil {
+		accrual, accrualErr := w.accrualService.GetOrderAccrual(ctx, order.Number)
+		if accrualErr != nil {
 			var rateLimitErr *service.RateLimitError
-			if errors.As(err, &rateLimitErr) {
+			if errors.As(accrualErr, &rateLimitErr) {
 				w.logger.Info("rate limit exceeded, waiting",
 					"order_number", order.Number,
 					"retry_after", rateLimitErr.RetryAfter)
@@ -156,7 +157,7 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 			}
 			w.logger.Error("failed to get order accrual",
 				"order_number", order.Number,
-				"error", err)
+				"error", accrualErr)
 			continue
 		}
 
@@ -173,11 +174,11 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 			"начисление", accrual.Accrual)
 
 		// Обновляем статус заказа
-		if err := w.orderRepo.UpdateStatus(order.ID, accrual.Status); err != nil {
+		if updateStatusErr := w.orderRepo.UpdateStatus(order.ID, accrual.Status); updateStatusErr != nil {
 			logger.Error("ошибка обновления статуса заказа",
 				"номер заказа", order.Number,
 				"статус", accrual.Status,
-				"error", err)
+				"error", updateStatusErr)
 			continue
 		}
 
@@ -189,11 +190,11 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 				"начисление (руб)", *accrual.Accrual,
 				"начисление (коп)", accrualKop)
 
-			if err := w.orderRepo.UpdateAccrual(order.ID, accrualKop); err != nil {
+			if updateAccrualErr := w.orderRepo.UpdateAccrual(order.ID, accrualKop); updateAccrualErr != nil {
 				logger.Error("ошибка обновления суммы начисления",
 					"номер заказа", order.Number,
 					"начисление (коп)", accrualKop,
-					"error", err)
+					"error", updateAccrualErr)
 			}
 		}
 	}

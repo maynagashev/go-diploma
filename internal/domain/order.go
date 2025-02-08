@@ -104,3 +104,10 @@ type OrderService interface {
 type OrderRequest struct {
 	Number string `json:"number" validate:"required"`
 }
+
+// OrderAccrual представляет информацию о начислении баллов за заказ.
+type OrderAccrual struct {
+	Order   string      `json:"order"`
+	Status  OrderStatus `json:"status"`
+	Accrual *float64    `json:"accrual,omitempty"`
+}

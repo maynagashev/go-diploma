@@ -83,16 +83,16 @@ func main() {
 	// Запускаем сервер в отдельной горутине
 	serverErr := make(chan error, 1)
 	go func() {
-		if err := application.Start(cfg.RunAddress); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			slog.Error("failed to start application", "error", err)
-			serverErr <- err
+		if startErr := application.Start(cfg.RunAddress); startErr != nil && !errors.Is(startErr, http.ErrServerClosed) {
+			slog.Error("failed to start application", "error", startErr)
+			serverErr <- startErr
 		}
 	}()
 
 	// Ожидаем либо ошибки сервера, либо сигнала завершения
 	select {
-	case err := <-serverErr:
-		slog.Error("server error", "error", err)
+	case receivedErr := <-serverErr:
+		slog.Error("server error", "error", receivedErr)
 		cancel() // Вызываем cancel перед выходом
 		os.Exit(1)
 	case <-ctx.Done():
@@ -103,8 +103,8 @@ func main() {
 	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), shutdownTimeout)
 	defer shutdownCancel()
 
-	if err := application.Shutdown(shutdownCtx); err != nil {
-		slog.Error("failed to stop application", "error", err)
+	if shutdownErr := application.Shutdown(shutdownCtx); shutdownErr != nil {
+		slog.Error("failed to stop application", "error", shutdownErr)
 		cancel() // Вызываем cancel перед выходом
 		os.Exit(1)
 	}
