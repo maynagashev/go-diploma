@@ -13,6 +13,10 @@ var (
 	ErrInsufficientFunds = errors.New("недостаточно средств")
 )
 
+const (
+	kopeksPerRuble = 100 // Количество копеек в рубле
+)
+
 // BalanceService реализует интерфейс domain.BalanceService.
 type BalanceService struct {
 	repo   domain.BalanceRepository
@@ -57,7 +61,7 @@ func (s *BalanceService) Withdraw(userID int, req *domain.WithdrawalRequest) err
 	withdrawal := &domain.Withdrawal{
 		Order:     req.Order,
 		Sum:       req.Sum,
-		AmountKop: int64(req.Sum * 100),
+		AmountKop: int64(req.Sum * kopeksPerRuble),
 	}
 
 	return s.repo.CreateWithdrawal(userID, withdrawal)

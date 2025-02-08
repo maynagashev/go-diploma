@@ -17,6 +17,11 @@ type AccrualResponse struct {
 	Accrual *float64           `json:"accrual,omitempty"`
 }
 
+const (
+	defaultClientTimeout = 10 * time.Second
+	defaultRetryTimeout  = 60 * time.Second
+)
+
 // AccrualService сервис для взаимодействия с системой начислений.
 type AccrualService struct {
 	client  *http.Client
@@ -27,7 +32,7 @@ type AccrualService struct {
 func NewAccrualService(baseURL string) *AccrualService {
 	return &AccrualService{
 		client: &http.Client{
-			Timeout: 10 * time.Second,
+			Timeout: defaultClientTimeout,
 		},
 		baseURL: baseURL,
 	}
@@ -64,7 +69,7 @@ func (s *AccrualService) GetOrderAccrual(ctx context.Context, orderNumber string
 				return nil, &RateLimitError{RetryAfter: seconds}
 			}
 		}
-		return nil, &RateLimitError{RetryAfter: 60 * time.Second} // По умолчанию ждем 60 секунд
+		return nil, &RateLimitError{RetryAfter: defaultRetryTimeout} // По умолчанию ждем 60 секунд
 	case http.StatusNoContent:
 		return nil, nil
 	default:

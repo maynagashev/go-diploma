@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	"errors"
 	"gophermart/internal/domain"
 	"gophermart/internal/service"
 )
@@ -69,12 +70,12 @@ func (w *AccrualWorker) Start(ctx context.Context) {
 	var wg sync.WaitGroup
 
 	// Запускаем пул воркеров
-	for i := 0; i < w.workerCount; i++ {
+	for workerID := range w.workerCount {
 		wg.Add(1)
 		go func(workerID int) {
 			defer wg.Done()
 			w.worker(ctx, workerID)
-		}(i)
+		}(workerID)
 	}
 
 	// Ждем завершения всех воркеров
@@ -145,16 +146,16 @@ func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) 
 		// Получаем информацию о начислении
 		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
 		if err != nil {
-			// Если превышен лимит запросов, ждем и пропускаем остальные заказы
-			if rateLimitErr, ok := err.(*service.RateLimitError); ok {
-				logger.Warn("превышен лимит запросов",
-					"повтор через", rateLimitErr.RetryAfter,
-					"номер заказа", order.Number)
+			var rateLimitErr *service.RateLimitError
+			if errors.As(err, &rateLimitErr) {
+				w.logger.Info("rate limit exceeded, waiting",
+					"order_number", order.Number,
+					"retry_after", rateLimitErr.RetryAfter)
 				time.Sleep(rateLimitErr.RetryAfter)
-				return nil
+				continue
 			}
-			logger.Error("ошибка получения информации о начислении",
-				"номер заказа", order.Number,
+			w.logger.Error("failed to get order accrual",
+				"order_number", order.Number,
 				"error", err)
 			continue
 		}

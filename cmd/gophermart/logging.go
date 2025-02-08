@@ -6,6 +6,10 @@ import (
 	"os"
 )
 
+const (
+	minSecretLength = 4 // Минимальная длина секрета для маскирования
+)
+
 // initLogger инициализирует логгер.
 func initLogger() {
 	// Настраиваем уровень логирования
@@ -39,7 +43,7 @@ func getVarSource(name string, value string) string {
 
 // maskSecret маскирует секретные значения для логов.
 func maskSecret(s string) string {
-	if len(s) <= 4 {
+	if len(s) <= minSecretLength {
 		return "***"
 	}
 	return s[:2] + "***" + s[len(s)-2:]

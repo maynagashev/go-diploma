@@ -5,6 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 
+	"errors"
 	"gophermart/internal/domain"
 	"gophermart/internal/service"
 )
@@ -43,12 +44,10 @@ func (h *UserHandler) Register(c echo.Context) error {
 
 	token, err := h.userService.Register(req.Login, req.Password)
 	if err != nil {
-		switch err {
-		case service.ErrUserExists:
-			return echo.NewHTTPError(http.StatusConflict, "Логин уже занят")
-		default:
-			return echo.NewHTTPError(http.StatusInternalServerError, "Внутренняя ошибка сервера")
+		if errors.Is(err, service.ErrUserExists) {
+			return echo.NewHTTPError(http.StatusConflict, "Пользователь уже существует")
 		}
+		return echo.NewHTTPError(http.StatusInternalServerError, "Внутренняя ошибка сервера")
 	}
 
 	// Устанавливаем токен в заголовок Authorization
@@ -86,12 +85,10 @@ func (h *UserHandler) Authenticate(c echo.Context) error {
 
 	token, err := h.userService.Authenticate(req.Login, req.Password)
 	if err != nil {
-		switch err {
-		case service.ErrInvalidLogin:
-			return echo.NewHTTPError(http.StatusUnauthorized, "Неверная пара логин/пароль")
-		default:
-			return echo.NewHTTPError(http.StatusInternalServerError, "Внутренняя ошибка сервера")
+		if errors.Is(err, service.ErrInvalidLogin) {
+			return echo.NewHTTPError(http.StatusUnauthorized, "Неверный логин или пароль")
 		}
+		return echo.NewHTTPError(http.StatusInternalServerError, "Внутренняя ошибка сервера")
 	}
 
 	// Устанавливаем токен в заголовок Authorization

@@ -10,14 +10,18 @@ import (
 type OrderStatus string
 
 const (
-	// OrderStatusNew заказ загружен в систему, но не попал в обработку
+	// OrderStatusNew заказ загружен в систему, но не попал в обработку.
 	OrderStatusNew OrderStatus = "NEW"
-	// OrderStatusProcessing вознаграждение за заказ рассчитывается
+	// OrderStatusProcessing вознаграждение за заказ рассчитывается.
 	OrderStatusProcessing OrderStatus = "PROCESSING"
-	// OrderStatusInvalid система расчета вознаграждений отказала в расчете
+	// OrderStatusInvalid система расчета вознаграждений отказала в расчете.
 	OrderStatusInvalid OrderStatus = "INVALID"
-	// OrderStatusProcessed данные по заказу проверены и информация о расчете успешно получена
+	// OrderStatusProcessed данные по заказу проверены и информация о расчете успешно получена.
 	OrderStatusProcessed OrderStatus = "PROCESSED"
+)
+
+const (
+	kopeksPerRuble = 100 // Количество копеек в рубле.
 )
 
 // Value реализует интерфейс driver.Valuer для OrderStatus
@@ -59,7 +63,7 @@ func (o *Order) SetAccrual(kop int64) {
 // CalculateAccrualRub вычисляет сумму в рублях на основе суммы в копейках
 func (o *Order) CalculateAccrualRub() {
 	if o.Accrual != nil {
-		accrualRub := float64(*o.Accrual) / 100
+		accrualRub := float64(*o.Accrual) / kopeksPerRuble
 		o.AccrualRub = &accrualRub
 	}
 }
@@ -69,7 +73,7 @@ func (o *Order) GetAccrualRub() float64 {
 	if o.Accrual == nil {
 		return 0
 	}
-	return float64(*o.Accrual) / 100.0
+	return float64(*o.Accrual) / kopeksPerRuble
 }
 
 // OrderRepository определяет интерфейс для доступа к данным заказов
