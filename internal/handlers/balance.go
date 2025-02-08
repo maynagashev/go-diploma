@@ -45,7 +45,7 @@ func (h *BalanceHandler) GetBalance(c echo.Context) error {
 	return c.JSON(http.StatusOK, balance)
 }
 
-// Withdraw обрабатывает запрос на списание средств
+// Withdraw обрабатывает запрос на списание средств.
 func (h *BalanceHandler) Withdraw(c echo.Context) error {
 	userIDRaw := c.Get("user_id")
 	userID, ok := userIDRaw.(int)
@@ -76,7 +76,7 @@ func (h *BalanceHandler) Withdraw(c echo.Context) error {
 	return c.NoContent(http.StatusOK)
 }
 
-// GetWithdrawals возвращает историю списаний пользователя
+// GetWithdrawals возвращает историю списаний пользователя.
 func (h *BalanceHandler) GetWithdrawals(c echo.Context) error {
 	userIDRaw := c.Get("user_id")
 	userID, ok := userIDRaw.(int)

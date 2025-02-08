@@ -1,3 +1,15 @@
+internal/worker/accrual.go:147:12: shadow: declaration of "err" shadows declaration at line 124 (govet)
+		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
+		         ^
+internal/worker/accrual.go:176:6: shadow: declaration of "err" shadows declaration at line 147 (govet)
+		if err := w.orderRepo.UpdateStatus(order.ID, accrual.Status); err != nil {
+		   ^
+internal/worker/accrual.go:192:7: shadow: declaration of "err" shadows declaration at line 147 (govet)
+			if err := w.orderRepo.UpdateAccrual(order.ID, accrualKop); err != nil {
+			   ^
+internal/worker/accrual.go:186:43: Magic number: 100, in <argument> detected (mnd)
+			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
+			                                       ^
 internal/service/accrual.go:59:6: shadow: declaration of "err" shadows declaration at line 45 (govet)
 		if err := json.NewDecoder(resp.Body).Decode(&accrual); err != nil {
 		   ^
@@ -19,153 +31,6 @@ internal/service/errors.go:20:1: The line is 139 characters long, which exceeds 
 internal/service/accrual.go:74:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
 		return nil, nil
 		^
-internal/repository/balance.go:15:1: Comment should end in a period (godot)
-// BalanceRepo реализует интерфейс domain.BalanceRepository
-^
-internal/repository/balance.go:21:1: Comment should end in a period (godot)
-// NewBalanceRepo создает новый экземпляр BalanceRepo
-^
-internal/repository/balance.go:32:1: Comment should end in a period (godot)
-// GetBalance возвращает текущий баланс пользователя
-^
-internal/repository/balance.go:59:1: Comment should end in a period (godot)
-// CreateWithdrawal создает новую запись о списании средств
-^
-internal/repository/balance.go:74:1: Comment should end in a period (godot)
-// GetWithdrawals возвращает историю списаний пользователя
-^
-internal/repository/order.go:12:1: Comment should end in a period (godot)
-// OrderRepo реализует интерфейс domain.OrderRepository
-^
-internal/repository/order.go:18:1: Comment should end in a period (godot)
-// NewOrderRepo создает новый экземпляр OrderRepo
-^
-internal/repository/order.go:29:1: Comment should end in a period (godot)
-// Create создает новый заказ
-^
-internal/repository/order.go:44:1: Comment should end in a period (godot)
-// FindByNumber ищет заказ по номеру
-^
-internal/repository/order.go:55:1: Comment should end in a period (godot)
-// FindByUserID возвращает все заказы пользователя
-^
-internal/repository/order.go:69:1: Comment should end in a period (godot)
-// UpdateStatus обновляет статус заказа
-^
-internal/repository/order.go:79:1: Comment should end in a period (godot)
-// UpdateAccrual обновляет сумму начисленных баллов за заказ
-^
-internal/repository/order.go:94:1: Comment should end in a period (godot)
-// FindByStatus возвращает заказы с указанными статусами
-^
-internal/repository/user.go:9:1: Comment should end in a period (godot)
-// UserRepo реализует интерфейс domain.UserRepository
-^
-internal/repository/user.go:14:1: Comment should end in a period (godot)
-// NewUserRepo создает новый экземпляр UserRepo
-^
-internal/repository/user.go:19:1: Comment should end in a period (godot)
-// Create добавляет нового пользователя в базу данных
-^
-internal/repository/user.go:33:1: Comment should end in a period (godot)
-// FindByLogin ищет пользователя по логину
-^
-internal/worker/accrual.go:15:1: Comment should end in a period (godot)
-// contextKey используется для ключей контекста
-^
-internal/worker/accrual.go:26:1: Comment should end in a period (godot)
-// AccrualWorker обработчик заказов для получения информации о начислениях
-^
-internal/worker/accrual.go:36:1: Comment should end in a period (godot)
-// NewAccrualWorker создает новый экземпляр AccrualWorker
-^
-internal/worker/accrual.go:68:1: Comment should end in a period (godot)
-// Start запускает обработку заказов
-^
-internal/worker/accrual.go:85:1: Comment should end in a period (godot)
-// worker обрабатывает заказы
-^
-internal/worker/accrual.go:115:1: Comment should end in a period (godot)
-// processOrders обрабатывает заказы, ожидающие обновления статуса
-^
-internal/worker/accrual.go:147:12: shadow: declaration of "err" shadows declaration at line 124 (govet)
-		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
-		         ^
-internal/worker/accrual.go:176:6: shadow: declaration of "err" shadows declaration at line 147 (govet)
-		if err := w.orderRepo.UpdateStatus(order.ID, accrual.Status); err != nil {
-		   ^
-internal/worker/accrual.go:192:7: shadow: declaration of "err" shadows declaration at line 147 (govet)
-			if err := w.orderRepo.UpdateAccrual(order.ID, accrualKop); err != nil {
-			   ^
-internal/worker/accrual.go:186:43: Magic number: 100, in <argument> detected (mnd)
-			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
-			                                       ^
-internal/utils/luhn.go:7:1: Comment should end in a period (godot)
-// ValidateLuhn проверяет номер заказа по алгоритму Луна
-^
-internal/domain/balance.go:5:1: Comment should end in a period (godot)
-// Balance представляет баланс пользователя
-^
-internal/domain/balance.go:11:1: Comment should end in a period (godot)
-// Withdrawal представляет списание средств
-^
-internal/domain/balance.go:19:1: Comment should end in a period (godot)
-// WithdrawalRequest представляет запрос на списание средств
-^
-internal/domain/balance.go:25:1: Comment should end in a period (godot)
-// BalanceRepository определяет интерфейс для работы с балансом
-^
-internal/domain/balance.go:32:1: Comment should end in a period (godot)
-// BalanceService определяет интерфейс для бизнес-логики работы с балансом
-^
-internal/domain/errors.go:6:2: Comment should end in a period (godot)
-	// ErrInvalidOrderNumber ошибка неверный номер заказа
-	^
-internal/domain/order.go:9:1: Comment should end in a period (godot)
-// OrderStatus представляет статус обработки заказа
-^
-internal/domain/order.go:27:1: Comment should end in a period (godot)
-// Value реализует интерфейс driver.Valuer для OrderStatus
-^
-internal/domain/order.go:32:1: Comment should end in a period (godot)
-// Scan реализует интерфейс sql.Scanner для OrderStatus
-^
-internal/domain/order.go:46:1: Comment should end in a period (godot)
-// Order представляет заказ в системе
-^
-internal/domain/order.go:57:1: Comment should end in a period (godot)
-// SetAccrual устанавливает сумму начисления в копейках и автоматически обновляет сумму в рублях
-^
-internal/domain/order.go:63:1: Comment should end in a period (godot)
-// CalculateAccrualRub вычисляет сумму в рублях на основе суммы в копейках
-^
-internal/domain/order.go:71:1: Comment should end in a period (godot)
-// GetAccrualRub возвращает сумму начисленных баллов в рублях
-^
-internal/domain/order.go:79:1: Comment should end in a period (godot)
-// OrderRepository определяет интерфейс для доступа к данным заказов
-^
-internal/domain/order.go:95:1: Comment should end in a period (godot)
-// OrderService определяет интерфейс для бизнес-логики работы с заказами
-^
-internal/domain/order.go:103:1: Comment should end in a period (godot)
-// OrderRequest представляет данные запроса на регистрацию заказа
-^
-internal/domain/user.go:7:1: Comment should end in a period (godot)
-// User представляет пользователя в системе
-^
-internal/domain/user.go:16:1: Comment should end in a period (godot)
-// AuthToken представляет данные авторизационного токена
-^
-internal/domain/user.go:21:1: Comment should end in a period (godot)
-// UserRepository определяет интерфейс для доступа к данным пользователей
-^
-internal/domain/user.go:27:1: Comment should end in a period (godot)
-// UserService определяет интерфейс для бизнес-логики работы с пользователями
-^
-internal/domain/user.go:33:1: Comment should end in a period (godot)
-// RegisterRequest представляет данные запроса на регистрацию
-^
 internal/app/middleware.go:49:25: Error return value is not checked (errcheck)
 			c.Set("user_id", int(claims["user_id"].(float64)))
 			                     ^
@@ -178,21 +43,6 @@ cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobal
 cmd/gophermart/main.go:80:3: exitAfterDefer: os.Exit will exit, and `defer cancel()` will not run (gocritic)
 		os.Exit(1)
 		^
-internal/handlers/balance.go:48:1: Comment should end in a period (godot)
-// Withdraw обрабатывает запрос на списание средств
-^
-internal/handlers/balance.go:79:1: Comment should end in a period (godot)
-// GetWithdrawals возвращает историю списаний пользователя
-^
-internal/handlers/order.go:16:1: Comment should end in a period (godot)
-// OrderHandler обрабатывает HTTP-запросы, связанные с заказами
-^
-internal/handlers/order.go:21:1: Comment should end in a period (godot)
-// NewOrderHandler создает новый экземпляр OrderHandler
-^
-internal/handlers/order.go:26:1: Comment should end in a period (godot)
-// Register обрабатывает загрузку номера заказа
-^
 internal/app/database.go:33:5: shadow: declaration of "err" shadows declaration at line 22 (govet)
 	if err := db.PingContext(ctx); err != nil {
 	   ^
@@ -205,8 +55,8 @@ cmd/gophermart/main.go:94:7: shadow: declaration of "err" shadows declaration at
 cmd/gophermart/main.go:106:5: shadow: declaration of "err" shadows declaration at line 69 (govet)
 	if err := application.Shutdown(shutdownCtx); err != nil {
 	   ^
-internal/handlers/order.go:85:1: The line is 125 characters long, which exceeds the maximum of 120 characters. (lll)
-// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях
+internal/handlers/order.go:92:1: The line is 126 characters long, which exceeds the maximum of 120 characters. (lll)
+// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях.
 ^
 cmd/gophermart/flags.go:30:1: The line is 130 characters long, which exceeds the maximum of 120 characters. (lll)
 	flag.StringVar(&cfg.AccrualSystemAddress, "r", getEnvOrDefault("ACCRUAL_SYSTEM_ADDRESS", ""), "Адрес системы расчета начислений")
@@ -217,11 +67,10 @@ cmd/gophermart/flags.go:32:1: The line is 122 characters long, which exceeds the
 cmd/gophermart/flags.go:44:27: `getEnvOrDefault` - `defaultValue` always receives `""` (unparam)
 func getEnvOrDefault(key, defaultValue string) string {
                           ^
-73 issues:
+23 issues:
 * errcheck: 2
 * gochecknoglobals: 1
 * gocritic: 1
-* godot: 50
 * govet: 11
 * lll: 5
 * mnd: 1

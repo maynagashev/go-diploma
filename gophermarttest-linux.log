@@ -25,8 +25,8 @@
     gophermart_suite_test.go:105: останавливаем процесс gophermart
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        time=2025-02-08T10:42:28.996+07:00 level=DEBUG msg="configuration sources" environment=local env_file_loaded=true RUN_ADDRESS="localhost:8082 (from .env)" DATABASE_URI="postgres://gophermart:password@localhost:5432/gophermart?sslmode=disable (from .env)" ACCRUAL_SYSTEM_ADDRESS="http://localhost:34245 (from .env)" JWT_SECRET=yo***v) JWT_EXPIRATION_PERIOD="24h0m0s (from .env)"
-        time=2025-02-08T10:42:29.020+07:00 level=INFO msg="goose: no migrations to run. current version: 3" environment=local
+        time=2025-02-08T11:48:48.654+07:00 level=DEBUG msg="configuration sources" environment=local env_file_loaded=true RUN_ADDRESS="localhost:8082 (from .env)" DATABASE_URI="postgres://gophermart:password@localhost:5432/gophermart?sslmode=disable (from .env)" ACCRUAL_SYSTEM_ADDRESS="http://localhost:45781 (from .env)" JWT_SECRET=yo***v) JWT_EXPIRATION_PERIOD="24h0m0s (from .env)"
+        time=2025-02-08T11:48:48.674+07:00 level=INFO msg="goose: no migrations to run. current version: 3" environment=local
         
            ____    __
           / __/___/ /  ___
@@ -36,83 +36,87 @@
         https://echo.labstack.com
         ____________________________________O/_______
                                             O\
-        time=2025-02-08T10:42:29.020+07:00 level=INFO msg="воркер начал работу" environment=local package=worker component=AccrualWorker worker_id=1
-        time=2025-02-08T10:42:29.020+07:00 level=INFO msg="воркер начал работу" environment=local package=worker component=AccrualWorker worker_id=0
+        time=2025-02-08T11:48:48.675+07:00 level=INFO msg="воркер начал работу" environment=local package=worker component=AccrualWorker worker_id=1
+        time=2025-02-08T11:48:48.675+07:00 level=INFO msg="воркер начал работу" environment=local package=worker component=AccrualWorker worker_id=0
         ⇨ http server started on 127.0.0.1:8082
-        {"time":"2025-02-08T10:42:29.236879522+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":154503321,"latency_human":"154.503321ms","bytes_in":56,"bytes_out":160}
-        time=2025-02-08T10:42:29.242+07:00 level=INFO msg="created new order" environment=local id=29 uploaded_at=2025-02-08T10:42:29.241+07:00 user_id=85 order_number=208117760873325 status=NEW
-        {"time":"2025-02-08T10:42:29.242937951+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":4970813,"latency_human":"4.970813ms","bytes_in":15,"bytes_out":0}
-        {"time":"2025-02-08T10:42:30.249597178+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":4957119,"latency_human":"4.957119ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:31.246112258+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1863667,"latency_human":"1.863667ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:32.247705685+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3094879,"latency_human":"3.094879ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:33.248448814+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3373598,"latency_human":"3.373598ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:34.246771416+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2039493,"latency_human":"2.039493ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:35.246183162+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2019188,"latency_human":"2.019188ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:36.245650739+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1651742,"latency_human":"1.651742ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:37.247451454+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2345108,"latency_human":"2.345108ms","bytes_in":0,"bytes_out":95}
-        {"time":"2025-02-08T10:42:38.247009948+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1963301,"latency_human":"1.963301ms","bytes_in":0,"bytes_out":95}
-        time=2025-02-08T10:42:39.021+07:00 level=DEBUG msg="начало обработки заказов" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders
-        time=2025-02-08T10:42:39.021+07:00 level=DEBUG msg="запрос заказов" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders статусы="[NEW PROCESSING]"
-        time=2025-02-08T10:42:39.021+07:00 level=DEBUG msg="начало обработки заказов" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders
-        time=2025-02-08T10:42:39.021+07:00 level=DEBUG msg="запрос заказов" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders статусы="[NEW PROCESSING]"
-        time=2025-02-08T10:42:39.025+07:00 level=DEBUG msg="поиск заказов по статусам" environment=local package=repository component=OrderRepo method=FindByStatus статусы="[NEW PROCESSING]" количество=2
-        time=2025-02-08T10:42:39.025+07:00 level=DEBUG msg="кол-во заказов для обработки воркером" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders количество=2
-        time=2025-02-08T10:42:39.025+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "id заказа"=28 "номер заказа"=12345678903 "текущий статус"=NEW
-        time=2025-02-08T10:42:39.027+07:00 level=DEBUG msg="заказ не найден в системе начислений" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=12345678903
-        time=2025-02-08T10:42:39.027+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "id заказа"=29 "номер заказа"=208117760873325 "текущий статус"=NEW
-        time=2025-02-08T10:42:39.027+07:00 level=DEBUG msg="получена информация о начислении" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=208117760873325 статус=PROCESSED начисление=0xc000015850
-        time=2025-02-08T10:42:39.031+07:00 level=DEBUG msg="обновление суммы начисления" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=208117760873325 "начисление (руб)"=729.98 "начисление (коп)"=72998
-        time=2025-02-08T10:42:39.031+07:00 level=INFO msg="обновление статуса на PROCESSED" environment=local package=repository component=OrderRepo method=UpdateAccrual "id заказа"=29 "начисление (коп)"=72998
-        time=2025-02-08T10:42:39.035+07:00 level=DEBUG msg="поиск заказов по статусам" environment=local package=repository component=OrderRepo method=FindByStatus статусы="[NEW PROCESSING]" количество=1
-        time=2025-02-08T10:42:39.035+07:00 level=DEBUG msg="кол-во заказов для обработки воркером" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders количество=1
-        time=2025-02-08T10:42:39.035+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders "id заказа"=28 "номер заказа"=12345678903 "текущий статус"=NEW
-        time=2025-02-08T10:42:39.035+07:00 level=DEBUG msg="заказ не найден в системе начислений" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders "номер заказа"=12345678903
-        {"time":"2025-02-08T10:42:39.248617929+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":4517127,"latency_human":"4.517127ms","bytes_in":0,"bytes_out":118}
-        {"time":"2025-02-08T10:42:39.259900502+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":10236791,"latency_human":"10.236791ms","bytes_in":0,"bytes_out":33}
-        {"time":"2025-02-08T10:42:39.266498012+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":5925882,"latency_human":"5.925882ms","bytes_in":47,"bytes_out":0}
-        {"time":"2025-02-08T10:42:39.268424621+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1222795,"latency_human":"1.222795ms","bytes_in":0,"bytes_out":50}
-        {"time":"2025-02-08T10:42:39.270253222+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1243114,"latency_human":"1.243114ms","bytes_in":0,"bytes_out":84}
-        {"time":"2025-02-08T10:42:39.424143607+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":152464062,"latency_human":"152.464062ms","bytes_in":81,"bytes_out":161}
-        {"time":"2025-02-08T10:42:39.567346952+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":141610561,"latency_human":"141.610561ms","bytes_in":81,"bytes_out":161}
-        {"time":"2025-02-08T10:42:39.569523812+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":66573,"latency_human":"66.573µs","bytes_in":7,"bytes_out":71}
-        {"time":"2025-02-08T10:42:39.570103679+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":13210,"latency_human":"13.21µs","bytes_in":0,"bytes_out":71}
-        {"time":"2025-02-08T10:42:39.703734184+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":133057236,"latency_human":"133.057236ms","bytes_in":68,"bytes_out":168}
-        {"time":"2025-02-08T10:42:39.706206573+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":1442514,"latency_human":"1.442514ms","bytes_in":11,"bytes_out":70}
-        time=2025-02-08T10:42:39.709+07:00 level=INFO msg="created new order" environment=local id=30 uploaded_at=2025-02-08T10:42:39.707+07:00 user_id=87 order_number=555326 status=NEW
-        {"time":"2025-02-08T10:42:39.709509334+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":2690074,"latency_human":"2.690074ms","bytes_in":6,"bytes_out":0}
-        {"time":"2025-02-08T10:42:39.710978609+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":931213,"latency_human":"931.213µs","bytes_in":6,"bytes_out":0}
-        {"time":"2025-02-08T10:42:39.712186394+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":721552,"latency_human":"721.552µs","bytes_in":0,"bytes_out":86}
-        {"time":"2025-02-08T10:42:39.842378636+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":129172214,"latency_human":"129.172214ms","bytes_in":57,"bytes_out":160}
-        {"time":"2025-02-08T10:42:39.845111681+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":1828346,"latency_human":"1.828346ms","bytes_in":6,"bytes_out":109}
-        time=2025-02-08T10:42:39.845+07:00 level=INFO msg="received signal" environment=local signal=interrupt
-        time=2025-02-08T10:42:39.845+07:00 level=INFO msg="shutting down server..." environment=local
-        time=2025-02-08T10:42:39.846+07:00 level=INFO msg="server stopped" environment=local
+        {"time":"2025-02-08T11:48:48.916722711+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":167424370,"latency_human":"167.42437ms","bytes_in":61,"bytes_out":166}
+        time=2025-02-08T11:48:48.922+07:00 level=INFO msg="created new order" environment=local id=31 uploaded_at=2025-02-08T11:48:48.921+07:00 user_id=89 order_number=823344 status=NEW
+        {"time":"2025-02-08T11:48:48.922897534+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":4789638,"latency_human":"4.789638ms","bytes_in":6,"bytes_out":0}
+        {"time":"2025-02-08T11:48:49.928997668+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":4693659,"latency_human":"4.693659ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:50.927910004+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2878504,"latency_human":"2.878504ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:51.92859095+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3304524,"latency_human":"3.304524ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:52.928513449+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3270138,"latency_human":"3.270138ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:53.925743343+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1689383,"latency_human":"1.689383ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:54.928462295+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3261157,"latency_human":"3.261157ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:55.926890861+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1810240,"latency_human":"1.81024ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:56.927695835+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":2471758,"latency_human":"2.471758ms","bytes_in":0,"bytes_out":86}
+        {"time":"2025-02-08T11:48:57.925843358+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1553486,"latency_human":"1.553486ms","bytes_in":0,"bytes_out":86}
+        time=2025-02-08T11:48:58.676+07:00 level=DEBUG msg="начало обработки заказов" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders
+        time=2025-02-08T11:48:58.676+07:00 level=DEBUG msg="запрос заказов" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders статусы="[NEW PROCESSING]"
+        time=2025-02-08T11:48:58.676+07:00 level=DEBUG msg="начало обработки заказов" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders
+        time=2025-02-08T11:48:58.676+07:00 level=DEBUG msg="запрос заказов" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders статусы="[NEW PROCESSING]"
+        time=2025-02-08T11:48:58.678+07:00 level=DEBUG msg="поиск заказов по статусам" environment=local package=repository component=OrderRepo method=FindByStatus статусы="[NEW PROCESSING]" количество=3
+        time=2025-02-08T11:48:58.678+07:00 level=DEBUG msg="кол-во заказов для обработки воркером" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders количество=3
+        time=2025-02-08T11:48:58.678+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "id заказа"=28 "номер заказа"=12345678903 "текущий статус"=NEW
+        time=2025-02-08T11:48:58.679+07:00 level=DEBUG msg="заказ не найден в системе начислений" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=12345678903
+        time=2025-02-08T11:48:58.679+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "id заказа"=30 "номер заказа"=555326 "текущий статус"=NEW
+        time=2025-02-08T11:48:58.680+07:00 level=DEBUG msg="заказ не найден в системе начислений" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=555326
+        time=2025-02-08T11:48:58.680+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "id заказа"=31 "номер заказа"=823344 "текущий статус"=NEW
+        time=2025-02-08T11:48:58.680+07:00 level=DEBUG msg="получена информация о начислении" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=823344 статус=PROCESSED начисление=0xc0002c8df0
+        time=2025-02-08T11:48:58.684+07:00 level=DEBUG msg="обновление суммы начисления" environment=local package=worker component=AccrualWorker worker_id=0 method=processOrders "номер заказа"=823344 "начисление (руб)"=729.98 "начисление (коп)"=72998
+        time=2025-02-08T11:48:58.684+07:00 level=INFO msg="обновление статуса на PROCESSED" environment=local package=repository component=OrderRepo method=UpdateAccrual "id заказа"=31 "начисление (коп)"=72998
+        time=2025-02-08T11:48:58.690+07:00 level=DEBUG msg="поиск заказов по статусам" environment=local package=repository component=OrderRepo method=FindByStatus статусы="[NEW PROCESSING]" количество=2
+        time=2025-02-08T11:48:58.690+07:00 level=DEBUG msg="кол-во заказов для обработки воркером" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders количество=2
+        time=2025-02-08T11:48:58.690+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders "id заказа"=28 "номер заказа"=12345678903 "текущий статус"=NEW
+        time=2025-02-08T11:48:58.690+07:00 level=DEBUG msg="заказ не найден в системе начислений" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders "номер заказа"=12345678903
+        time=2025-02-08T11:48:58.690+07:00 level=DEBUG msg="обработка заказа" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders "id заказа"=30 "номер заказа"=555326 "текущий статус"=NEW
+        time=2025-02-08T11:48:58.691+07:00 level=DEBUG msg="заказ не найден в системе начислений" environment=local package=worker component=AccrualWorker worker_id=1 method=processOrders "номер заказа"=555326
+        {"time":"2025-02-08T11:48:58.928697923+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":3789241,"latency_human":"3.789241ms","bytes_in":0,"bytes_out":109}
+        {"time":"2025-02-08T11:48:58.935206169+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":5363143,"latency_human":"5.363143ms","bytes_in":0,"bytes_out":33}
+        {"time":"2025-02-08T11:48:58.941897688+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/balance/withdraw","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":5866474,"latency_human":"5.866474ms","bytes_in":50,"bytes_out":0}
+        {"time":"2025-02-08T11:48:58.944382297+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/balance","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1774820,"latency_human":"1.77482ms","bytes_in":0,"bytes_out":49}
+        {"time":"2025-02-08T11:48:58.946974953+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/withdrawals","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1906680,"latency_human":"1.90668ms","bytes_in":0,"bytes_out":87}
+        {"time":"2025-02-08T11:48:59.117217514+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":168560306,"latency_human":"168.560306ms","bytes_in":73,"bytes_out":157}
+        {"time":"2025-02-08T11:48:59.266186717+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/login","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":147591982,"latency_human":"147.591982ms","bytes_in":73,"bytes_out":157}
+        {"time":"2025-02-08T11:48:59.267930379+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":103059,"latency_human":"103.059µs","bytes_in":14,"bytes_out":71}
+        {"time":"2025-02-08T11:48:59.268552109+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":401,"error":"code=401, message=Отсутствует токен авторизации","latency":19229,"latency_human":"19.229µs","bytes_in":0,"bytes_out":71}
+        {"time":"2025-02-08T11:48:59.458316905+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":189155504,"latency_human":"189.155504ms","bytes_in":58,"bytes_out":168}
+        {"time":"2025-02-08T11:48:59.462134124+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":422,"error":"code=422, message=Неверный формат номера заказа","latency":2126180,"latency_human":"2.12618ms","bytes_in":11,"bytes_out":70}
+        time=2025-02-08T11:48:59.470+07:00 level=INFO msg="created new order" environment=local id=32 uploaded_at=2025-02-08T11:48:59.466+07:00 user_id=91 order_number=617655814315855 status=NEW
+        {"time":"2025-02-08T11:48:59.47044831+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":202,"error":"","latency":6359492,"latency_human":"6.359492ms","bytes_in":15,"bytes_out":0}
+        {"time":"2025-02-08T11:48:59.474319022+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1973602,"latency_human":"1.973602ms","bytes_in":15,"bytes_out":0}
+        {"time":"2025-02-08T11:48:59.476755889+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"GET","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":1346118,"latency_human":"1.346118ms","bytes_in":0,"bytes_out":95}
+        {"time":"2025-02-08T11:48:59.713819778+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/register","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":200,"error":"","latency":234624634,"latency_human":"234.624634ms","bytes_in":67,"bytes_out":161}
+        {"time":"2025-02-08T11:48:59.717507561+07:00","id":"","remote_ip":"127.0.0.1","host":"localhost:8082","method":"POST","uri":"/api/user/orders","user_agent":"go-resty/2.7.0 (https://github.com/go-resty/resty)","status":409,"error":"code=409, message=Номер заказа уже был загружен другим пользователем","latency":1656808,"latency_human":"1.656808ms","bytes_in":15,"bytes_out":109}
+        time=2025-02-08T11:48:59.718+07:00 level=INFO msg="received signal" environment=local signal=interrupt
+        time=2025-02-08T11:48:59.718+07:00 level=INFO msg="shutting down server..." environment=local
+        time=2025-02-08T11:48:59.719+07:00 level=INFO msg="server stopped" environment=local
     gophermart_suite_test.go:108: останавливаем процесс accrual
     gophermart_suite_test.go:140: Получен STDOUT лог процесса:
         
-        {"level":"info","ts":1738986148.8817158,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:34245"}
-        {"level":"info","ts":1738986159.849583,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
---- PASS: TestGophermart (10.98s)
-    --- PASS: TestGophermart/TestEndToEnd (10.19s)
+        {"level":"info","ts":1738990128.5471117,"caller":"accrual/main.go:52","msg":"starting HTTP server","addr":"localhost:45781"}
+        {"level":"info","ts":1738990139.7253158,"caller":"accrual/main.go:63","msg":"shutting down gracefully","signal":"interrupt"}
+--- PASS: TestGophermart (11.19s)
+    --- PASS: TestGophermart/TestEndToEnd (10.20s)
         --- PASS: TestGophermart/TestEndToEnd/register_accrual_mechanic (0.00s)
         --- PASS: TestGophermart/TestEndToEnd/register_order_for_accrual (0.00s)
-        --- PASS: TestGophermart/TestEndToEnd/register_user (0.16s)
+        --- PASS: TestGophermart/TestEndToEnd/register_user (0.17s)
         --- PASS: TestGophermart/TestEndToEnd/order_upload (0.01s)
         --- PASS: TestGophermart/TestEndToEnd/await_order_processed (10.01s)
         --- PASS: TestGophermart/TestEndToEnd/check_balance (0.01s)
         --- PASS: TestGophermart/TestEndToEnd/withdraw_balance (0.01s)
         --- PASS: TestGophermart/TestEndToEnd/recheck_balance (0.00s)
         --- PASS: TestGophermart/TestEndToEnd/check_withdrawals (0.00s)
-    --- PASS: TestGophermart/TestUserAuth (0.30s)
-        --- PASS: TestGophermart/TestUserAuth/register_user (0.15s)
-        --- PASS: TestGophermart/TestUserAuth/login_user (0.14s)
-    --- PASS: TestGophermart/TestUserOrders (0.28s)
+    --- PASS: TestGophermart/TestUserAuth (0.32s)
+        --- PASS: TestGophermart/TestUserAuth/register_user (0.17s)
+        --- PASS: TestGophermart/TestUserAuth/login_user (0.15s)
+    --- PASS: TestGophermart/TestUserOrders (0.45s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_order_upload (0.00s)
         --- PASS: TestGophermart/TestUserOrders/unauthorized_orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/register_user (0.13s)
+        --- PASS: TestGophermart/TestUserOrders/register_user (0.19s)
         --- PASS: TestGophermart/TestUserOrders/bad_order_upload (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/order_upload (0.00s)
+        --- PASS: TestGophermart/TestUserOrders/order_upload (0.01s)
         --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_same_user (0.00s)
         --- PASS: TestGophermart/TestUserOrders/orders_list (0.00s)
-        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.13s)
+        --- PASS: TestGophermart/TestUserOrders/duplicate_order_upload_other_user (0.24s)
 PASS

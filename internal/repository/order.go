@@ -9,13 +9,13 @@ import (
 	"gophermart/internal/domain"
 )
 
-// OrderRepo реализует интерфейс domain.OrderRepository
+// OrderRepo реализует интерфейс domain.OrderRepository.
 type OrderRepo struct {
 	db     *sqlx.DB
 	logger *slog.Logger
 }
 
-// NewOrderRepo создает новый экземпляр OrderRepo
+// NewOrderRepo создает новый экземпляр OrderRepo.
 func NewOrderRepo(db *sqlx.DB, logger *slog.Logger) *OrderRepo {
 	return &OrderRepo{
 		db: db,
@@ -26,7 +26,7 @@ func NewOrderRepo(db *sqlx.DB, logger *slog.Logger) *OrderRepo {
 	}
 }
 
-// Create создает новый заказ
+// Create создает новый заказ.
 func (r *OrderRepo) Create(order *domain.Order) error {
 	query := `
 		INSERT INTO orders (number, user_id, status)
@@ -41,7 +41,7 @@ func (r *OrderRepo) Create(order *domain.Order) error {
 	).Scan(&order.ID, &order.UploadedAt)
 }
 
-// FindByNumber ищет заказ по номеру
+// FindByNumber ищет заказ по номеру.
 func (r *OrderRepo) FindByNumber(number string) (*domain.Order, error) {
 	var order domain.Order
 	query := `SELECT * FROM orders WHERE number = $1`
@@ -52,7 +52,7 @@ func (r *OrderRepo) FindByNumber(number string) (*domain.Order, error) {
 	return &order, nil
 }
 
-// FindByUserID возвращает все заказы пользователя
+// FindByUserID возвращает все заказы пользователя.
 func (r *OrderRepo) FindByUserID(userID int) ([]domain.Order, error) {
 	var orders []domain.Order
 	query := `
@@ -66,7 +66,7 @@ func (r *OrderRepo) FindByUserID(userID int) ([]domain.Order, error) {
 	return orders, nil
 }
 
-// UpdateStatus обновляет статус заказа
+// UpdateStatus обновляет статус заказа.
 func (r *OrderRepo) UpdateStatus(orderID int, status domain.OrderStatus) error {
 	query := `
 		UPDATE orders 
@@ -76,7 +76,7 @@ func (r *OrderRepo) UpdateStatus(orderID int, status domain.OrderStatus) error {
 	return err
 }
 
-// UpdateAccrual обновляет сумму начисленных баллов за заказ
+// UpdateAccrual обновляет сумму начисленных баллов за заказ.
 func (r *OrderRepo) UpdateAccrual(orderID int, accrualKop int64) error {
 	logger := r.logger.With("method", "UpdateAccrual")
 	logger.Info("обновление статуса на PROCESSED",
@@ -91,7 +91,7 @@ func (r *OrderRepo) UpdateAccrual(orderID int, accrualKop int64) error {
 	return err
 }
 
-// FindByStatus возвращает заказы с указанными статусами
+// FindByStatus возвращает заказы с указанными статусами.
 func (r *OrderRepo) FindByStatus(statuses []domain.OrderStatus) ([]domain.Order, error) {
 	logger := r.logger.With("method", "FindByStatus")
 

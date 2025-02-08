@@ -10,19 +10,18 @@ import (
 	"gophermart/internal/service"
 )
 
-// UserHandler обрабатывает HTTP-запросы, связанные с пользователями
+// UserHandler обрабатывает HTTP-запросы, связанные с пользователями.
 type UserHandler struct {
 	userService domain.UserService
 }
 
-// NewUserHandler создает новый экземпляр UserHandler
+// NewUserHandler создает новый экземпляр UserHandler.
 func NewUserHandler(userService domain.UserService) *UserHandler {
 	return &UserHandler{userService: userService}
 }
 
-// Register обрабатывает регистрацию пользователя
-// @Summary Регистрация нового пользователя
-// @Description Регистрирует нового пользователя с логином и паролем
+// Register обрабатывает регистрацию пользователя.
+// @Summary Регистрация нового пользователя.
 // @Tags auth
 // @Accept json
 // @Produce json
@@ -32,6 +31,7 @@ func NewUserHandler(userService domain.UserService) *UserHandler {
 // @Failure 409 "Логин уже занят"
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/register [post]
+// @Description Регистрирует нового пользователя с логином и паролем.
 func (h *UserHandler) Register(c echo.Context) error {
 	var req domain.RegisterRequest
 	if err := c.Bind(&req); err != nil {
@@ -55,15 +55,14 @@ func (h *UserHandler) Register(c echo.Context) error {
 	return c.JSON(http.StatusOK, token)
 }
 
-// LoginRequest представляет данные запроса на вход
+// LoginRequest представляет данные запроса на вход.
 type LoginRequest struct {
 	Login    string `json:"login"    validate:"required"`
 	Password string `json:"password" validate:"required"`
 }
 
-// Authenticate обрабатывает аутентификацию пользователя
-// @Summary Аутентификация пользователя
-// @Description Аутентифицирует пользователя по логину и паролю
+// Authenticate обрабатывает аутентификацию пользователя.
+// @Summary Аутентификация пользователя.
 // @Tags auth
 // @Accept json
 // @Produce json
@@ -73,6 +72,7 @@ type LoginRequest struct {
 // @Failure 401 "Неверная пара логин/пароль"
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/login [post]
+// @Description Аутентифицирует пользователя по логину и паролю.
 func (h *UserHandler) Authenticate(c echo.Context) error {
 	var req LoginRequest
 	if err := c.Bind(&req); err != nil {

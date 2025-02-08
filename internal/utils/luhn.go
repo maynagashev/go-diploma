@@ -4,7 +4,7 @@ const (
 	maxDigit = 9 // Максимальное значение цифры
 )
 
-// ValidateLuhn проверяет номер заказа по алгоритму Луна
+// ValidateLuhn проверяет номер заказа по алгоритму Луна.
 func ValidateLuhn(number string) bool {
 	sum := 0
 	isSecond := false

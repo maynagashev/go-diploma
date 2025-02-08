@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	// Импортируем драйвер pgx для работы с PostgreSQL через database/sql
+	// Импортируем драйвер pgx для работы с PostgreSQL через database/sql.
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
 )

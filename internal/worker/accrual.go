@@ -12,7 +12,7 @@ import (
 	"gophermart/internal/service"
 )
 
-// contextKey используется для ключей контекста
+// contextKey используется для ключей контекста.
 type contextKey string
 
 const (
@@ -23,7 +23,7 @@ const (
 	workerIDKey = contextKey("worker_id")
 )
 
-// AccrualWorker обработчик заказов для получения информации о начислениях
+// AccrualWorker обработчик заказов для получения информации о начислениях.
 type AccrualWorker struct {
 	logger         *slog.Logger
 	orderRepo      domain.OrderRepository
@@ -33,7 +33,7 @@ type AccrualWorker struct {
 	retryTimeout   time.Duration
 }
 
-// NewAccrualWorker создает новый экземпляр AccrualWorker
+// NewAccrualWorker создает новый экземпляр AccrualWorker.
 func NewAccrualWorker(
 	logger *slog.Logger,
 	orderRepo domain.OrderRepository,
@@ -65,7 +65,7 @@ func NewAccrualWorker(
 	}
 }
 
-// Start запускает обработку заказов
+// Start запускает обработку заказов.
 func (w *AccrualWorker) Start(ctx context.Context) {
 	var wg sync.WaitGroup
 
@@ -82,7 +82,7 @@ func (w *AccrualWorker) Start(ctx context.Context) {
 	wg.Wait()
 }
 
-// worker обрабатывает заказы
+// worker обрабатывает заказы.
 func (w *AccrualWorker) worker(ctx context.Context, id int) {
 	// Создаем отдельный логгер для этого воркера
 	workerLogger := w.logger.With("worker_id", id)
@@ -112,7 +112,7 @@ func (w *AccrualWorker) worker(ctx context.Context, id int) {
 	}
 }
 
-// processOrders обрабатывает заказы, ожидающие обновления статуса
+// processOrders обрабатывает заказы, ожидающие обновления статуса.
 func (w *AccrualWorker) processOrders(ctx context.Context, logger *slog.Logger) error {
 	logger = logger.With("method", "processOrders")
 	logger.Debug("начало обработки заказов")
