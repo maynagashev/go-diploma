@@ -21,21 +21,6 @@ services:
       retries: 3
       timeout: 5s
 
-  accrual:
-    container_name: gophermart_accrual
-    build:
-      context: .
-      dockerfile: docker/accrual/Dockerfile
-    ports:
-      - '${ACCRUAL_PORT:-8081}:8081'
-    networks:
-      - gophermart_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8081/api/orders/12345678903"]
-      interval: 5s
-      timeout: 3s
-      retries: 3
-
 volumes:
   pgsql_data:
     name: gophermart_pgsql_data
