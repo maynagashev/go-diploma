@@ -13,96 +13,46 @@ cd gophermart
 
 # Создание .env файла из примера
 cp .env.example .env
-
-# Редактирование .env файла под свои настройки
-nano .env
 ```
 
 ### 2. Запуск базы данных
 
 ```bash
-# Запуск PostgreSQL через Docker
-docker compose up -d pgsql
-
-# Проверка статуса
-docker compose ps
+# Запуск PostgreSQL через Docker compose
+docker compose up -d
 ```
 
-### 3. Сборка и запуск
+### 3. Запуск сервиса и утилит
 
 ```bash
-# Сборка проекта
-go build -o bin/gophermart cmd/gophermart/main.go
+# Сборка и запуск сервиса gophermart
+make run
 
-# Применение миграций
-go run cmd/gophermart/main.go -m migrations
+# Запуск accrual
+make run-accrual
 
-# Запуск сервера
-./bin/gophermart
-```
+# Запуск линтеров
+make lint
 
-Или через флаги командной строки:
-```bash
-./bin/gophermart \
-  -a=":8080" \
-  -d="postgres://gophermart:secret@localhost:5432/gophermart?sslmode=disable" \
-  -r="http://localhost:8081"
-```
-
-### 4. Проверка работоспособности
-
-```bash
-# Регистрация пользователя
-curl -X POST -H "Content-Type: application/json" \
-  -d '{"login":"user1","password":"pass123"}' \
-  http://localhost:8080/api/user/register
-```
-
-## Конфигурация
-
-### Переменные окружения
-
-#### Сервер
-- `RUN_ADDRESS` - адрес и порт сервера (по умолчанию `:8080`)
-- `DATABASE_URI` - строка подключения к БД
-- `ACCRUAL_SYSTEM_ADDRESS` - адрес системы расчета начислений
-
-#### База данных
-- `DB_DATABASE` - имя базы данных
-- `DB_USERNAME` - имя пользователя БД
-- `DB_PASSWORD` - пароль пользователя БД
-- `FORWARD_DB_PORT` - порт для подключения к БД (по умолчанию `5432`)
-
-### Флаги командной строки
-
-- `-a` - адрес и порт сервера
-- `-d` - строка подключения к БД
-- `-r` - адрес системы расчета начислений
-- `-m` - путь к директории с миграциями (по умолчанию `migrations`)
-
-## Работа с миграциями
-
-### Создание новой миграции
-
-```bash
-# Создание новой миграции
-goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" create add_users_table sql
-```
-
-### Применение миграций
-
-```bash
-# Применение всех миграций
-goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" up
-
-# Откат последней миграции
-goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" down
-
-# Просмотр статуса миграций
-goose -dir migrations postgres "postgres://user:pass@localhost:5432/gophermart?sslmode=disable" status
+# Запуск тестов
+make test
 ```
 
 ## Разработка
+
+### Установка утилит
+
+В Linux однократно:
+
+```bash
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/segmentio/golines@latest
+# Установка pre-commit
+sudo apt update
+sudo apt install pipx
+pipx install pre-commit
+```
 
 ### Запуск линтеров и форматтеров
 
@@ -150,22 +100,16 @@ golangci-lint run ./...
 
 ### 5. Взаимодействие с системой расчета баллов лояльности
 
-- [ ] Проверка заказа в системе accrual и начисление баллов (поллинг, воркер пул)
+- [x] Проверка заказа в системе accrual и начисление баллов (поллинг, воркер пул)
 
 ### 6. Баланс
 
-- [ ] `GET /api/user/balance` — получение текущего баланса счёта баллов лояльности пользователя
+- [x] `GET /api/user/balance` — получение текущего баланса счёта баллов лояльности пользователя
 
 ### 7. Начисление и списание баллов, получение истории списаний
 
-- [ ] `POST /api/user/balance/withdraw` — запрос на списание баллов с накопительного счёта в счёт оплаты нового заказа
-- [ ] `GET /api/user/withdrawals` — получение информации о выводе средств с накопительного счёта пользователем
-
-### 8. Тестирование
-
-- [ ] юнит-тесты
-- [ ] тесты API
-- [ ] интеграционные тесты
+- [x] `POST /api/user/balance/withdraw` — запрос на списание баллов с накопительного счёта в счёт оплаты нового заказа
+- [x] `GET /api/user/withdrawals` — получение информации о выводе средств с накопительного счёта пользователем
 
 ### 9. Документация
 
@@ -187,15 +131,3 @@ git fetch template && git checkout template/master .github
 ```
 
 Затем добавьте полученные изменения в свой репозиторий.
-
-## Установка утилит
-
-```bash
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-go install golang.org/x/tools/cmd/goimports@latest
-go install github.com/segmentio/golines@latest
-# Установка pre-commit
-sudo apt update
-sudo apt install pipx
-pipx install pre-commit
-```
