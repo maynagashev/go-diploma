@@ -1,0 +1,316 @@
+internal/app/middleware.go:49:25: Error return value is not checked (errcheck)
+			c.Set("user_id", int(claims["user_id"].(float64)))
+			                     ^
+internal/app/middleware.go:50:19: Error return value is not checked (errcheck)
+			c.Set("login", claims["login"].(string))
+			               ^
+internal/app/database.go:8:2: blank-imports: a blank import should be only in a main or test package, or have a comment justifying it (revive)
+	_ "github.com/jackc/pgx/v5/stdlib"
+	^
+internal/app/app.go:18:1: Comment should end in a period (godot)
+// App представляет основную структуру приложения
+^
+internal/app/app.go:29:1: Comment should end in a period (godot)
+// New создает новый экземпляр приложения
+^
+internal/app/app.go:92:1: Comment should end in a period (godot)
+// Start запускает приложение
+^
+internal/app/app.go:100:1: Comment should end in a period (godot)
+// Shutdown выполняет корректное завершение работы приложения
+^
+internal/app/app.go:108:1: Comment should end in a period (godot)
+// setupRoutes настраивает маршруты приложения
+^
+internal/app/config.go:7:1: Comment should end in a period (godot)
+// Config представляет конфигурацию приложения
+^
+internal/app/database.go:19:1: Comment should end in a period (godot)
+// NewDB создает новое подключение к базе данных
+^
+internal/app/middleware.go:11:1: Comment should end in a period (godot)
+// JWTMiddleware создает middleware для проверки JWT токена
+^
+internal/app/migrations.go:10:1: Comment should end in a period (godot)
+// MigrateDB применяет миграции базы данных
+^
+internal/app/validator.go:8:1: Comment should end in a period (godot)
+// CustomValidator пользовательский валидатор для фреймворка Echo
+^
+internal/app/validator.go:13:1: Comment should end in a period (godot)
+// NewValidator создает новый экземпляр валидатора
+^
+internal/app/validator.go:18:1: Comment should end in a period (godot)
+// Validate проверяет переданную структуру
+^
+internal/app/app.go:38:5: shadow: declaration of "err" shadows declaration at line 32 (govet)
+	if err := MigrateDB(db.DB, cfg.MigrationsDir); err != nil {
+	   ^
+internal/app/database.go:32:5: shadow: declaration of "err" shadows declaration at line 21 (govet)
+	if err := db.PingContext(ctx); err != nil {
+	   ^
+internal/app/app.go:58:3: Magic number: 2, in <argument> detected (mnd)
+		2, // количество воркеров
+		^
+internal/app/app.go:59:3: Magic number: 10, in <argument> detected (mnd)
+		10*time.Second,
+		^
+internal/app/validator.go:21:28: Magic number: 400, in <argument> detected (mnd)
+		return echo.NewHTTPError(400, err.Error())
+		                         ^
+cmd/gophermart/flags.go:11:2: runAddress is a global variable (gochecknoglobals)
+	runAddress          string        // Адрес и порт для запуска сервера
+	^
+cmd/gophermart/flags.go:12:2: databaseURI is a global variable (gochecknoglobals)
+	databaseURI         string        // URI базы данных
+	^
+cmd/gophermart/flags.go:13:2: accrualSystemAddr is a global variable (gochecknoglobals)
+	accrualSystemAddr   string        // Адрес системы расчета начислений
+	^
+cmd/gophermart/flags.go:14:2: migrationsDirectory is a global variable (gochecknoglobals)
+	migrationsDirectory string        // Директория с миграциями
+	^
+cmd/gophermart/flags.go:15:2: jwtSecret is a global variable (gochecknoglobals)
+	jwtSecret           string        // Секретный ключ для подписи JWT токенов
+	^
+cmd/gophermart/flags.go:16:2: jwtExpirationPeriod is a global variable (gochecknoglobals)
+	jwtExpirationPeriod time.Duration // Период действия JWT токена
+	^
+cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobals)
+	envFileLoaded bool
+	^
+cmd/gophermart/main.go:25:1: don't use `init` function (gochecknoinits)
+func init() {
+^
+cmd/gophermart/main.go:78:3: exitAfterDefer: os.Exit will exit, and `defer cancel()` will not run (gocritic)
+		os.Exit(1)
+		^
+cmd/gophermart/flags.go:10:2: Comment should end in a period (godot)
+	// Флаги командной строки
+	^
+cmd/gophermart/flags.go:33:1: Comment should end in a period (godot)
+// getDurationEnv получает значение длительности из переменной окружения
+^
+cmd/gophermart/logging.go:9:1: Comment should end in a period (godot)
+// initLogger инициализирует логгер
+^
+cmd/gophermart/logging.go:24:1: Comment should end in a period (godot)
+// getVarSource возвращает значение переменной и её источник
+^
+cmd/gophermart/logging.go:40:1: Comment should end in a period (godot)
+// maskSecret маскирует секретные значения для логов
+^
+cmd/gophermart/main.go:19:1: Comment should end in a period (godot)
+// Глобальные переменные
+^
+cmd/gophermart/main.go:21:2: Comment should end in a period (godot)
+	// Флаг успешной загрузки .env
+	^
+cmd/gophermart/main.go:84:6: shadow: declaration of "err" shadows declaration at line 68 (govet)
+		if err := application.Start(runAddress); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		   ^
+cmd/gophermart/main.go:92:7: shadow: declaration of "err" shadows declaration at line 68 (govet)
+	case err := <-serverErr:
+	     ^
+cmd/gophermart/main.go:103:5: shadow: declaration of "err" shadows declaration at line 68 (govet)
+	if err := application.Shutdown(shutdownCtx); err != nil {
+	   ^
+cmd/gophermart/flags.go:28:43: Magic number: 24, in <argument> detected (mnd)
+		getDurationEnv("JWT_EXPIRATION_PERIOD", 24*time.Hour),
+		                                        ^
+cmd/gophermart/main.go:100:75: Magic number: 10, in <argument> detected (mnd)
+	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 10*time.Second)
+	                                                                         ^
+cmd/gophermart/logging.go:42:15: Magic number: 4, in <condition> detected (mnd)
+	if len(s) <= 4 {
+	             ^
+internal/service/accrual.go:13:1: Comment should end in a period (godot)
+// AccrualResponse представляет ответ от системы начислений
+^
+internal/service/accrual.go:20:1: Comment should end in a period (godot)
+// AccrualService сервис для взаимодействия с системой начислений
+^
+internal/service/accrual.go:26:1: Comment should end in a period (godot)
+// NewAccrualService создает новый экземпляр AccrualService
+^
+internal/service/accrual.go:36:1: Comment should end in a period (godot)
+// GetOrderAccrual получает информацию о начислении баллов за заказ
+^
+internal/service/accrual.go:75:1: Comment should end in a period (godot)
+// RateLimitError ошибка превышения лимита запросов
+^
+internal/service/balance.go:12:2: Comment should end in a period (godot)
+	// ErrInsufficientFunds ошибка недостаточно средств
+	^
+internal/service/balance.go:16:1: Comment should end in a period (godot)
+// BalanceService реализует интерфейс domain.BalanceService
+^
+internal/service/balance.go:22:1: Comment should end in a period (godot)
+// NewBalanceService создает новый экземпляр BalanceService
+^
+internal/service/balance.go:33:1: Comment should end in a period (godot)
+// GetBalance возвращает текущий баланс пользователя
+^
+internal/service/balance.go:38:1: Comment should end in a period (godot)
+// Withdraw списывает средства с баланса пользователя
+^
+internal/service/balance.go:66:1: Comment should end in a period (godot)
+// GetWithdrawals возвращает историю списаний пользователя
+^
+internal/service/errors.go:6:2: Comment should end in a period (godot)
+	// Ошибки пользователя
+	^
+internal/service/errors.go:8:2: Comment should end in a period (godot)
+	// ErrUserExists возникает при попытке зарегистрировать пользователя с существующим логином
+	^
+internal/service/errors.go:10:2: Comment should end in a period (godot)
+	// ErrInvalidLogin возникает при неверной паре логин/пароль
+	^
+internal/service/errors.go:13:2: Comment should end in a period (godot)
+	// Ошибки заказов
+	^
+internal/service/errors.go:15:2: Comment should end in a period (godot)
+	// ErrOrderExists возникает при попытке зарегистрировать заказ, который уже был зарегистрирован этим пользователем
+	^
+internal/service/errors.go:17:2: Comment should end in a period (godot)
+	// ErrOrderRegisteredByOther возникает при попытке зарегистрировать заказ, который уже был зарегистрирован другим пользователем
+	^
+internal/service/errors.go:19:2: Comment should end in a period (godot)
+	// ErrInvalidOrderNumber возникает при попытке зарегистрировать заказ с неверным номером
+	^
+internal/service/order.go:12:1: Comment should end in a period (godot)
+// OrderService реализует интерфейс domain.OrderService
+^
+internal/service/order.go:17:1: Comment should end in a period (godot)
+// NewOrderService создает новый экземпляр OrderService
+^
+internal/service/order.go:22:1: Comment should end in a period (godot)
+// Register регистрирует новый заказ для пользователя
+^
+internal/service/order.go:64:1: Comment should end in a period (godot)
+// GetOrders возвращает список заказов пользователя
+^
+internal/service/user.go:14:1: Comment should end in a period (godot)
+// UserService реализует интерфейс domain.UserService
+^
+internal/service/user.go:21:1: Comment should end in a period (godot)
+// NewUserService создает новый экземпляр UserService
+^
+internal/service/user.go:30:1: Comment should end in a period (godot)
+// generateToken создает новый JWT токен для пользователя
+^
+internal/service/user.go:46:1: Comment should end in a period (godot)
+// Register создает нового пользователя с указанными учетными данными
+^
+internal/service/user.go:77:1: Comment should end in a period (godot)
+// Authenticate проверяет учетные данные пользователя и возвращает токен, если данные верны
+^
+internal/service/accrual.go:54:6: shadow: declaration of "err" shadows declaration at line 40 (govet)
+		if err := json.NewDecoder(resp.Body).Decode(&accrual); err != nil {
+		   ^
+internal/service/accrual.go:62:13: shadow: declaration of "err" shadows declaration at line 40 (govet)
+			seconds, err := time.ParseDuration(retryAfter + "s")
+			         ^
+internal/service/user.go:69:5: shadow: declaration of "err" shadows declaration at line 49 (govet)
+	if err := s.repo.Create(user); err != nil {
+	   ^
+internal/service/user.go:87:5: shadow: declaration of "err" shadows declaration at line 79 (govet)
+	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
+	   ^
+internal/service/errors.go:20:1: The line is 139 characters long, which exceeds the maximum of 120 characters. (lll)
+	ErrInvalidOrderNumber = errors.New("неверный формат номера заказа, номер заказа должен состоять из 10 цифр и проходить по алгоритму Луна")
+^
+internal/service/balance.go:60:30: Magic number: 100, in <argument> detected (mnd)
+		AmountKop: int64(req.Sum * 100),
+		                           ^
+internal/service/accrual.go:30:13: Magic number: 10, in <assign> detected (mnd)
+			Timeout: 10 * time.Second,
+			         ^
+internal/service/accrual.go:67:43: Magic number: 60, in <assign> detected (mnd)
+		return nil, &RateLimitError{RetryAfter: 60 * time.Second} // По умолчанию ждем 60 секунд
+		                                        ^
+internal/service/accrual.go:69:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
+		return nil, nil
+		^
+internal/handlers/balance.go:33:12: Error return value is not checked (errcheck)
+	userID := c.Get("user_id").(int)
+	          ^
+internal/handlers/balance.go:45:12: Error return value is not checked (errcheck)
+	userID := c.Get("user_id").(int)
+	          ^
+internal/handlers/balance.go:73:12: Error return value is not checked (errcheck)
+	userID := c.Get("user_id").(int)
+	          ^
+internal/handlers/order.go:42:12: Error return value is not checked (errcheck)
+	userID := c.Get("user_id").(int)
+	          ^
+internal/handlers/order.go:90:12: Error return value is not checked (errcheck)
+	userID := c.Get("user_id").(int)
+	          ^
+internal/handlers/balance.go:59:3: switch on an error will fail on wrapped errors. Use errors.Is to check for specific errors (errorlint)
+		case domain.ErrInvalidOrderNumber:
+		^
+internal/handlers/user.go:47:3: switch on an error will fail on wrapped errors. Use errors.Is to check for specific errors (errorlint)
+		case service.ErrUserExists:
+		^
+internal/handlers/user.go:90:3: switch on an error will fail on wrapped errors. Use errors.Is to check for specific errors (errorlint)
+		case service.ErrInvalidLogin:
+		^
+internal/handlers/balance.go:12:1: Comment should end in a period (godot)
+// BalanceHandler обработчик запросов для работы с балансом
+^
+internal/handlers/balance.go:17:1: Comment should end in a period (godot)
+// NewBalanceHandler создает новый экземпляр BalanceHandler
+^
+internal/handlers/balance.go:24:1: Comment should end in a period (godot)
+// Register регистрирует обработчики в Echo
+^
+internal/handlers/balance.go:31:1: Comment should end in a period (godot)
+// GetBalance возвращает текущий баланс пользователя
+^
+internal/handlers/order.go:81:1: The line is 125 characters long, which exceeds the maximum of 120 characters. (lll)
+// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях
+^
+internal/repository/balance.go:85:60: Magic number: 100.0, in <operation> detected (mnd)
+		withdrawals[i].Sum = float64(withdrawals[i].AmountKop) / 100.0
+		                                                         ^
+internal/worker/accrual.go:149:27: type assertion on error will fail on wrapped errors. Use errors.As to check for specific errors (errorlint)
+			if rateLimitErr, ok := err.(*service.RateLimitError); ok {
+			                       ^
+internal/worker/accrual.go:146:12: shadow: declaration of "err" shadows declaration at line 123 (govet)
+		accrual, err := w.accrualService.GetOrderAccrual(ctx, order.Number)
+		         ^
+internal/worker/accrual.go:175:6: shadow: declaration of "err" shadows declaration at line 146 (govet)
+		if err := w.orderRepo.UpdateStatus(order.ID, accrual.Status); err != nil {
+		   ^
+internal/worker/accrual.go:191:7: shadow: declaration of "err" shadows declaration at line 146 (govet)
+			if err := w.orderRepo.UpdateAccrual(order.ID, accrualKop); err != nil {
+			   ^
+internal/worker/accrual.go:72:2: for loop can be changed to use an integer range (Go 1.22+) (intrange)
+	for i := 0; i < w.workerCount; i++ {
+	^
+internal/worker/accrual.go:185:43: Magic number: 100, in <argument> detected (mnd)
+			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
+			                                       ^
+internal/domain/order.go:62:39: Magic number: 100, in <operation> detected (mnd)
+		accrualRub := float64(*o.Accrual) / 100
+		                                    ^
+internal/domain/order.go:72:31: Magic number: 100.0, in <return> detected (mnd)
+	return float64(*o.Accrual) / 100.0
+	                             ^
+internal/utils/luhn.go:14:11: Magic number: 9, in <condition> detected (mnd)
+			if d > 9 {
+			       ^
+101 issues:
+* errcheck: 7
+* errorlint: 4
+* gochecknoglobals: 7
+* gochecknoinits: 1
+* gocritic: 1
+* godot: 50
+* govet: 12
+* intrange: 1
+* lll: 2
+* mnd: 14
+* nilnil: 1
+* revive: 1
