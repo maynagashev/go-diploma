@@ -1,5 +1,1 @@
-internal/app/middleware.go:12:1: cognitive complexity 26 of func `JWTMiddleware` is high (> 20) (gocognit)
-func JWTMiddleware(secret string) echo.MiddlewareFunc {
-^
-1 issues:
-* gocognit: 1
+0 issues.
