@@ -45,13 +45,13 @@ func (s *OrderStatus) Scan(value interface{}) error {
 
 // Order представляет заказ в системе.
 type Order struct {
-	ID         int         `json:"-"          db:"id"`
-	Number     string      `json:"number"     db:"number"`
-	UserID     int         `json:"-"          db:"user_id"`
-	Status     OrderStatus `json:"status"     db:"status"`
-	Accrual    *int64      `json:"-" db:"accrual,omitempty"` // сумма начисленных баллов в копейках
-	AccrualRub *float64    `json:"accrual,omitempty" db:"-"` // сумма начисленных баллов в рублях для JSON
-	UploadedAt time.Time   `json:"uploaded_at" db:"uploaded_at"`
+	ID         int         `json:"-"                 db:"id"`
+	Number     string      `json:"number"            db:"number"`
+	UserID     int         `json:"-"                 db:"user_id"`
+	Status     OrderStatus `json:"status"            db:"status"`
+	Accrual    *int64      `json:"-"                 db:"accrual,omitempty"` // сумма начисленных баллов в копейках
+	AccrualRub *float64    `json:"accrual,omitempty" db:"-"`                 // сумма начисленных баллов в рублях для JSON
+	UploadedAt time.Time   `json:"uploaded_at"       db:"uploaded_at"`
 }
 
 // SetAccrual устанавливает сумму начисления в копейках и автоматически обновляет сумму в рублях.

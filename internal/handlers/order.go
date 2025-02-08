@@ -89,7 +89,8 @@ func (h *OrderHandler) Register(c echo.Context) error {
 // @Failure 401 "Пользователь не аутентифицирован"
 // @Failure 500 "Внутренняя ошибка сервера"
 // @Router /api/user/orders [get]
-// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях.
+// @Description Возвращает список загруженных пользователем номеров
+// заказов, статусов их обработки и информации о начислениях.
 func (h *OrderHandler) GetOrders(c echo.Context) error {
 	userIDRaw := c.Get("user_id")
 	userID, ok := userIDRaw.(int)

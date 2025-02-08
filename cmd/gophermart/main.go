@@ -83,7 +83,8 @@ func main() {
 	// Запускаем сервер в отдельной горутине
 	serverErr := make(chan error, 1)
 	go func() {
-		if startErr := application.Start(cfg.RunAddress); startErr != nil && !errors.Is(startErr, http.ErrServerClosed) {
+		if startErr := application.Start(cfg.RunAddress); startErr != nil &&
+			!errors.Is(startErr, http.ErrServerClosed) {
 			slog.Error("failed to start application", "error", startErr)
 			serverErr <- startErr
 		}

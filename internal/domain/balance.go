@@ -10,16 +10,16 @@ type Balance struct {
 
 // Withdrawal представляет списание средств.
 type Withdrawal struct {
-	Order       string    `json:"order" db:"order_number"`
-	Sum         float64   `json:"sum" db:"-"`
-	AmountKop   int64     `json:"-" db:"amount_kop"`
+	Order       string    `json:"order"        db:"order_number"`
+	Sum         float64   `json:"sum"          db:"-"`
+	AmountKop   int64     `json:"-"            db:"amount_kop"`
 	ProcessedAt time.Time `json:"processed_at" db:"processed_at"`
 }
 
 // WithdrawalRequest представляет запрос на списание средств.
 type WithdrawalRequest struct {
 	Order string  `json:"order" validate:"required"`
-	Sum   float64 `json:"sum" validate:"required,gt=0"`
+	Sum   float64 `json:"sum"   validate:"required,gt=0"`
 }
 
 // BalanceRepository определяет интерфейс для работы с балансом.

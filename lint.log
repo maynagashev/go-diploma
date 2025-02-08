@@ -1,44 +1,28 @@
-internal/handlers/order.go:92:1: The line is 126 characters long, which exceeds the maximum of 120 characters. (lll)
-// @Description Возвращает список загруженных пользователем номеров заказов, статусов их обработки и информации о начислениях.
-^
-internal/worker/accrual.go:187:43: Magic number: 100, in <argument> detected (mnd)
-			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
-			                                       ^
 internal/app/middleware.go:49:25: Error return value is not checked (errcheck)
 			c.Set("user_id", int(claims["user_id"].(float64)))
 			                     ^
 internal/app/middleware.go:50:19: Error return value is not checked (errcheck)
 			c.Set("login", claims["login"].(string))
 			               ^
-internal/service/errors.go:17:1: The line is 129 characters long, which exceeds the maximum of 120 characters. (lll)
-	// ErrOrderRegisteredByOther возникает при попытке зарегистрировать заказ, который уже был зарегистрирован другим пользователем.
-^
-internal/service/errors.go:20:1: The line is 139 characters long, which exceeds the maximum of 120 characters. (lll)
-	ErrInvalidOrderNumber = errors.New("неверный формат номера заказа, номер заказа должен состоять из 10 цифр и проходить по алгоритму Луна")
-^
-internal/service/accrual.go:57:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
-		return nil, nil
-		^
 cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobals)
 	envFileLoaded bool
 	^
 cmd/gophermart/main.go:80:3: exitAfterDefer: os.Exit will exit, and `defer cancel()` will not run (gocritic)
 		os.Exit(1)
 		^
-cmd/gophermart/flags.go:30:1: The line is 130 characters long, which exceeds the maximum of 120 characters. (lll)
-	flag.StringVar(&cfg.AccrualSystemAddress, "r", getEnvOrDefault("ACCRUAL_SYSTEM_ADDRESS", ""), "Адрес системы расчета начислений")
-^
-cmd/gophermart/flags.go:32:1: The line is 122 characters long, which exceeds the maximum of 120 characters. (lll)
-	flag.StringVar(&cfg.JWTSecret, "jwt-secret", getEnvOrDefault("JWT_SECRET", ""), "Секретный ключ для подписи JWT токенов")
-^
-cmd/gophermart/flags.go:44:27: `getEnvOrDefault` - `defaultValue` always receives `""` (unparam)
+internal/worker/accrual.go:187:43: Magic number: 100, in <argument> detected (mnd)
+			accrualKop := int64(*accrual.Accrual * 100) // конвертируем рубли в копейки
+			                                       ^
+internal/service/accrual.go:57:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
+		return nil, nil
+		^
+cmd/gophermart/flags.go:54:27: `getEnvOrDefault` - `defaultValue` always receives `""` (unparam)
 func getEnvOrDefault(key, defaultValue string) string {
                           ^
-12 issues:
+7 issues:
 * errcheck: 2
 * gochecknoglobals: 1
 * gocritic: 1
-* lll: 5
 * mnd: 1
 * nilnil: 1
 * unparam: 1

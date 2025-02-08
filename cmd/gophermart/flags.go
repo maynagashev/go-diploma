@@ -27,9 +27,19 @@ func parseFlags() Config {
 	// Приоритет: 1. Флаги командной строки 2. Системные переменные окружения 3. Переменные из .env
 	flag.StringVar(&cfg.RunAddress, "a", getEnvOrDefault("RUN_ADDRESS", ""), "Адрес и порт для запуска сервера")
 	flag.StringVar(&cfg.DatabaseURI, "d", getEnvOrDefault("DATABASE_URI", ""), "URI базы данных")
-	flag.StringVar(&cfg.AccrualSystemAddress, "r", getEnvOrDefault("ACCRUAL_SYSTEM_ADDRESS", ""), "Адрес системы расчета начислений")
+	flag.StringVar(
+		&cfg.AccrualSystemAddress,
+		"r",
+		getEnvOrDefault("ACCRUAL_SYSTEM_ADDRESS", ""),
+		"Адрес системы расчета начислений",
+	)
 	flag.StringVar(&cfg.MigrationsDirectory, "m", "migrations", "Директория с миграциями")
-	flag.StringVar(&cfg.JWTSecret, "jwt-secret", getEnvOrDefault("JWT_SECRET", ""), "Секретный ключ для подписи JWT токенов")
+	flag.StringVar(
+		&cfg.JWTSecret,
+		"jwt-secret",
+		getEnvOrDefault("JWT_SECRET", ""),
+		"Секретный ключ для подписи JWT токенов",
+	)
 	flag.DurationVar(
 		&cfg.JWTExpirationPeriod,
 		"jwt-exp",
