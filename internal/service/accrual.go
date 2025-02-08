@@ -3,11 +3,17 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"time"
 
 	"gophermart/internal/domain"
+)
+
+var (
+	// ErrOrderNotFound ошибка заказ не найден в системе начислений.
+	ErrOrderNotFound = errors.New("заказ не найден в системе начислений")
 )
 
 // AccrualResponse представляет ответ от системы начислений.
@@ -52,9 +58,9 @@ func (s *AccrualService) GetOrderAccrual(ctx context.Context, orderNumber string
 	}
 	defer resp.Body.Close()
 
-	// Если заказ не найден, возвращаем nil без ошибки
+	// Если заказ не найден, возвращаем специальную ошибку
 	if resp.StatusCode == http.StatusNoContent || resp.StatusCode == http.StatusNotFound {
-		return nil, nil
+		return nil, ErrOrderNotFound
 	}
 
 	// Проверяем rate limit

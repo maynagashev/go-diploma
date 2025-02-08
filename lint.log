@@ -4,18 +4,6 @@ func JWTMiddleware(secret string) echo.MiddlewareFunc {
 cmd/gophermart/main.go:22:2: envFileLoaded is a global variable (gochecknoglobals)
 	envFileLoaded bool
 	^
-cmd/gophermart/main.go:80:3: exitAfterDefer: os.Exit will exit, and `defer cancel()` will not run (gocritic)
-		os.Exit(1)
-		^
-internal/service/accrual.go:57:3: return both a `nil` error and an invalid value: use a sentinel error instead (nilnil)
-		return nil, nil
-		^
-cmd/gophermart/flags.go:54:27: `getEnvOrDefault` - `defaultValue` always receives `""` (unparam)
-func getEnvOrDefault(key, defaultValue string) string {
-                          ^
-5 issues:
+2 issues:
 * gochecknoglobals: 1
 * gocognit: 1
-* gocritic: 1
-* nilnil: 1
-* unparam: 1

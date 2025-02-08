@@ -27,6 +27,14 @@ const (
 )
 
 func main() {
+	// Код выхода по умолчанию
+	exitCode := 0
+	defer func() {
+		if exitCode != 0 {
+			os.Exit(exitCode)
+		}
+	}()
+
 	// Загрузка .env файла, если он существует (имеет низший приоритет)
 	if err := godotenv.Load(); err == nil {
 		envFileLoaded = true
@@ -76,8 +84,8 @@ func main() {
 	})
 	if err != nil {
 		slog.Error("failed to initialize application", "error", err)
-		cancel() // Вызываем cancel перед выходом
-		os.Exit(1)
+		exitCode = 1
+		return
 	}
 
 	// Запускаем сервер в отдельной горутине
@@ -94,8 +102,8 @@ func main() {
 	select {
 	case receivedErr := <-serverErr:
 		slog.Error("server error", "error", receivedErr)
-		cancel() // Вызываем cancel перед выходом
-		os.Exit(1)
+		exitCode = 1
+		return
 	case <-ctx.Done():
 		slog.Info("shutting down server...")
 	}
@@ -106,8 +114,8 @@ func main() {
 
 	if shutdownErr := application.Shutdown(shutdownCtx); shutdownErr != nil {
 		slog.Error("failed to stop application", "error", shutdownErr)
-		cancel() // Вызываем cancel перед выходом
-		os.Exit(1)
+		exitCode = 1
+		return
 	}
 
 	slog.Info("server stopped")
