@@ -2,23 +2,15 @@ package main
 
 import (
 	"context"
-	"errors"
 	"flag"
 	"log/slog"
-	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
 	"github.com/joho/godotenv"
 
 	"gophermart/internal/app"
-)
-
-// Глобальные переменные.
-const (
-	shutdownTimeout = 10 * time.Second // Таймаут для graceful shutdown
 )
 
 func main() {
@@ -84,35 +76,12 @@ func main() {
 		return
 	}
 
-	// Запускаем сервер в отдельной горутине
-	serverErr := make(chan error, 1)
-	go func() {
-		if startErr := application.Start(cfg.RunAddress); startErr != nil &&
-			!errors.Is(startErr, http.ErrServerClosed) {
-			slog.Error("failed to start application", "error", startErr)
-			serverErr <- startErr
-		}
-	}()
-
-	// Ожидаем либо ошибки сервера, либо сигнала завершения
-	select {
-	case receivedErr := <-serverErr:
-		slog.Error("server error", "error", receivedErr)
-		exitCode = 1
-		return
-	case <-ctx.Done():
-		slog.Info("shutting down server...")
-	}
-
-	// Graceful shutdown
-	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), shutdownTimeout)
-	defer shutdownCancel()
-
-	if shutdownErr := application.Shutdown(shutdownCtx); shutdownErr != nil {
-		slog.Error("failed to stop application", "error", shutdownErr)
+	// Запускаем приложение и ждем его завершения
+	if startErr := application.Start(ctx, cfg.RunAddress); startErr != nil {
+		slog.Error("application error", "error", startErr)
 		exitCode = 1
 		return
 	}
 
-	slog.Info("server stopped")
+	slog.Info("application stopped")
 }
