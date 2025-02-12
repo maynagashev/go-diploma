@@ -1,0 +1,33 @@
+name: gophermart
+services:
+
+  pgsql:
+    env_file:
+      - .env
+    image: 'postgres:14'
+    container_name: gophermart_pgsql
+    ports:
+      - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+      POSTGRES_DB: '${DB_DATABASE:-gophermart}'
+      POSTGRES_USER: '${DB_USERNAME:-gophermart}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    volumes:
+      - 'pgsql_data:/var/lib/postgresql/data'
+    networks:
+      - gophermart_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+      retries: 3
+      timeout: 5s
+
+volumes:
+  pgsql_data:
+    name: gophermart_pgsql_data
+    driver: local
+
+networks:
+  gophermart_network:
+    name: gophermart_network
+    driver: bridge
+    external: false
