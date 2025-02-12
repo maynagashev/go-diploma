@@ -2,8 +2,11 @@ package app
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log/slog"
+	"net/http"
+	"sync"
 	"time"
 
 	"github.com/jmoiron/sqlx"
@@ -30,6 +33,7 @@ type App struct {
 	balanceHandler *handlers.BalanceHandler
 	accrualWorker  *worker.AccrualWorker
 	config         Config
+	wg             sync.WaitGroup // добавляем WaitGroup для ожидания завершения горутин
 }
 
 // New создает новый экземпляр приложения.
@@ -96,19 +100,69 @@ func New(ctx context.Context, cfg Config) (*App, error) {
 }
 
 // Start запускает приложение.
-func (a *App) Start(address string) error {
+func (a *App) Start(ctx context.Context, address string) error {
 	// Запускаем воркер начислений в отдельной горутине
-	go a.accrualWorker.Start(context.Background())
+	a.wg.Add(1)
+	go func() {
+		defer a.wg.Done()
+		a.accrualWorker.Start(ctx)
+	}()
 
-	return a.echo.Start(address)
+	// Запускаем HTTP-сервер в фоне
+	serverErr := make(chan error, 1)
+	go func() {
+		serverErr <- a.echo.Start(address)
+	}()
+
+	// Ожидаем либо завершения контекста, либо ошибки сервера
+	select {
+	case <-ctx.Done():
+		slog.Info("shutting down server...")
+
+	case err := <-serverErr:
+		if err != nil && !errors.Is(err, http.ErrServerClosed) {
+			slog.Error("server error", "error", err)
+			return err
+		}
+	}
+
+	// Создаём контекст с таймаутом для graceful shutdown
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
+
+	if err := a.Shutdown(shutdownCtx); err != nil {
+		slog.Error("failed to shutdown application", "error", err)
+	}
+
+	return nil
 }
 
 // Shutdown выполняет корректное завершение работы приложения.
 func (a *App) Shutdown(ctx context.Context) error {
-	if err := a.db.Close(); err != nil {
-		return err
+	// Ждем завершения всех воркеров
+	shutdownComplete := make(chan struct{})
+	go func() {
+		a.wg.Wait()
+		close(shutdownComplete)
+	}()
+
+	// Ожидаем либо завершения всех воркеров, либо таймаута контекста
+	select {
+	case <-shutdownComplete:
+		slog.Info("all workers completed")
+	case <-ctx.Done():
+		slog.Warn("shutdown timeout exceeded, some workers may not have completed")
 	}
-	return a.echo.Shutdown(ctx)
+
+	if err := a.db.Close(); err != nil {
+		return fmt.Errorf("failed to close database connection: %w", err)
+	}
+
+	if err := a.echo.Shutdown(ctx); err != nil {
+		return fmt.Errorf("failed to shutdown http server: %w", err)
+	}
+
+	return nil
 }
 
 // setupRoutes настраивает маршруты приложения.
